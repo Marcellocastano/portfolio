@@ -1,0 +1,53 @@
+.pd-tests {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pd-tests li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.65rem;
+  border-radius: 7px;
+  background: var(--p-surface);
+  color: var(--p-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  transition:
+    color 0.3s,
+    background-color 0.3s;
+}
+
+.pd-tests li[data-state='pass'] {
+  color: #2e7d32;
+}
+
+.pd-tests__icon {
+  width: 0.95em;
+  height: 0.95em;
+  flex: none;
+}
+
+.pd-tests__icon[data-state='run'] {
+  color: var(--p-fg);
+}
+
+.pd-tests__console {
+  margin: 0;
+  padding: 0.4rem 0.65rem;
+  border-radius: 7px;
+  background: #2c2a1e;
+  color: #8fce6f;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.pd-tests__console[data-on='true'] {
+  opacity: 1;
+}

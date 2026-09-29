@@ -1,0 +1,98 @@
+@import './tokens.css';
+@import './animations.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  --cursor-default: url('/cursors/arrow.svg') 5 4, auto;
+  --cursor-pointer: url('/cursors/pointer.svg') 7 6, pointer;
+  --cursor-text: url('/cursors/text.svg') 10 14, text;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  cursor: var(--cursor-default);
+}
+
+:where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, blockquote, figcaption, input, textarea, [contenteditable]) {
+  cursor: var(--cursor-text);
+}
+
+:where([role='img'], [aria-hidden='true']),
+:where([role='img'], [aria-hidden='true']) * {
+  cursor: var(--cursor-default);
+}
+
+:where(a[href], button, label, summary, select, [role='button']),
+:where(a[href], button, label, summary, [role='button']) * {
+  cursor: var(--cursor-pointer);
+}
+
+@media (forced-colors: active) {
+  html,
+  html * {
+    cursor: auto;
+  }
+}
+
+body {
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

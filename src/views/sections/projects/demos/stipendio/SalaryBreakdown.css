@@ -1,0 +1,38 @@
+.salary-breakdown {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: var(--p-surface);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--p-fg) 12%, transparent);
+  list-style: none;
+  font-size: 0.78rem;
+}
+
+.salary-breakdown__head {
+  margin-bottom: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.salary-breakdown li:not(.salary-breakdown__head) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--p-fg) 8%, transparent);
+}
+
+.salary-breakdown small {
+  display: block;
+  color: var(--p-muted);
+  font-size: 0.64rem;
+}
+
+.salary-breakdown b {
+  color: #c0392b;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,82 @@
+.code-editor {
+  padding: 0.9em 0 1.1em;
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  line-height: 1.75;
+  overflow: hidden;
+}
+
+.code-line {
+  display: flex;
+  padding-right: 1em;
+  min-height: 1.75em;
+}
+
+.code-line[data-active='true'] {
+  background: color-mix(in srgb, var(--paper) 5%, transparent);
+}
+
+.code-line[data-flash='true'] {
+  animation: line-flash 1.6s var(--ease-out);
+}
+
+.code-line__no {
+  flex: none;
+  width: 2.8em;
+  padding-right: 1em;
+  text-align: right;
+  color: color-mix(in srgb, var(--paper) 25%, transparent);
+}
+
+.code-line__content {
+  white-space: pre;
+}
+
+.tok--kw {
+  color: var(--coral);
+}
+
+.tok--type {
+  color: color-mix(in srgb, var(--coral) 45%, var(--paper));
+}
+
+.tok--var {
+  color: var(--paper);
+}
+
+.tok--prop {
+  color: color-mix(in srgb, var(--paper) 70%, var(--slate));
+}
+
+.tok--str {
+  color: color-mix(in srgb, var(--coral) 22%, var(--paper));
+}
+
+.tok--fn {
+  color: var(--paper);
+  text-underline-offset: 3px;
+}
+
+.tok--punc {
+  color: var(--code-muted);
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.15em;
+  margin-left: 1px;
+  vertical-align: -0.2em;
+  background: var(--coral);
+}
+
+.caret[data-idle='true'] {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes line-flash {
+  0%,
+  35% {
+    background: color-mix(in srgb, var(--coral) 28%, transparent);
+  }
+}

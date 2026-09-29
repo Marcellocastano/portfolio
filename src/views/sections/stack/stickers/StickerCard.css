@@ -1,0 +1,127 @@
+.sc {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+}
+
+.sc__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(12 16 22 / 0.55);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+  cursor: var(--cursor-pointer);
+}
+
+.sc[data-phase='open'] .sc__backdrop,
+.sc[data-phase='fly'] .sc__backdrop {
+  opacity: 1;
+}
+
+.sc__card {
+  position: absolute;
+  perspective: 1200px;
+  transition:
+    left 0.45s var(--ease-out),
+    top 0.45s var(--ease-out),
+    width 0.45s var(--ease-out),
+    height 0.45s var(--ease-out),
+    transform 0.45s var(--ease-out);
+  filter: drop-shadow(0 8px 18px rgb(0 0 0 / 0.28)) drop-shadow(0 24px 44px rgb(0 0 0 / 0.22));
+}
+
+.sc[data-phase='peel'] .sc__card {
+  transition-duration: 0.16s;
+}
+
+.sc[data-phase='closing'] .sc__card {
+  transition-duration: 0.38s;
+}
+
+.sc__flip {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.sc[data-phase='peel'] .sc__flip {
+  transform: rotateY(-16deg) rotateX(14deg);
+  transform-origin: 0 0;
+  transition-duration: 0.16s;
+}
+
+.sc[data-phase='fly'] .sc__flip,
+.sc[data-phase='open'] .sc__flip {
+  transform: rotateY(180deg);
+}
+
+.sc[data-phase='closing'] .sc__flip {
+  transition-duration: 0.38s;
+}
+
+.sc__face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.sc__front {
+  background: #fdfdfd;
+}
+
+.sc__front[data-shape='hex'] {
+  clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+}
+
+.sc__front[data-shape='circle'] {
+  clip-path: circle(50% at 50% 50%);
+}
+
+.sc__front[data-shape='die-cut'] {
+  border-radius: 14px;
+}
+
+.sc__lid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(10000% / var(--f));
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  container-type: size;
+}
+
+.sc__stk {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: none;
+  pointer-events: none;
+}
+
+.sc__measure {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+}
+
+.sc__measure .sc__paper {
+  position: static;
+  overflow: visible;
+}
+
+.sc[data-reduced='true'] .sc__card {
+  transition: opacity 0.2s var(--ease-out);
+}
+
+.sc[data-reduced='true'] .sc__flip {
+  transform: rotateY(180deg);
+  transition: none;
+}
+
+.sc[data-reduced='true'][data-phase='closing'] .sc__card {
+  opacity: 0;
+}

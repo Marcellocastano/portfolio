@@ -1,0 +1,142 @@
+.board {
+  --pad: 0.7em;
+  --gap: 0.8em;
+  --shift: calc(100% + var(--pad) * 2 + var(--gap));
+  --drag-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: var(--gap);
+  padding: 1.1em;
+  background: var(--bg);
+}
+
+.board [data-on],
+.board[data-on] {
+  transition:
+    opacity 0.4s var(--ease-out),
+    transform 0.4s var(--ease-out);
+}
+
+.board[data-on='false'] {
+  opacity: 0;
+}
+
+.board [data-on='false'] {
+  opacity: 0;
+  transform: translateY(0.5em);
+}
+
+.board__column {
+  display: grid;
+  gap: 0.6em;
+  padding: var(--pad);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--fg) 6%, transparent);
+}
+
+.board__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.1em 0.2em 0.2em;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+
+.board__count {
+  display: grid;
+  place-items: center;
+  min-width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--fg) 10%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  font-weight: 400;
+  animation: text-swap 0.4s var(--ease-out);
+}
+
+.board__card,
+.board__drop,
+.board__skeleton {
+  height: 3.7em;
+  border-radius: 6px;
+}
+
+.board__card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0 0.8em;
+  border: 1px solid var(--coral);
+  background: var(--surface);
+  box-shadow: 0 6px 14px -10px rgb(0 0 0 / 0.4);
+}
+
+.board .board__card[data-on='true'] {
+  transition:
+    transform 0.95s var(--drag-ease),
+    box-shadow 0.3s,
+    opacity 0.4s;
+}
+
+.board .board__card[data-moved='true'] {
+  transform: translateX(var(--shift));
+}
+
+.board .board__card[data-lifted='true'] {
+  box-shadow: 0 18px 30px -14px rgb(0 0 0 / 0.5);
+  transform: rotate(-3deg) scale(1.04);
+}
+
+.board .board__card[data-lifted='true'][data-moved='true'] {
+  transform: translateX(var(--shift)) rotate(-3deg) scale(1.04);
+}
+
+.board__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: var(--coral);
+  color: #fff;
+  font-size: 0.75em;
+  font-weight: 700;
+}
+
+.board__card-text {
+  display: grid;
+  line-height: 1.25;
+}
+
+.board__card-text strong {
+  font-size: 0.9em;
+}
+
+.board__card-text span {
+  color: var(--fg-muted);
+  font-size: 0.75em;
+  animation: text-swap 0.4s var(--ease-out);
+}
+
+.board__drop {
+  border: 1.5px dashed transparent;
+  transition:
+    border-color 0.3s,
+    background-color 0.3s;
+}
+
+.board__drop[data-hover='true'] {
+  border-color: var(--coral);
+  background: color-mix(in srgb, var(--coral) 8%, transparent);
+}
+
+.board__skeleton {
+  background: color-mix(in srgb, var(--fg) 7%, transparent);
+}

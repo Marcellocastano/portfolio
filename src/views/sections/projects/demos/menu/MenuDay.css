@@ -1,0 +1,112 @@
+.menu-day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.6rem 0.65rem;
+  border-radius: 10px;
+  background: var(--p-surface);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--p-fg) 8%, transparent);
+  overflow: hidden;
+}
+
+.menu-day::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--day-color);
+}
+
+.menu-day__head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.menu-day__name {
+  font-family: var(--p-font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.menu-day__today {
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: var(--day-color);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+.menu-day__meal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.menu-day__mealname {
+  color: var(--p-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.menu-day__slot {
+  height: 3.4em;
+  overflow: hidden;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--day-color) 8%, var(--p-surface));
+}
+
+.menu-dish {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  height: 3.4em;
+  padding: 0.4rem 0.5rem;
+}
+
+.menu-dish__strip .menu-dish {
+  flex: none;
+}
+
+.menu-dish__strip {
+  display: flex;
+  flex-direction: column;
+  animation: menu-spin 1.15s var(--delay, 0ms) var(--ease-out) both;
+}
+
+.menu-dish__emoji {
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.menu-dish__name {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.menu-dish__meta {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+  color: var(--p-muted);
+  font-size: 0.62rem;
+}
+
+@keyframes menu-spin {
+  from {
+    transform: translateY(0);
+  }
+
+  82% {
+    transform: translateY(calc(var(--shift) - 5px));
+  }
+
+  to {
+    transform: translateY(var(--shift));
+  }
+}

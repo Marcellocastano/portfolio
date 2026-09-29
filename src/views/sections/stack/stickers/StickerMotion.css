@@ -1,0 +1,43 @@
+@keyframes stk-squash {
+  30% {
+    transform: translate(-50%, -50%) rotate(var(--r)) scale(1.08, 0.82);
+  }
+
+  60% {
+    transform: translate(-50%, -50%) rotate(var(--r)) scale(0.98, 1.04);
+  }
+}
+
+@keyframes stk-slam {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(calc(var(--r) * 2.2)) scale(1.45);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--r)) scale(0.94);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--r)) scale(1);
+  }
+}
+
+.js .stack[data-revealed='false'] .stk {
+  opacity: 0;
+}
+
+.js .stack[data-revealed='true'] .stk {
+  animation: stk-slam 0.3s calc(0.35s + var(--i) * 0.04s) var(--ease-out) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stk,
+  .stk__fold,
+  .stk__skin::before {
+    transition: none;
+    animation: none;
+  }
+}

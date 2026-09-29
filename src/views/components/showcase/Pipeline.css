@@ -1,0 +1,136 @@
+.pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 1.5rem;
+  padding: 0.6rem;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 12px 30px -22px color-mix(in srgb, black 60%, transparent);
+}
+
+.pipeline__step {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.55rem 0.65rem 0.8rem;
+  border-radius: 8px;
+  transition: background-color 0.4s;
+}
+
+.pipeline__step[data-state='active'] {
+  background: var(--bg);
+}
+
+.pipeline__node {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--fg-muted);
+  transition:
+    background-color 0.4s,
+    border-color 0.4s,
+    color 0.4s,
+    box-shadow 0.4s;
+}
+
+.pipeline__node svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.pipeline__step[data-state='active'] .pipeline__node {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 8px 20px -8px var(--accent);
+}
+
+.pipeline__step[data-state='done'] .pipeline__node {
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent);
+}
+
+.pipeline__text {
+  display: grid;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.pipeline__text strong {
+  font-size: 0.98rem;
+  color: var(--fg-muted);
+  transition: color 0.4s;
+}
+
+.pipeline__step:not([data-state='todo']) .pipeline__text strong {
+  color: var(--fg);
+}
+
+.pipeline__text span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--fg-muted);
+}
+
+.pipeline__progress {
+  position: absolute;
+  inset: auto 0.65rem 0.35rem;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--border);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pipeline__progress::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.pipeline__step[data-state='active'] .pipeline__progress {
+  opacity: 1;
+}
+
+.pipeline__step[data-state='active'] .pipeline__progress::after {
+  animation: step-progress var(--duration) linear forwards;
+}
+
+@keyframes step-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 560px) {
+  .pipeline__text span {
+    display: none;
+  }
+
+  .pipeline__node {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .pipeline__step {
+    gap: 0.5rem;
+  }
+}

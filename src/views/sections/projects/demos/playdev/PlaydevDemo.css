@@ -1,0 +1,133 @@
+.pd-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: 1rem;
+  padding: clamp(1rem, 2.2vw, 1.6rem);
+}
+
+.pd-demo__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.pd-demo__level {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.pd-demo__levelbar {
+  flex: 1;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--p-fg) 10%, transparent);
+}
+
+.pd-demo__levelbar i {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--p-accent);
+  transition: width 0.8s var(--ease-out);
+}
+
+.pd-demo__prompt {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pd-demo__editor {
+  overflow: hidden;
+  border-radius: 10px;
+  background: #2c2a1e;
+  box-shadow: 0 10px 24px -14px rgb(60 58 40 / 0.5);
+}
+
+.pd-demo__filebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.7rem;
+  background: rgb(0 0 0 / 0.25);
+}
+
+.pd-demo__file {
+  color: #d8d4b8;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.pd-demo__run {
+  padding: 0.3rem 0.9rem;
+  border-radius: 6px;
+  background: var(--p-accent);
+  color: var(--p-accent-fg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: filter 0.2s;
+}
+
+.pd-demo__run:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.pd-demo__run:disabled {
+  opacity: 0.55;
+}
+
+.pd-demo__code {
+  min-height: 5.4em;
+  padding: 0.8rem 0.9rem;
+  color: #f2efdc;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.pd-demo__caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: -0.15em;
+  background: var(--p-accent);
+  opacity: 0;
+}
+
+.pd-demo__caret[data-on='true'] {
+  opacity: 1;
+  animation: blink 1s step-end infinite;
+}
+
+.pd-demo__side {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.pd-demo__cubebox {
+  position: relative;
+  display: grid;
+  flex: 1;
+  place-items: center;
+  min-height: 150px;
+}
+
+@media (max-width: 560px) {
+  .pd-demo {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-demo__code {
+    font-size: 0.68rem;
+  }
+}

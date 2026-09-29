@@ -1,0 +1,39 @@
+.button-link {
+  padding: 0.95rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+}
+
+.button-link--primary {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.button-link--primary:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.button-link--accent {
+  background: var(--p-accent, var(--accent));
+  color: var(--p-accent-fg, var(--on-accent));
+}
+
+.button-link--accent:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 10px 24px -12px var(--p-accent, var(--accent));
+}
+
+.button-link--ghost {
+  color: var(--fg);
+  box-shadow: inset 0 0 0 1.5px var(--fg);
+}
+
+.button-link--ghost:hover {
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}

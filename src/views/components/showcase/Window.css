@@ -1,0 +1,111 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.window > :not(.window__bar) {
+  transition: opacity 0.4s;
+}
+
+.window[data-active='false'] > :not(.window__bar) {
+  opacity: 0.5;
+}
+
+.window__bar {
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  padding-top: 0.45em;
+  background: color-mix(in srgb, var(--fg) 6%, var(--surface));
+}
+
+.window__lights {
+  display: flex;
+  gap: 0.5em;
+  align-self: center;
+  padding: 0 1.1em;
+}
+
+.window__lights i {
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--fg) 22%, transparent);
+}
+
+.window__lights i:first-child {
+  background: var(--coral);
+}
+
+.window__tab {
+  padding: 0.5em 1.2em 0.6em;
+  border-top: 2px solid transparent;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  transition: border-color 0.3s;
+}
+
+.window[data-active='true'] .window__tab {
+  border-top-color: var(--coral);
+}
+
+.window__url {
+  position: relative;
+  flex: 1;
+  align-self: center;
+  margin: 0 1em 0.45em 0;
+  padding: 0.35em 0.9em;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+}
+
+.window__reload {
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--coral);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.window__reload[data-on='true'] {
+  animation: reload 0.6s var(--ease-out);
+}
+
+.window--code {
+  border-color: color-mix(in srgb, var(--paper) 10%, transparent);
+  background: var(--code-bg);
+  color: var(--code-fg);
+}
+
+.window--code .window__bar {
+  background: color-mix(in srgb, black 20%, var(--code-bg));
+}
+
+.window--code .window__tab {
+  background: var(--code-bg);
+}
+
+@keyframes reload {
+  from {
+    transform: scaleX(0);
+  }
+  70% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}

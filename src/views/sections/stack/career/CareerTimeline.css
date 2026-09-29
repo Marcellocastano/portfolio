@@ -1,0 +1,83 @@
+.tl {
+  --draw: 1;
+  position: relative;
+}
+
+.tl__graph {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  overflow: visible;
+}
+
+.tl__main {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - min(1, max(0, (var(--draw) - var(--at)) * var(--seg))));
+}
+
+.tl__branch {
+  fill: none;
+  stroke: var(--bc, var(--fg-muted));
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - min(1, max(0, (var(--draw) - var(--at)) * 6)));
+}
+
+.tl__blabel {
+  opacity: min(1, max(0, (var(--draw) - var(--at)) * 6));
+}
+
+.tl__blabel text {
+  fill: var(--bc, var(--fg-muted));
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.tl__dot {
+  fill: var(--bg);
+  stroke: var(--cc, var(--coral));
+  stroke-width: 2;
+  opacity: min(1, max(0, (var(--draw) - var(--at) + 0.12) * 10));
+}
+
+.tl__dot[data-head='true'] {
+  fill: var(--coral);
+  stroke: var(--coral);
+  paint-order: stroke;
+  stroke: color-mix(in srgb, var(--coral) 35%, transparent);
+  stroke-width: 8;
+}
+
+.tl__list {
+  position: relative;
+  padding: 0 0 0 9.4rem;
+  list-style: none;
+}
+
+.tl__commit {
+  padding: 0.55rem 0 1.15rem;
+  opacity: min(1, max(0, (var(--draw) - var(--at) + 0.12) * 8));
+  transform: translateY(max(0px, (var(--at) - var(--draw) - 0.12) * 40px));
+}
+
+.tl__commit[data-type='merge'] {
+  padding: 0.15rem 0 0.6rem;
+}
+
+@media (max-width: 1023px) {
+  .tl__graph {
+    width: 46px;
+  }
+
+  .tl__blabel {
+    display: none;
+  }
+
+  .tl__list {
+    padding-left: 2.6rem;
+  }
+}

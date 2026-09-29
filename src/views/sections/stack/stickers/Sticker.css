@@ -1,0 +1,140 @@
+.stk {
+  position: absolute;
+  display: block;
+  width: var(--w);
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  background: #fdfdfd;
+  clip-path: var(--clip);
+  transform: translate(-50%, -50%) rotate(var(--r));
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.22)) drop-shadow(0 4px 8px rgb(0 0 0 / 0.12));
+  transition:
+    transform 0.18s var(--ease-out),
+    filter 0.18s var(--ease-out),
+    opacity 0.25s var(--ease-out);
+  touch-action: pan-y;
+  cursor: var(--cursor-pointer);
+}
+
+.stk[data-size='s'] {
+  --w: 9cqw;
+}
+
+.stk[data-size='m'] {
+  --w: 12cqw;
+}
+
+.stk[data-size='l'] {
+  --w: 15cqw;
+}
+
+.stk[data-shape='hex'] {
+  --clip: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+}
+
+.stk[data-shape='circle'] {
+  --clip: circle(50% at 50% 50%);
+}
+
+.stk[data-shape='die-cut'] {
+  aspect-ratio: 1.75;
+  border-radius: 1.6cqw;
+}
+
+.stk__skin {
+  position: absolute;
+  inset: 0.45cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6cqw;
+  clip-path: var(--clip);
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.stk__skin::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 38%, rgb(255 255 255 / 0.38) 50%, transparent 62%);
+  background-size: 280% 280%;
+  background-position: calc(50% + var(--px, 0) * 60%) calc(50% + var(--py, 0) * 60%);
+  pointer-events: none;
+}
+
+.stk__icon {
+  width: 52%;
+  height: 52%;
+}
+
+.stk[data-shape='die-cut'] .stk__icon {
+  width: auto;
+  height: 62%;
+}
+
+.stk__name {
+  font-family: var(--font-mono);
+  font-size: 1.5cqw;
+  font-weight: 700;
+}
+
+.stk__fold {
+  position: absolute;
+  right: 4%;
+  bottom: 2%;
+  width: 0;
+  height: 0;
+  border-bottom: 2.6cqw solid #f4f4f0;
+  border-left: 2.6cqw solid transparent;
+  filter: drop-shadow(-1px -1px 2px rgb(0 0 0 / 0.25));
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: transform 0.18s var(--ease-out);
+}
+
+.stk:hover,
+.stk[data-lift='true'] {
+  transform: translate(-50%, -50%) rotate(var(--r)) translateY(-0.6cqw) scale(1.05);
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.25)) drop-shadow(0 8px 14px rgb(0 0 0 / 0.18));
+}
+
+.stk:hover .stk__fold,
+.stk[data-lift='true'] .stk__fold {
+  transform: scale(1);
+}
+
+.stk[data-dim='true'] {
+  opacity: 0.35;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.2)) saturate(0.4);
+}
+
+.stk[data-dragging='true'] {
+  transform: translate(-50%, -50%) scale(1.1);
+  transition:
+    filter 0.15s var(--ease-out),
+    opacity 0.2s;
+  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.3)) drop-shadow(0 14px 22px rgb(0 0 0 / 0.2));
+  cursor: var(--cursor-pointer);
+}
+
+.stk[data-dragging='true'] .stk__fold {
+  transform: scale(0);
+}
+
+.stk[data-drop='true'] {
+  animation: stk-squash 0.28s var(--ease-out);
+}
+
+.stk[data-ghost='true'] {
+  opacity: 0.14;
+  outline: 2px dashed var(--fg-muted);
+  outline-offset: 5px;
+  filter: none;
+  pointer-events: none;
+}
+
+.stk[data-ghost='true'] .stk__fold {
+  display: none;
+}

@@ -1,0 +1,6 @@
+dist
+dist-ssr
+node_modules
+.tokensave
+public
+package-lock.json

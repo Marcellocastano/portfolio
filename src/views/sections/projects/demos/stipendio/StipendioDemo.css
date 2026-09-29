@@ -1,0 +1,82 @@
+.stip-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 0.9rem;
+  padding: clamp(1rem, 2.2vw, 1.6rem);
+}
+
+.stip-demo__results {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 0.8rem;
+  min-height: 0;
+}
+
+.stip-demo__net {
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  background: var(--p-fg);
+  color: var(--p-accent-fg);
+}
+
+.stip-demo__net span,
+.stip-demo__net small {
+  display: block;
+  opacity: 0.75;
+  font-size: 0.72rem;
+}
+
+.stip-demo__net strong {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.stip-demo__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.stip-demo__row > div {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--p-fg) 14%, var(--p-surface));
+}
+
+.stip-demo__row span,
+.stip-demo__row small {
+  display: block;
+  color: var(--p-muted);
+  font-size: 0.68rem;
+}
+
+.stip-demo__row b {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.stip-demo__row .stip-demo__cost {
+  color: #c0392b;
+}
+
+.stip-demo__detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.8rem;
+  min-height: 0;
+  align-items: stretch;
+}
+
+@media (max-width: 720px) {
+  .stip-demo__detail {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .stip-demo {
+    grid-template-columns: 1fr;
+  }
+}

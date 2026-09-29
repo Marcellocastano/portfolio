@@ -1,0 +1,68 @@
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(3.4rem, 10.5vw, 9.5rem);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+}
+
+.hero-title__name {
+  display: inline-block;
+}
+
+.hero-title__row {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.hero-title .split-char {
+  display: inline-block;
+  transition:
+    transform 0.45s var(--ease-out),
+    color 0.3s,
+    -webkit-text-stroke-color 0.3s;
+  animation: char-in 0.9s calc(0.2s + var(--i) * 0.04s) var(--ease-out) backwards;
+}
+
+.hero-title .split-char:hover {
+  transform: translateY(-0.08em) rotate(-4deg);
+  color: var(--accent);
+}
+
+.hero-title__name--outline .split-char {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--fg);
+}
+
+.hero-title__name--outline .split-char:hover {
+  -webkit-text-stroke-color: var(--accent);
+}
+
+.hero-title .bouncing-period {
+  animation: char-in 0.9s 0.85s var(--ease-out) backwards;
+}
+
+.hero-title__role {
+  margin-top: clamp(1.25rem, 2.5vh, 1.75rem);
+  font-size: clamp(1.35rem, 2.6vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.hero-title__role-text {
+  padding: 0.06em 0.3em 0.1em;
+  color: var(--on-accent);
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat left / 100% 100%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  animation:
+    select-sweep 0.7s 1s var(--ease-out) backwards,
+    select-text 0.3s 1s backwards;
+}
+
+@media (max-width: 640px) {
+  .hero-title__name--outline .split-char {
+    -webkit-text-stroke-width: 1.5px;
+  }
+}

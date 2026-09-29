@@ -1,0 +1,42 @@
+:root {
+  --slate: #374151;
+  --paper: #e6e6e6;
+  --coral: #e1645e;
+
+  --font-sans: 'Space Grotesk Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+
+  --accent: var(--coral);
+  --on-accent: #fff;
+
+  --code-bg: color-mix(in srgb, var(--slate) 92%, black);
+  --code-fg: var(--paper);
+  --code-muted: color-mix(in srgb, var(--paper) 45%, var(--slate));
+}
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: var(--paper);
+  --fg: var(--slate);
+  --fg-muted: color-mix(in srgb, var(--slate) 68%, var(--paper));
+  --dot: color-mix(in srgb, var(--slate) 38%, var(--paper));
+  --surface: color-mix(in srgb, var(--paper) 45%, white);
+  --border: color-mix(in srgb, var(--slate) 16%, transparent);
+  --shadow: 0 30px 80px -30px color-mix(in srgb, var(--slate) 45%, transparent);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: color-mix(in srgb, var(--slate) 45%, #0b0d12);
+  --fg: var(--paper);
+  --fg-muted: color-mix(in srgb, var(--paper) 62%, var(--slate));
+  --dot: color-mix(in srgb, var(--paper) 30%, var(--slate));
+  --surface: color-mix(in srgb, var(--slate) 75%, #0b0d12);
+  --border: color-mix(in srgb, var(--paper) 12%, transparent);
+  --shadow: 0 30px 80px -30px rgb(0 0 0 / 0.7);
+  --code-bg: color-mix(in srgb, var(--slate) 88%, #0b0d12);
+}

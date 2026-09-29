@@ -1,0 +1,52 @@
+.fa-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  background: var(--p-surface);
+  list-style: none;
+  font-size: 0.7rem;
+}
+
+.fa-teams__head {
+  color: var(--p-muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.fa-teams__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.fa-teams__row span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fa-teams__row b {
+  flex: none;
+  color: var(--p-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.fa-teams__bar {
+  height: 4px;
+  margin-top: 0.25rem;
+  overflow: hidden;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--p-fg) 14%, transparent);
+}
+
+.fa-teams__bar i {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--p-accent);
+  transition: width 0.6s var(--ease-out);
+}

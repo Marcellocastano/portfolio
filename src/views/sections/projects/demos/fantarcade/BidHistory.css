@@ -1,0 +1,44 @@
+.fa-bids {
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  background: var(--p-surface);
+  list-style: none;
+  font-size: 0.72rem;
+}
+
+.fa-bids__head {
+  margin-bottom: 0.3rem;
+  color: var(--p-muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.fa-bids li:not(.fa-bids__head) {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.28rem 0;
+  color: var(--p-fg);
+  animation: rise 0.35s var(--ease-out);
+}
+
+.fa-bids li span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fa-bids b {
+  flex: none;
+  color: var(--p-accent);
+}
+
+.fa-bids li[data-you='true'] b {
+  color: #4ade80;
+}
+
+.fa-bids__empty {
+  color: var(--p-muted);
+}

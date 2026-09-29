@@ -1,0 +1,71 @@
+.tl__hash {
+  margin-right: 0.6rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.tl__ref {
+  padding: 0.05em 0.5em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--coral) 16%, transparent);
+  color: var(--coral);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-variant-ligatures: none;
+}
+
+.tl__msg {
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.tl__type {
+  color: var(--cc, var(--coral));
+  font-weight: 600;
+}
+
+.tl__commit[data-type='merge'] .tl__type {
+  color: var(--fg-muted);
+}
+
+.tl__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35em;
+  height: 1.35em;
+  margin-right: 0.5em;
+  padding: 0 0.3em;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  vertical-align: -0.15em;
+}
+
+.tl__commit[data-type='merge'] .tl__msg {
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+}
+
+.tl__commit[data-type='merge'] .tl__hash {
+  margin-left: 0;
+}
+
+.tl__meta {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.tl__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.9rem;
+  margin-top: 0.35rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+}

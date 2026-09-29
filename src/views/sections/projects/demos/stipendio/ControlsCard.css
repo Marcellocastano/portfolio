@@ -1,0 +1,65 @@
+.stip-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.1rem;
+  border-radius: 12px;
+  background: var(--p-surface);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--p-fg) 12%, transparent);
+}
+
+.stip-controls__label {
+  color: var(--p-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.stip-controls__ral {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.stip-controls input[type='range'] {
+  width: 100%;
+  accent-color: var(--p-fg);
+}
+
+.stip-controls__btns {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.stip-controls__btns button {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--p-fg) 8%, var(--p-surface));
+  color: var(--p-fg);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.stip-controls__btns button:hover,
+.stip-controls__btns button[data-current='true'] {
+  background: var(--p-fg);
+  color: var(--p-accent-fg);
+}
+
+.stip-controls__mensilita {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.stip-controls__mensilita .stip-controls__btns button {
+  flex: 1;
+}
+
+.stip-controls__note {
+  margin-top: auto;
+  color: var(--p-muted);
+  font-size: 0.68rem;
+}

@@ -1,0 +1,68 @@
+.stip-donut {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem;
+  border-radius: 12px;
+  background: var(--p-surface);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--p-fg) 12%, transparent);
+  min-height: 0;
+}
+
+.stip-donut__svg {
+  width: clamp(130px, 12vw, 165px);
+  height: auto;
+  flex: none;
+}
+
+.stip-donut__svg circle[stroke-dasharray] {
+  transition:
+    stroke-dasharray 0.7s var(--ease-out),
+    stroke-dashoffset 0.7s var(--ease-out);
+}
+
+.stip-donut__figure {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.stip-donut__center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.stip-donut__center span {
+  display: block;
+  color: var(--p-muted);
+  font-size: 0.62rem;
+}
+
+.stip-donut__center b {
+  font-size: 0.95rem;
+}
+
+.stip-donut__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 0.7rem;
+  padding: 0;
+  color: var(--p-muted);
+  font-size: 0.68rem;
+  list-style: none;
+}
+
+.stip-donut__legend i {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.3rem;
+  border-radius: 2px;
+}

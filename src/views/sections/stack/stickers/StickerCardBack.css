@@ -1,0 +1,134 @@
+.sc__back {
+  transform: rotateY(180deg);
+  border-radius: 14px;
+}
+
+.sc__wm {
+  position: absolute;
+  right: -34px;
+  bottom: -34px;
+  width: 140px;
+  height: 140px;
+  color: #374151;
+  opacity: 0.07;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.sc__paper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.3rem 1.1rem 1rem;
+  border-radius: 14px;
+  background: repeating-linear-gradient(125deg, rgb(0 0 0 / 0.018) 0 6px, transparent 6px 12px), #f7f5ef;
+  color: #374151;
+  overflow: auto;
+}
+
+.sc__band {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--bc);
+}
+
+.sc__paper::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 56px;
+  height: 14px;
+  transform: translateX(-50%);
+  border-radius: 0 0 8px 8px;
+  background: #eae6dc;
+}
+
+.sc__head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.sc__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  flex-shrink: 0;
+}
+
+.sc__name {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.sc__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.sc__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.sc__since {
+  font-family: var(--font-mono);
+}
+
+.sc__desc {
+  color: #4b5563;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.sc__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  flex-wrap: wrap;
+}
+
+.sc__used {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.75rem;
+  color: #6b7280;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.sc__used a {
+  color: var(--coral);
+  text-decoration: none;
+  cursor: var(--cursor-pointer);
+}
+
+.sc__used a:hover {
+  text-decoration: underline;
+}
+
+.sc__close {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #d6d2c8;
+  border-radius: 7px;
+  background: transparent;
+  color: #374151;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: var(--cursor-pointer);
+}
+
+.sc__close:hover {
+  border-color: var(--coral);
+}

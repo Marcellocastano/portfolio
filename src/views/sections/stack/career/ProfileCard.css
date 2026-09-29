@@ -1,0 +1,69 @@
+.me {
+  position: sticky;
+  top: var(--projects-top, 98px);
+  align-self: start;
+}
+
+.me__frame {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.me__bar {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.me__tab {
+  padding: 0.45em 1em;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.me__photo {
+  position: relative;
+  display: block;
+}
+
+.me__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.me__name {
+  margin-top: 1.1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.me__role {
+  margin-top: 0.2rem;
+  color: var(--coral);
+  font-weight: 500;
+}
+
+.me__bio {
+  margin-top: 0.7rem;
+  max-width: 40ch;
+  color: var(--fg-muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 1023px) {
+  .me {
+    position: static;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+}

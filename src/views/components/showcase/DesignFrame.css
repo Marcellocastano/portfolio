@@ -1,0 +1,112 @@
+.design {
+  position: relative;
+  flex: 1;
+  padding: 1.6em 1.2em 1em;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 2.2em 2.2em;
+}
+
+.design__label {
+  position: absolute;
+  top: 0.35em;
+  left: 1.2em;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+}
+
+.design__frame {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7em;
+  height: 100%;
+  padding: 0.7em;
+  border-radius: 4px;
+  background: var(--bg);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.design__column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 0.5em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--fg) 6%, transparent);
+}
+
+.design__heading {
+  width: 45%;
+  height: 0.55em;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--fg) 25%, transparent);
+}
+
+.design__slot {
+  position: relative;
+  height: 2.4em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--fg) 10%, transparent);
+}
+
+.design__slot[data-card='true'] {
+  background: color-mix(in srgb, var(--coral) 30%, var(--bg));
+}
+
+.selection {
+  position: absolute;
+  inset: -0.3em;
+  border: 1px solid var(--coral);
+  opacity: 0;
+  transform: scale(1.1);
+  transition:
+    opacity 0.3s 0.4s,
+    transform 0.45s 0.4s var(--ease-out);
+}
+
+.design[data-active='true'] .selection {
+  opacity: 1;
+  transform: none;
+}
+
+.selection i {
+  position: absolute;
+  width: 0.5em;
+  height: 0.5em;
+  border: 1px solid var(--coral);
+  background: var(--bg);
+}
+
+.selection i:nth-child(1) {
+  top: -0.25em;
+  left: -0.25em;
+}
+
+.selection i:nth-child(2) {
+  top: -0.25em;
+  right: -0.25em;
+}
+
+.selection i:nth-child(3) {
+  bottom: -0.25em;
+  left: -0.25em;
+}
+
+.selection i:nth-child(4) {
+  bottom: -0.25em;
+  right: -0.25em;
+}
+
+.selection__tag {
+  position: absolute;
+  left: -1px;
+  bottom: calc(100% + 0.35em);
+  padding: 0.1em 0.45em;
+  border-radius: 3px;
+  background: var(--coral);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  white-space: nowrap;
+}
