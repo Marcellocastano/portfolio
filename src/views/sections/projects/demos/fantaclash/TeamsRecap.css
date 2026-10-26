@@ -1,0 +1,117 @@
+.fc-teams__title {
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--fc-ink);
+  font-family: var(--fc-font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.fc-teams__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fc-teams__row {
+  padding: 0.45rem 0.3rem;
+  border-bottom: 2px solid var(--fc-line);
+  transition: background-color 150ms;
+}
+
+.fc-teams__row[data-tone='mine'] {
+  background: var(--fc-highlight);
+}
+
+.fc-teams__row[data-tone='bot'] {
+  background: rgba(226, 74, 18, 0.15);
+}
+
+.fc-teams__main {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fc-teams__id {
+  flex: 1;
+  min-width: 0;
+}
+
+.fc-teams__name {
+  display: block;
+  overflow: hidden;
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fc-teams__name[data-you='true'] {
+  color: var(--fc-pitch);
+  font-weight: 700;
+}
+
+.fc-teams__status {
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+.fc-teams__status[data-tone='bot'] {
+  color: var(--fc-whistle-deep);
+}
+
+.fc-teams__sub {
+  display: block;
+  overflow: hidden;
+  color: var(--fc-muted);
+  font-size: 0.56rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fc-teams__credits {
+  flex: none;
+  text-align: right;
+  line-height: 1;
+}
+
+.fc-teams__credits b {
+  display: block;
+  font-family: var(--fc-font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-teams__credits small {
+  color: var(--fc-muted);
+  font-size: 0.52rem;
+  font-weight: 600;
+}
+
+.fc-teams__slots {
+  display: flex;
+  gap: 0.15rem;
+  margin-top: 0.4rem;
+}
+
+.fc-teams__slot {
+  flex: 1;
+  height: 0.4rem;
+  border: 1px solid var(--fc-ink);
+  background: transparent;
+}
+
+.fc-teams__slot[data-role='P'][data-filled='true'] {
+  background: var(--fc-role-p);
+}
+.fc-teams__slot[data-role='D'][data-filled='true'] {
+  background: var(--fc-role-d);
+}
+.fc-teams__slot[data-role='C'][data-filled='true'] {
+  background: var(--fc-role-c);
+}
+.fc-teams__slot[data-role='A'][data-filled='true'] {
+  background: var(--fc-role-a);
+}

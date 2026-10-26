@@ -1,0 +1,193 @@
+.fc-shell {
+  container-type: inline-size;
+  min-height: 100%;
+}
+
+/* Palette "figurine da stadio" dell'app reale: carta crema, verde prato,
+   arancio fischietto, giallo evidenziatore. */
+.fc-demo {
+  --fc-canvas: #f4eedf;
+  --fc-surface: #eae1ca;
+  --fc-ink: #15201a;
+  --fc-ink-soft: #3a463f;
+  --fc-muted: #5c665f;
+  --fc-line: #ddd3bc;
+  --fc-pitch: #0b7a43;
+  --fc-pitch-deep: #07492a;
+  --fc-whistle: #e24a12;
+  --fc-whistle-deep: #b2370a;
+  --fc-highlight: #ffd23f;
+  --fc-role-p: #e08a00;
+  --fc-role-d: #23955a;
+  --fc-role-c: #2f6dcf;
+  --fc-role-a: #c8322a;
+  --fc-font-display: 'Big Shoulders Variable', 'Arial Narrow', sans-serif;
+  --fc-font-sans: 'Public Sans Variable', sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--fc-canvas);
+  color: var(--fc-ink);
+  font-family: var(--fc-font-sans);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+/* Barra verde scuro con il martelletto e il percorso di gioco. */
+.fc-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.45rem 0.7rem;
+  border-bottom: 4px solid var(--fc-ink);
+  background: var(--fc-pitch-deep);
+  color: var(--fc-canvas);
+}
+
+.fc-nav__brand {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.fc-nav__mark {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.fc-nav__word {
+  font-family: var(--fc-font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.fc-nav__trail {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fc-font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  list-style: none;
+}
+
+.fc-nav__step {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.fc-nav__sep {
+  width: 0.85rem;
+  height: 2px;
+  background: rgba(244, 238, 223, 0.25);
+}
+
+.fc-nav__label {
+  padding: 0.1rem 0.35rem;
+  color: rgba(244, 238, 223, 0.45);
+  line-height: 1;
+}
+
+.fc-nav__label[data-active='true'] {
+  background: var(--fc-highlight);
+  color: var(--fc-ink);
+}
+
+.fc-nav__side {
+  display: flex;
+  gap: 0.9rem;
+  margin-left: auto;
+}
+
+.fc-nav__stat {
+  text-align: right;
+  line-height: 1;
+}
+
+.fc-nav__stat small {
+  display: block;
+  color: rgba(244, 238, 223, 0.6);
+  font-size: 0.55rem;
+  font-weight: 600;
+}
+
+.fc-nav__stat b {
+  font-family: var(--fc-font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Banco d'asta a sinistra (filetto inchiostro), rose a destra. */
+.fc-body {
+  display: grid;
+  flex: 1;
+  grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
+}
+
+.fc-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-width: 0;
+  padding: 0.8rem;
+  border-right: 2px solid var(--fc-ink);
+}
+
+.fc-side {
+  min-width: 0;
+  padding: 0.8rem;
+}
+
+.fc-stage__title {
+  font-family: var(--fc-font-display);
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.fc-stage__card {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fc-stage__card {
+    animation: fc-drop 520ms cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+  }
+
+  @keyframes fc-drop {
+    0% {
+      opacity: 0;
+      transform: translateY(-40px) rotate(-4deg) scale(1.08);
+    }
+    70% {
+      opacity: 1;
+      transform: translateY(3px) rotate(0.5deg) scale(0.99);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0) scale(1);
+    }
+  }
+}
+
+@container (max-width: 520px) {
+  .fc-nav__trail {
+    display: none;
+  }
+
+  .fc-body {
+    grid-template-columns: 1fr;
+  }
+
+  .fc-stage {
+    border-right: 0;
+    border-bottom: 2px solid var(--fc-ink);
+  }
+}

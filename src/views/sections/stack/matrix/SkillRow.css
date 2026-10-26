@@ -1,0 +1,159 @@
+.srow {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--label-w) minmax(0, 1fr);
+  column-gap: var(--col-gap);
+  align-items: center;
+  min-height: var(--row-h);
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.srow[data-dim='true'] {
+  opacity: 0.3;
+}
+
+.srow__label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  padding: 0.35rem 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 8px;
+  color: var(--fg);
+  font: inherit;
+  text-align: left;
+  cursor: var(--cursor-pointer);
+  transition: background-color 0.2s;
+}
+
+.srow[data-active='true'] .srow__label {
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+}
+
+.srow__label svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: var(--c);
+}
+
+.srow__text {
+  display: flex;
+  flex: 1;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.srow__name {
+  overflow: hidden;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.srow__years {
+  margin-left: auto;
+  flex: none;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.srow__track {
+  position: relative;
+  height: 10px;
+}
+
+/* Barra: si disegna da sinistra quando la sezione entra in vista. */
+.srow__bar,
+.srow__seg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--from);
+  width: calc(var(--to) - var(--from));
+  border-radius: 999px;
+  background: var(--c);
+}
+
+.srow__bar {
+  transform-origin: left;
+  transition:
+    opacity 0.3s var(--ease-out),
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+}
+
+.srow__bar[data-faded='true'] {
+  opacity: 0.25;
+}
+
+.srow__seg {
+  box-shadow: 0 0 14px -2px var(--c);
+  animation: seg-in 0.35s var(--ease-out);
+}
+
+.srow[data-active='true'] .srow__bar {
+  box-shadow: 0 0 16px -2px var(--c);
+  transform: scaleY(1.4);
+}
+
+.js .stack[data-revealed='false'] .srow__bar {
+  transform: scaleX(0);
+}
+
+.js .stack[data-revealed='true'] .srow__bar {
+  animation: bar-draw 0.9s calc(0.35s + var(--i) * 0.06s) cubic-bezier(0.65, 0, 0.35, 1) backwards;
+}
+
+.js .stack[data-revealed='false'] .srow__label {
+  opacity: 0;
+}
+
+.js .stack[data-revealed='true'] .srow__label {
+  animation: rise 0.4s calc(0.3s + var(--i) * 0.04s) var(--ease-out) backwards;
+}
+
+@keyframes bar-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes seg-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0.4);
+  }
+}
+
+@media (max-width: 767px) {
+  .srow__text {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .srow__name {
+    max-width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .srow__years {
+    margin-left: 0;
+    font-size: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .srow,
+  .srow__bar {
+    transition: none;
+  }
+
+  .js .stack[data-revealed] :is(.srow__bar, .srow__label, .srow__seg) {
+    animation: none;
+  }
+}

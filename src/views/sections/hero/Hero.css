@@ -4,7 +4,7 @@
   display: grid;
   align-content: center;
   min-height: 100svh;
-  padding: clamp(6rem, 12vh, 8rem) var(--gutter) clamp(3rem, 8vh, 5rem);
+  padding: clamp(6rem, 12vh, 8rem) var(--gutter) var(--section-pad-bottom);
   overflow: hidden;
 }
 

@@ -1,0 +1,166 @@
+.contacts {
+  position: relative;
+  overflow-x: clip;
+  padding: var(--section-pad-top) var(--gutter) var(--section-pad-bottom);
+  scroll-margin-top: calc(var(--projects-top, 98px) - 1rem);
+}
+
+/* Blocco nel container comune (1400px): testo a sinistra, avatar che spunta dal bordo superiore. */
+.contacts__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin: var(--section-content-gap) auto 0;
+  padding: clamp(1.75rem, 4vw, 3.25rem) clamp(1.5rem, 4vw, 3.5rem) 0;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.contacts__body {
+  align-self: center;
+  padding-bottom: clamp(1.75rem, 4vw, 3.25rem);
+}
+
+.contacts__title {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.contacts__text {
+  max-width: 56ch;
+  margin-top: 0.9rem;
+  color: var(--fg-muted);
+}
+
+.contacts__links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Avatar appoggiato sul bordo inferiore del blocco, la testa esce sopra. */
+.contacts__visual {
+  position: relative;
+  align-self: end;
+  justify-self: end;
+  width: min(200px, 100%);
+  margin-top: clamp(-10rem, -8vw, -3rem);
+  margin-right: calc(-1 * clamp(1.5rem, 4vw, 3.5rem));
+  line-height: 0;
+}
+
+.contacts__blob {
+  position: absolute;
+  inset: 0 -12% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(225 100 94 / 0.2), transparent 72%);
+}
+
+.contacts__img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  transform-origin: 50% 100%;
+  transition: transform 0.2s var(--ease-out);
+}
+
+/* Saluto: rotazione di pochi gradi dal basso, su hover avatar o tile. */
+.contacts__visual:hover .contacts__img,
+.contacts:has(.cl:hover) .contacts__img,
+.contacts:has(.cl:focus-visible) .contacts__img {
+  transform: rotate(-4deg);
+}
+
+/* Fumetto stile tooltip dell'editor, accanto alla testa. */
+.contacts__bubble {
+  position: absolute;
+  top: 14%;
+  right: 74%;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.12);
+  transition:
+    opacity 0.25s var(--ease-out) 0.45s,
+    transform 0.25s var(--ease-out) 0.45s;
+}
+
+@keyframes contacts-rise {
+  0% {
+    transform: translateY(70px) rotate(-7deg);
+  }
+  70% {
+    transform: translateY(-6px) rotate(1.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.js .contacts[data-revealed='false'] .contacts__img {
+  opacity: 0;
+  transform: translateY(70px) rotate(-7deg);
+}
+
+.js .contacts[data-revealed='true'] .contacts__img {
+  animation: contacts-rise 0.55s var(--ease-out) both;
+}
+
+.js .contacts[data-revealed='false'] .contacts__bubble {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@media (max-width: 1023px) {
+  .contacts__card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contacts__body {
+    padding-bottom: 0;
+  }
+
+  .contacts__visual {
+    justify-self: end;
+    width: min(190px, 58vw);
+    margin-top: 0;
+  }
+
+  .contacts__bubble {
+    top: 4%;
+    right: auto;
+    left: 58%;
+  }
+}
+
+@media (max-width: 560px) {
+  .contacts__links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .contacts[data-revealed='false'] .contacts__img,
+  .js .contacts[data-revealed='false'] .contacts__bubble {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .contacts[data-revealed='true'] .contacts__img {
+    animation: none;
+  }
+}

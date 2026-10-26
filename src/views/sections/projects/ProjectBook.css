@@ -1,0 +1,95 @@
+.book {
+  position: relative;
+  flex: 0 0 var(--spine);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  scroll-margin-top: var(--projects-top);
+  transition:
+    flex-grow var(--book-time) var(--book-ease),
+    background-color var(--book-time) var(--book-ease);
+}
+
+.book[data-open='true'] {
+  flex-grow: 1;
+  background: color-mix(in srgb, var(--p-accent) 5%, var(--surface));
+}
+
+/* Le pagine hanno sempre la larghezza finale: il libro si apre senza far rifluire il testo. */
+.book__pages {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(100cqw - (var(--books) - 1) * (var(--spine) + var(--shelf-gap)));
+  opacity: 0;
+  transform: translateX(-12px);
+  transition:
+    opacity 0.3s var(--ease-out),
+    transform 0.3s var(--ease-out);
+}
+
+.book[data-open='true'] .book__pages {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s 0.35s var(--ease-out),
+    transform 0.6s 0.35s var(--ease-out);
+}
+
+.book__inner {
+  display: grid;
+  grid-template-columns: minmax(260px, 4fr) minmax(0, 7fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  height: 100%;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Entrata: i libri salgono uno dopo l'altro sullo scaffale. */
+.js .projects[data-revealed='false'] .book {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.js .projects[data-revealed='true'] .book {
+  animation: rise 0.45s calc(0.2s + var(--i) * 0.07s) var(--ease-out) backwards;
+}
+
+@media (max-width: 1023px) {
+  .book {
+    display: grid;
+    flex: none;
+    grid-template-rows: auto 0fr;
+    border-radius: 16px;
+    transition:
+      grid-template-rows var(--book-time) var(--book-ease),
+      background-color var(--book-time) var(--book-ease);
+  }
+
+  .book[data-open='true'] {
+    grid-template-rows: auto 1fr;
+  }
+
+  .book__pages {
+    position: static;
+    width: auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .book__inner {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    height: auto;
+    padding: 0 1.1rem 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book,
+  .book__pages,
+  .book[data-open='true'] .book__pages {
+    transition: none;
+  }
+}

@@ -1,0 +1,115 @@
+.cr {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.4rem 0;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #374151;
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: var(--cursor-pointer);
+}
+
+/* Etichetta adesiva fustellata nel colore della categoria. */
+.cr__tag {
+  flex-shrink: 0;
+  padding: 0.28rem 0.7rem;
+  border-radius: 8px;
+  background: var(--cc);
+  font-weight: 600;
+  box-shadow:
+    0 0 0 2.5px #fff,
+    0 2px 5px rgb(0 0 0 / 0.18);
+  transition:
+    transform 0.18s var(--ease-out),
+    box-shadow 0.18s var(--ease-out);
+}
+
+/* Mini-adesivi: cerchietti sovrapposti, repliche degli adesivi reali. */
+.cr__minis {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.cr__mini {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  margin-left: -6px;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 2.5px #fff,
+    0 1px 3px rgb(0 0 0 / 0.24);
+  transform: rotate(var(--mr));
+  transition:
+    transform 0.18s var(--ease-out),
+    margin-left 0.18s var(--ease-out);
+}
+
+.cr__mini:first-child {
+  margin-left: 0;
+}
+
+.cr__mini svg {
+  width: 62%;
+  height: 62%;
+}
+
+/* Hover/focus: etichetta si solleva e i mini-adesivi si aprono a ventaglio. */
+.cr:hover .cr__tag,
+.cr:focus-visible .cr__tag,
+.cr[data-active='true'] .cr__tag {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow:
+    0 0 0 2.5px #fff,
+    0 4px 9px rgb(0 0 0 / 0.22);
+}
+
+.cr:hover .cr__mini,
+.cr:focus-visible .cr__mini,
+.cr[data-active='true'] .cr__mini {
+  transform: rotate(0deg);
+  margin-left: -2px;
+}
+
+.cr__count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+@media (max-width: 1023px) {
+  .cr__minis {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cr__tag,
+  .cr__mini {
+    transition: none;
+  }
+
+  .cr:hover .cr__mini,
+  .cr:focus-visible .cr__mini,
+  .cr[data-active='true'] .cr__mini {
+    transform: rotate(var(--mr));
+    margin-left: -6px;
+  }
+
+  .cr:hover .cr__tag,
+  .cr:focus-visible .cr__tag,
+  .cr[data-active='true'] .cr__tag {
+    transform: none;
+  }
+}

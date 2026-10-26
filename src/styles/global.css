@@ -65,6 +65,12 @@ button {
   color: var(--on-accent);
 }
 
+/* Foglio di carta condiviso: retro card adesivo e pannello legenda. */
+.paper-sheet {
+  background: repeating-linear-gradient(125deg, rgb(0 0 0 / 0.018) 0 6px, transparent 6px 12px), #f7f5ef;
+  color: #374151;
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;

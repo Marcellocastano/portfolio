@@ -1,0 +1,169 @@
+.fc-bid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.fc-bid__time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fc-bid__label {
+  color: var(--fc-muted);
+  font-size: 0.66rem;
+  font-weight: 600;
+}
+
+.fc-bid__sec {
+  display: inline-block;
+  font-family: var(--fc-font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.fc-bid__sec[data-low='true'] {
+  color: var(--fc-whistle);
+  animation: fc-tick-pulse 300ms ease-out both;
+}
+
+.fc-bid__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+/* Bottone "figurina": bordo inchiostro, ombra piena, scende alla pressione. */
+.fc-bid__btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0;
+  border: 2px solid var(--fc-ink);
+  border-radius: 2px;
+  background: var(--fc-whistle);
+  box-shadow: 2px 2px 0 0 var(--fc-ink);
+  color: #fff;
+  font-family: var(--fc-font-display);
+  font-weight: 800;
+  line-height: 1;
+  cursor: var(--cursor-pointer);
+  transition:
+    transform 100ms,
+    box-shadow 100ms,
+    background-color 100ms;
+}
+
+.fc-bid__btn:hover:not(:disabled) {
+  background: var(--fc-ink);
+}
+
+.fc-bid__btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.fc-bid__btn:disabled {
+  transform: none;
+  box-shadow: none;
+  cursor: var(--cursor-default);
+  opacity: 0.4;
+}
+
+.fc-bid__inc {
+  font-size: 1.15rem;
+}
+
+.fc-bid__to {
+  margin-top: 0.2rem;
+  font-family: var(--fc-font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.fc-bid__hint {
+  margin: 0;
+  color: var(--fc-muted);
+  font-size: 0.66rem;
+}
+
+/* Pulsante di avanzamento con barra che si svuota. */
+.fc-next {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.65rem 0;
+  border: 2px solid var(--fc-ink);
+  border-radius: 2px;
+  background: var(--fc-pitch);
+  box-shadow: 2px 2px 0 0 var(--fc-ink);
+  color: #fff;
+  font-family: var(--fc-font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: var(--cursor-pointer);
+  transition:
+    transform 100ms,
+    box-shadow 100ms,
+    background-color 100ms;
+}
+
+.fc-next:hover {
+  background: var(--fc-pitch-deep);
+}
+
+.fc-next:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.fc-next svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.fc-next__drain {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0.3rem;
+  background: var(--fc-highlight);
+  transform-origin: left;
+  animation: fc-drain 2400ms linear both;
+}
+
+@keyframes fc-tick-pulse {
+  0% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fc-drain {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-bid__sec[data-low='true'],
+  .fc-next__drain {
+    animation: none;
+  }
+}

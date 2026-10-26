@@ -1,0 +1,88 @@
+.about {
+  position: relative;
+  overflow-x: clip;
+  padding: var(--section-pad-top) var(--gutter) var(--section-pad-bottom);
+  scroll-margin-top: calc(var(--projects-top, 98px) - 1rem);
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) auto minmax(220px, 3fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.about__bio {
+  max-width: 52ch;
+  margin-top: 0.9rem;
+  color: var(--fg-muted);
+}
+
+/* Stesso stacco header → contenuto delle altre sezioni. */
+.about__intro .about__bio:first-of-type {
+  margin-top: var(--section-content-gap);
+}
+
+.about__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+}
+
+/* Entrata: testi e dati salgono, il badge scende appeso al cordino. */
+.js .about[data-revealed='false'] :is(.about__bio, .about__links, .facts),
+.js .about[data-revealed='false'] .badge {
+  opacity: 0;
+}
+
+.js .about[data-revealed='false'] .badge__swing {
+  animation: none;
+}
+
+.js .about[data-revealed='true'] :is(.about__bio, .about__links) {
+  animation: rise 0.5s 0.35s var(--ease-out) backwards;
+}
+
+.js .about[data-revealed='true'] .badge {
+  animation: badge-drop 0.7s 0.15s var(--ease-out) backwards;
+}
+
+.js .about[data-revealed='true'] .facts {
+  animation: rise 0.5s 0.5s var(--ease-out) backwards;
+}
+
+@keyframes badge-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+}
+
+@media (max-width: 1199px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .facts {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .badge {
+    justify-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .about[data-revealed] :is(.about__bio, .about__links, .facts, .badge) {
+    animation: none;
+  }
+}

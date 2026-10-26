@@ -36,6 +36,26 @@ export function projectCssVars(project: Project): Record<string, string> {
 
 export const projects: Project[] = [
   {
+    id: 'fantaclash',
+    name: 'FantaClash',
+    domain: 'fantaclash.it',
+    tagline: 'Asta e coppa di fantacalcio sulle stagioni storiche della Serie A.',
+    description:
+      "Scegli un'annata dal 2003-04 al 2025-26, sfidi sette bot all'asta con 100 crediti e costruisci una rosa di otto giocatori. Poi si gioca una coppa a eliminazione diretta, con partite simulate minuto per minuto.",
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Vitest'],
+    status: 'Online',
+    links: { app: 'https://www.fantaclash.it', code: '#' },
+    theme: {
+      bg: '#F4EEDF',
+      surface: '#EAE1CA',
+      fg: '#15201A',
+      muted: '#5C665F',
+      accent: '#0B7A43',
+      accentFg: '#FFFFFF',
+      fontDisplay: '"Big Shoulders Variable", "Arial Narrow", sans-serif',
+    },
+  },
+  {
     id: 'che-si-mangia',
     name: 'Che si mangia',
     domain: 'chesimangia.app',
@@ -91,25 +111,6 @@ export const projects: Project[] = [
       muted: '#8a8468',
       accent: '#f7d547',
       accentFg: '#3c3a28',
-    },
-  },
-  {
-    id: 'fantarcade',
-    name: 'FantArcade',
-    domain: 'fantarcade.app',
-    tagline: "L'asta del fantacalcio, ma i bot rilanciano davvero.",
-    description:
-      'Rilancia prima che il countdown scada, scegli la difficoltà e guarda il timbro “Aggiudicato” battere sulla card del giocatore.',
-    stack: ['React', 'TypeScript', 'WebSocket', 'Node.js'],
-    status: 'Online',
-    links: { app: '#', code: '#' },
-    theme: {
-      bg: '#17123b',
-      surface: '#241d52',
-      fg: '#eceaff',
-      muted: '#8f88c4',
-      accent: '#22d3ee',
-      accentFg: '#0b1020',
     },
   },
 ];

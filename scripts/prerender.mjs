@@ -22,10 +22,12 @@ const html = template.replace('<!--app-head-->', preloadFonts + renderHead()).re
 
 const today = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>${absoluteUrl('/')}</loc>
     <lastmod>${today}</lastmod>
+    <image:image><image:loc>${absoluteUrl('/images/io-cartoon.png')}</image:loc></image:image>
+    <image:image><image:loc>${absoluteUrl('/og-image.png')}</image:loc></image:image>
   </url>
 </urlset>
 `;
@@ -44,5 +46,7 @@ await fs.rm(ssrDir, { recursive: true, force: true });
 
 console.log('Pre-rendering completato: index.html, sitemap.xml, robots.txt');
 if (isPlaceholderUrl) {
-  console.warn('\x1b[33mATTENZIONE: VITE_SITE_URL non impostata, URL canonici e sitemap puntano a localhost.\x1b[0m');
+  console.warn(
+    '\x1b[33mATTENZIONE: VITE_SITE_URL non è un URL https: canonical, Open Graph e sitemap non saranno validi.\x1b[0m',
+  );
 }

@@ -1,0 +1,101 @@
+/* Tile di contatto: riempimento brand a sweep da sinistra in hover/focus. */
+.cl {
+  --fill: #181717;
+  --on-fill: #f7f5ef;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--fg);
+  overflow: hidden;
+  text-decoration: none;
+  cursor: var(--cursor-pointer);
+}
+
+.cl[data-id='linkedin'] {
+  --fill: #0a66c2;
+  --on-fill: #fff;
+}
+
+[data-theme='dark'] .cl[data-id='github'] {
+  --fill: #e6e6e6;
+  --on-fill: #181717;
+}
+
+.cl::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--fill);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s var(--ease-out);
+}
+
+.cl:hover::before,
+.cl:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.cl > * {
+  position: relative;
+}
+
+.cl:hover,
+.cl:focus-visible {
+  color: var(--on-fill);
+  border-color: transparent;
+}
+
+.cl__icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+  transition: transform 0.18s var(--ease-out);
+}
+
+.cl:hover .cl__icon,
+.cl:focus-visible .cl__icon {
+  transform: scale(1.12);
+}
+
+.cl__name {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.cl__handle {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  opacity: 0.7;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cl__arrow {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: transform 0.18s var(--ease-out);
+}
+
+.cl:hover .cl__arrow,
+.cl:focus-visible .cl__arrow {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cl::before,
+  .cl__icon,
+  .cl__arrow {
+    transition: none;
+  }
+}

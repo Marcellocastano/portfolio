@@ -1,0 +1,162 @@
+.fc-pcard {
+  position: relative;
+  padding: 0.85rem;
+  border: 2px solid var(--fc-ink);
+  box-shadow: 4px 4px 0 0 var(--fc-ink);
+}
+
+.fc-pcard[data-tier='bronze'] {
+  --fc-pcard-muted: #5e3410;
+  background: #d9a577;
+  color: #5e3410;
+}
+.fc-pcard[data-tier='silver'] {
+  --fc-pcard-muted: #3f474c;
+  background: #d5dadd;
+  color: #3f474c;
+}
+.fc-pcard[data-tier='gold'] {
+  --fc-pcard-muted: #5a4300;
+  background: #f4cf55;
+  color: #5a4300;
+}
+.fc-pcard[data-tier='elite'] {
+  --fc-pcard-muted: rgba(244, 238, 223, 0.75);
+  background: var(--fc-ink);
+  color: var(--fc-highlight);
+}
+
+.fc-pcard__frame {
+  position: absolute;
+  inset: 0.4rem;
+  border: 1px solid rgba(255, 210, 63, 0.6);
+  pointer-events: none;
+}
+
+.fc-pcard__top {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.fc-pcard__ovr {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.fc-pcard__num {
+  font-family: var(--fc-font-display);
+  font-size: 3.1rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-pcard__role {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.2rem;
+  color: #fff;
+  font-family: var(--fc-font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.fc-pcard__role[data-role='P'] {
+  background: var(--fc-role-p);
+}
+.fc-pcard__role[data-role='D'] {
+  background: var(--fc-role-d);
+}
+.fc-pcard__role[data-role='C'] {
+  background: var(--fc-role-c);
+}
+.fc-pcard__role[data-role='A'] {
+  background: var(--fc-role-a);
+}
+
+.fc-pcard__head {
+  min-width: 0;
+  text-align: right;
+}
+
+.fc-pcard__team {
+  overflow: hidden;
+  font-family: var(--fc-font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fc-pcard__sub {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  color: var(--fc-pcard-muted);
+  font-size: 0.62rem;
+}
+
+.fc-pcard__name {
+  position: relative;
+  margin-top: 0.9rem;
+}
+
+.fc-pcard__first {
+  color: var(--fc-pcard-muted);
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.fc-pcard__surname {
+  font-family: var(--fc-font-display);
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+.fc-pcard[data-tier='elite'] .fc-pcard__surname,
+.fc-pcard[data-tier='elite'] .fc-pcard__value {
+  color: var(--fc-canvas);
+}
+
+.fc-pcard__stats {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 0.9rem;
+  padding-top: 0.5rem;
+  border-top: 2px solid rgba(21, 32, 26, 0.2);
+}
+
+.fc-pcard[data-tier='elite'] .fc-pcard__stats {
+  border-color: rgba(244, 238, 223, 0.25);
+}
+
+.fc-pcard__stat {
+  text-align: center;
+  line-height: 1.1;
+}
+
+.fc-pcard__value {
+  display: block;
+  font-family: var(--fc-font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-pcard__label {
+  color: var(--fc-pcard-muted);
+  font-size: 0.58rem;
+  font-weight: 600;
+}

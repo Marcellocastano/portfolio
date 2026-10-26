@@ -11,20 +11,6 @@
   display: block;
 }
 
-.hero-headline__line {
-  white-space: nowrap;
-}
-
-.hero-headline__rotator {
+.hero-headline__accent {
   color: var(--accent);
-}
-
-.hero-headline__caret {
-  display: inline-block;
-  width: 2px;
-  height: 0.95em;
-  margin-left: 3px;
-  vertical-align: -0.1em;
-  background: var(--accent);
-  animation: blink 1s steps(1) infinite;
 }

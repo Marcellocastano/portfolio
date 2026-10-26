@@ -1,0 +1,114 @@
+.spine {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.4rem 0 1.1rem;
+  color: var(--fg);
+  font: inherit;
+  cursor: var(--cursor-pointer);
+  transition:
+    opacity 0.4s 0.35s var(--ease-out),
+    visibility 0s 0.35s;
+}
+
+.book[data-open='true'] .spine {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.25s var(--ease-out),
+    visibility 0s 0.25s;
+}
+
+.spine__mark {
+  width: 12px;
+  height: 12px;
+  flex: none;
+  border-radius: 3px;
+  background: var(--p-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--p-fg) 20%, transparent);
+}
+
+/* Titolo sulla costa, dal basso verso l'alto come sui libri veri. */
+.spine__title {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.spine__plus {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--fg);
+  color: var(--bg);
+  transition: transform 0.35s var(--ease-out);
+}
+
+.spine__plus svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.spine:hover .spine__plus,
+.spine:focus-visible .spine__plus {
+  transform: rotate(90deg);
+}
+
+.spine:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (max-width: 1023px) {
+  .spine {
+    position: static;
+    flex-direction: row;
+    gap: 0.8rem;
+    padding: 1rem 1.1rem;
+    text-align: left;
+  }
+
+  .book[data-open='true'] .spine {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .spine__title {
+    font-size: 1.15rem;
+    writing-mode: horizontal-tb;
+    transform: none;
+    text-overflow: ellipsis;
+  }
+
+  .spine__plus {
+    width: 30px;
+    height: 30px;
+  }
+
+  .book[data-open='true'] .spine__plus {
+    transform: rotate(45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spine,
+  .book[data-open='true'] .spine,
+  .spine__plus {
+    transition: none;
+  }
+}

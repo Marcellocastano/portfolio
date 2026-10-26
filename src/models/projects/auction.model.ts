@@ -1,112 +1,143 @@
-import type { Rng } from '../../lib/prng';
-import { pick, pickInt } from '../../lib/prng';
-import { BOT_NAMES, PLAYERS, TEAM_BUDGET, TEAMS, YOU } from './auctionData.model';
+import {
+  INITIAL_CREDITS,
+  LOT_MS,
+  LOTS,
+  OPENING_BID,
+  ROSTER,
+  TEAM_DEFS,
+  TICK_MS,
+  type Kit,
+  type Player,
+  type Role,
+} from './auctionData.model';
 
-export type { Player } from './auctionData.model';
-export { PLAYERS, YOU } from './auctionData.model';
+export * from './auctionData.model';
+export { monogram, splitName, ROLE_NAME, ROLE_PLURAL, TIER_NAME } from './auctionNames.model';
+
+export interface RosterEntry {
+  role: Role;
+  name: string;
+  price: number;
+}
+
+export interface Team {
+  id: string;
+  name: string;
+  kit: Kit;
+  you: boolean;
+  credits: number;
+  roster: RosterEntry[];
+}
 
 export interface Bid {
-  by: string;
+  teamId: string;
   amount: number;
-  you: boolean;
 }
 
-export interface TeamRecap {
-  name: string;
-  budget: number;
-  spent: number;
-}
-
-export type Difficulty = 'facile' | 'normale' | 'difficile';
 export type AuctionPhase = 'live' | 'sold';
 
 export interface AuctionState {
-  playerIndex: number;
-  price: number;
-  timeLeft: number;
+  lotIndex: number;
+  bid: number;
+  bidderId: string | null;
   bids: Bid[];
-  teams: TeamRecap[];
+  timeLeft: number;
   phase: AuctionPhase;
-  winner: string | null;
-  seed: number;
+  teams: Team[];
 }
 
-export const AUCTION_SECONDS = 24;
-export const BID_STEPS = [1, 5, 10];
-export const DIFFICULTIES: Difficulty[] = ['facile', 'normale', 'difficile'];
+const initialTeams = (): Team[] => TEAM_DEFS.map((d) => ({ ...d, credits: INITIAL_CREDITS, roster: [] }));
 
-const BOT_CHANCE: Record<Difficulty, number> = { facile: 0.14, normale: 0.3, difficile: 0.5 };
-const BOT_CAP: Record<Difficulty, number> = { facile: 0.7, normale: 1.05, difficile: 1.6 };
+export const currentLot = (state: AuctionState): Player => LOTS[state.lotIndex % LOTS.length];
 
-function initialTeams(): TeamRecap[] {
-  return TEAMS.map((name) => ({ name, budget: TEAM_BUDGET, spent: 0 }));
+export const you = (state: AuctionState): Team => state.teams.find((t) => t.you) ?? state.teams[0];
+
+export const leader = (state: AuctionState): Team | undefined => state.teams.find((t) => t.id === state.bidderId);
+
+export const userLeads = (state: AuctionState): boolean => state.bidderId === you(state).id;
+
+/** L'ultimo rilancio non è tuo e quello prima era tuo: ti hanno appena superato. */
+export function isOutbid(state: AuctionState): boolean {
+  const n = state.bids.length;
+  return n >= 2 && state.bids[n - 1].teamId !== you(state).id && state.bids[n - 2].teamId === you(state).id;
 }
 
-/** Parte con due rilanci bot già in cronologia: l'asta è subito viva. */
-export function initialAuction(seed: number): AuctionState {
-  const base = PLAYERS[0].basePrice;
-  const bids: Bid[] = [
-    { by: TEAMS[2], amount: base + 3, you: false },
-    { by: TEAMS[1], amount: base + 1, you: false },
-  ];
-  return {
-    playerIndex: 0,
-    price: base + 3,
-    timeLeft: AUCTION_SECONDS - 4,
-    bids,
-    teams: initialTeams(),
+export const rosterCount = (team: Team, role: Role): number => team.roster.filter((p) => p.role === role).length;
+
+export const needsRole = (team: Team, role: Role): boolean => rosterCount(team, role) < ROSTER[role];
+
+const remainingSlots = (team: Team): number => 8 - team.roster.length;
+
+/** Massimo offribile: resta almeno 1 credito per ogni altro slot da riempire. */
+export function maxBid(team: Team): number {
+  const slots = remainingSlots(team);
+  return slots <= 0 ? 0 : team.credits - (slots - 1);
+}
+
+function applyBid(state: AuctionState, teamId: string, amount: number): AuctionState {
+  return { ...state, bid: amount, bidderId: teamId, timeLeft: LOT_MS, bids: [...state.bids, { teamId, amount }] };
+}
+
+/** Il chiamante è un bot che ha bisogno del ruolo, a rotazione per lotIndex. */
+const callerId = (teams: Team[], role: Role, lotIndex: number): string | null => {
+  const callers = teams.filter((t) => !t.you && needsRole(t, role));
+  return callers.length === 0 ? null : callers[lotIndex % callers.length].id;
+};
+
+/** Apre il lotto: superato l'ultimo si riparte da capo con crediti e rose azzerate. */
+export function openLot(state: AuctionState, lotIndex: number): AuctionState {
+  const index = lotIndex % LOTS.length;
+  const teams = index === 0 ? initialTeams() : state.teams;
+  const player = LOTS[index];
+  const bidderId = callerId(teams, player.role, index);
+  const base: AuctionState = {
+    lotIndex: index,
+    bid: 0,
+    bidderId: null,
+    bids: [],
+    timeLeft: LOT_MS,
     phase: 'live',
-    winner: null,
-    seed,
-  };
-}
-
-function withBid(state: AuctionState, by: string, inc: number, you: boolean): AuctionState {
-  const bid: Bid = { by, amount: state.price + inc, you };
-  return { ...state, price: bid.amount, timeLeft: AUCTION_SECONDS, bids: [bid, ...state.bids].slice(0, 5) };
-}
-
-export function userBid(state: AuctionState, inc: number): AuctionState {
-  return state.phase === 'live' ? withBid(state, YOU, inc, true) : state;
-}
-
-export function tickAuction(state: AuctionState): AuctionState {
-  if (state.phase !== 'live') return state;
-  const timeLeft = state.timeLeft - 1;
-  if (timeLeft > 0) return { ...state, timeLeft };
-  return { ...state, timeLeft: 0, phase: 'sold', winner: state.bids[0]?.by ?? 'Nessuno' };
-}
-
-/** Giocatore successivo; il vincitore spende il prezzo nel recap squadre. */
-export function nextPlayer(state: AuctionState): AuctionState {
-  const playerIndex = (state.playerIndex + 1) % PLAYERS.length;
-  const player = PLAYERS[playerIndex];
-  const base = player.basePrice;
-  const teams = state.teams.map((t) => (t.name === state.winner ? { ...t, spent: t.spent + state.price } : t));
-  const bids: Bid[] = [
-    { by: pickBotName(playerIndex), amount: base + 2, you: false },
-    { by: TEAMS[3], amount: base + 1, you: false },
-  ];
-  return {
-    ...state,
-    playerIndex,
-    price: base + 2,
-    timeLeft: AUCTION_SECONDS - 3,
-    bids,
     teams,
-    phase: 'live',
-    winner: null,
   };
+  return bidderId ? applyBid(base, bidderId, OPENING_BID) : base;
 }
 
-function pickBotName(playerIndex: number): string {
-  return TEAMS[1 + (playerIndex % (TEAMS.length - 1))];
+const FIRST_BIDS: [number, number][] = [
+  [1, OPENING_BID],
+  [3, 5],
+  [5, 9],
+];
+
+/** Stato iniziale deterministico (SSR-safe): primo lotto già vivo con tre offerte. */
+export function initialAuction(): AuctionState {
+  const teams = initialTeams();
+  const bids = FIRST_BIDS.map(([i, amount]) => ({ teamId: teams[i].id, amount }));
+  const last = bids[bids.length - 1];
+  return { lotIndex: 0, bid: last.amount, bidderId: last.teamId, bids, timeLeft: 3200, phase: 'live', teams };
 }
 
-/** Decisione bot pura: rilancia se sotto il tetto e il rng lo permette. */
-export function botBid(state: AuctionState, difficulty: Difficulty, rng: Rng): AuctionState {
-  if (state.phase !== 'live' || rng() > BOT_CHANCE[difficulty]) return state;
-  const cap = PLAYERS[state.playerIndex].value * BOT_CAP[difficulty];
-  if (state.price >= cap) return state;
-  return withBid(state, pick(rng, BOT_NAMES), pickInt(rng, 1, 3), false);
+/** Il timer scende; allo zero il lotto è aggiudicato al miglior offerente. */
+export function tick(state: AuctionState): AuctionState {
+  if (state.phase !== 'live') return state;
+  const timeLeft = state.timeLeft - TICK_MS;
+  if (timeLeft > 0) return { ...state, timeLeft };
+  const player = currentLot(state);
+  const teams = state.teams.map((t) =>
+    t.id === state.bidderId
+      ? {
+          ...t,
+          credits: t.credits - state.bid,
+          roster: [...t.roster, { role: player.role, name: player.name, price: state.bid }],
+        }
+      : t,
+  );
+  return { ...state, timeLeft: 0, phase: 'sold', teams };
+}
+
+/** Rilancio dell'utente: solo da non in testa, con bisogno del ruolo e crediti sufficienti. */
+export function userBid(state: AuctionState, inc: number): AuctionState {
+  const me = you(state);
+  if (state.phase !== 'live' || userLeads(state) || !needsRole(me, currentLot(state).role)) return state;
+  const amount = state.bid + inc;
+  return amount <= maxBid(me) ? applyBid(state, me.id, amount) : state;
 }

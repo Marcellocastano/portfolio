@@ -23,8 +23,6 @@
   gap: 0.6rem;
   padding: 1.3rem 1.1rem 1rem;
   border-radius: 14px;
-  background: repeating-linear-gradient(125deg, rgb(0 0 0 / 0.018) 0 6px, transparent 6px 12px), #f7f5ef;
-  color: #374151;
   overflow: auto;
 }
 

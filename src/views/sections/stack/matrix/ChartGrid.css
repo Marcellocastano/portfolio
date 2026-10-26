@@ -1,0 +1,97 @@
+/* Sfondo allineato alla colonna delle barre (dopo etichetta e spazio). */
+.grid {
+  position: absolute;
+  inset: 0 0 0 calc(var(--label-w) + var(--col-gap));
+  pointer-events: none;
+}
+
+.grid__axis {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1.6rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.grid__axis span {
+  position: absolute;
+  left: var(--x);
+  transform: translateX(-50%);
+}
+
+.grid__axis span:first-child {
+  transform: none;
+}
+
+.grid__today {
+  color: var(--accent);
+  transform: translateX(-100%) !important;
+}
+
+.grid__plot {
+  position: absolute;
+  inset: 2rem 0 0;
+}
+
+.grid__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--x);
+  width: 1px;
+  background: var(--border);
+}
+
+/* Fascia azienda: tinta leggera, si accende quando l'azienda è in evidenza. */
+.grid__band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--from);
+  width: calc(var(--to) - var(--from));
+  border-left: 1px dashed color-mix(in srgb, var(--c) 55%, transparent);
+  background: linear-gradient(color-mix(in srgb, var(--c) 9%, transparent), transparent 85%);
+  opacity: 0.55;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.grid__band[data-lit='true'] {
+  opacity: 1;
+  background: linear-gradient(color-mix(in srgb, var(--c) 20%, transparent), transparent);
+}
+
+.matrix[data-focus='true'] .grid__band:not([data-lit='true']) {
+  opacity: 0.2;
+}
+
+.js .stack[data-revealed='false'] .grid {
+  opacity: 0;
+}
+
+.js .stack[data-revealed='true'] .grid {
+  animation: fade-in 0.6s 0.2s var(--ease-out) backwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid__axis span:nth-child(even):not(.grid__today),
+  .grid__axis span:nth-last-child(2) {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .stack[data-revealed='true'] .grid {
+    animation: none;
+  }
+
+  .grid__band {
+    transition: none;
+  }
+}

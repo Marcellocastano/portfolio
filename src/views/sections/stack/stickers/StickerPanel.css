@@ -1,56 +1,39 @@
+/* Il foglio protettivo degli adesivi: carta leggermente ruotata con ombra. */
 .sp {
   align-self: center;
   min-height: 12rem;
+  padding: 1.4rem 1.5rem;
+  border-radius: 6px;
+  transform: rotate(-1.5deg);
+  box-shadow:
+    0 1px 3px rgb(0 0 0 / 0.16),
+    0 10px 26px rgb(0 0 0 / 0.14);
 }
 
-.sp__intro > p {
-  color: var(--fg-muted);
+.sp__intro {
   font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.sp__intro mark {
+  padding: 0.05em 0.25em;
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .sp__legend {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  margin-top: 1.4rem;
+  gap: 0.3rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
   list-style: none;
 }
 
-.sp__cat {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  width: 100%;
-  padding: 0.45rem 0.6rem;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--fg);
-  font: inherit;
-  font-size: 0.9rem;
-  text-align: left;
-  cursor: var(--cursor-pointer);
-  transition:
-    border-color 0.15s var(--ease-out),
-    background 0.15s var(--ease-out);
-}
-
-.sp__cat:hover,
-.sp__cat:focus-visible,
-.sp__cat[data-active='true'] {
-  border-color: var(--border);
-  background: var(--surface);
-}
-
-.sp__dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-}
-
-.sp__count {
-  margin-left: auto;
-  color: var(--fg-muted);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+@media (max-width: 1023px) {
+  .sp {
+    transform: none;
+    padding: 1.2rem 1.1rem;
+  }
 }

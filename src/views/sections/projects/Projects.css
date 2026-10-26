@@ -1,83 +1,30 @@
 .projects {
-  position: relative;
-  isolation: isolate;
-  overflow-x: clip;
-  padding-inline: var(--gutter);
-  padding-top: var(--projects-lead);
-  scroll-margin-top: calc(var(--projects-top) - 1rem);
   --projects-top: calc(58px + 2.5rem);
-  --projects-lead: clamp(4rem, 8vh, 6rem);
+
+  position: relative;
+  overflow-x: clip;
+  padding: var(--section-pad-top) var(--gutter) var(--section-pad-bottom);
+  scroll-margin-top: calc(var(--projects-top) - 1rem);
 }
 
-.projects__sticky {
+/* Libreria: libri affiancati, uno solo aperto. */
+.shelf {
+  --spine: 84px;
+  --shelf-gap: 0.75rem;
+  --book-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --book-time: 0.85s;
+
   display: flex;
-  flex-direction: column;
-  min-height: calc(100svh - var(--projects-top));
-}
-
-.projects__glow {
-  position: absolute;
-  z-index: -1;
-  top: 12%;
-  right: -10%;
-  width: 55vw;
-  height: 55vw;
-  max-width: 900px;
-  max-height: 900px;
-  border-radius: 50%;
-  background: var(--p-accent);
-  opacity: 0.12;
-  filter: blur(140px);
-  transition:
-    background-color 0.7s var(--ease-out),
-    opacity 0.9s var(--ease-out);
-  pointer-events: none;
-}
-
-.projects__grid {
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  grid-template-areas: 'nav stage' 'info stage';
-  grid-template-columns: minmax(240px, 4fr) minmax(0, 7fr);
-  grid-template-rows: auto 1fr;
-  align-items: start;
-  column-gap: clamp(2rem, 4vw, 4rem);
-  row-gap: 1.5rem;
-  width: 100%;
+  gap: var(--shelf-gap);
   max-width: 1400px;
-  margin: 0 auto;
-  perspective: 1400px;
-}
-
-/* Entrata scenografica: stati iniziali nascosti solo con JS attivo */
-.js .projects[data-revealed='false'] .projects__glow {
-  opacity: 0;
-}
-
-@media (min-width: 1024px) {
-  .projects {
-    height: calc(var(--count) * 100svh + 100svh - var(--projects-top) + var(--projects-lead));
-  }
-
-  .projects__sticky {
-    position: sticky;
-    top: var(--projects-top);
-    height: calc(100svh - var(--projects-top));
-    margin-inline: calc(var(--gutter) * -1);
-    padding-inline: var(--gutter);
-  }
+  height: clamp(560px, calc(100svh - var(--projects-top) - 3rem), 700px);
+  margin: var(--section-content-gap) auto 0;
+  container-type: inline-size;
 }
 
 @media (max-width: 1023px) {
-  .projects__grid {
-    display: block;
-  }
-
-  .projects__glow {
-    top: 0;
-    right: -30%;
-    width: 90vw;
-    height: 90vw;
+  .shelf {
+    flex-direction: column;
+    height: auto;
   }
 }

@@ -10,14 +10,6 @@
   overflow: hidden;
 }
 
-.menu-day::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  background: var(--day-color);
-}
-
 .menu-day__head {
   display: flex;
   align-items: center;

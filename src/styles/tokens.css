@@ -9,6 +9,11 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
 
+  /* Ritmo verticale condiviso: stesso respiro sopra/sotto ogni sezione e stesso stacco dopo l'header. */
+  --section-pad-top: clamp(2.5rem, 6vh, 4.5rem);
+  --section-pad-bottom: clamp(2.5rem, 7vh, 5rem);
+  --section-content-gap: clamp(1.25rem, 3vh, 2rem);
+
   --accent: var(--coral);
   --on-accent: #fff;
 

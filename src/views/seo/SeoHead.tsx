@@ -1,5 +1,6 @@
 import { profile } from '../../models/profile.model';
-import { buildJsonLd, seo } from '../../models/seo.model';
+import { buildJsonLd } from '../../models/jsonLd.model';
+import { seo } from '../../models/seo.model';
 
 const serializeJsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, '\\u003c');
 
@@ -11,6 +12,10 @@ export function SeoHead() {
       <meta name="author" content={seo.author} />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
       <link rel="canonical" href={seo.canonical} />
+      <link rel="alternate" hrefLang="it" href={seo.canonical} />
+      <link rel="alternate" hrefLang="x-default" href={seo.canonical} />
+      {seo.verification.google && <meta name="google-site-verification" content={seo.verification.google} />}
+      {seo.verification.bing && <meta name="msvalidate.01" content={seo.verification.bing} />}
 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content={seo.themeColor.light} />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content={seo.themeColor.dark} />

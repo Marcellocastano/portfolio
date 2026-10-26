@@ -1,0 +1,62 @@
+.matrix {
+  --label-w: 210px;
+  --col-gap: 1.25rem;
+  --row-h: 36px;
+
+  max-width: 1400px;
+  margin: var(--section-content-gap) auto 0;
+}
+
+/* Il grafico: etichette a sinistra, barre a destra sopra le fasce delle aziende. */
+.matrix__chart {
+  position: relative;
+  margin-top: 2rem;
+  padding: 2.4rem 0 0.5rem;
+}
+
+.matrix__group + .matrix__group {
+  margin-top: 1rem;
+}
+
+.matrix__cat {
+  position: relative;
+  width: var(--label-w);
+  padding: 0.5rem 0 0.25rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.matrix__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Entrata: titoli di gruppo e righe salgono in cascata. */
+.js .stack[data-revealed='false'] .matrix__cat,
+.js .stack[data-revealed='false'] .legend {
+  opacity: 0;
+}
+
+.js .stack[data-revealed='true'] .matrix__cat {
+  animation: rise 0.4s 0.3s var(--ease-out) backwards;
+}
+
+.js .stack[data-revealed='true'] .legend {
+  animation: rise 0.5s 0.25s var(--ease-out) backwards;
+}
+
+@media (max-width: 767px) {
+  .matrix {
+    --label-w: 128px;
+    --col-gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .stack[data-revealed] :is(.matrix__cat, .legend) {
+    animation: none;
+  }
+}

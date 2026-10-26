@@ -1,0 +1,73 @@
+.bface--back {
+  gap: 1rem;
+  padding: 2rem 1.4rem 1.2rem;
+  transform: rotateY(180deg);
+}
+
+.bface__back-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.bface__skills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bface__skills li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.bface__skills svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  margin-top: 0.1rem;
+}
+
+.bface__skills circle {
+  fill: var(--slate);
+}
+
+.bface__skills path {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bface__skills strong {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.bface__skills small {
+  color: #6b7280;
+  font-size: 0.72rem;
+}
+
+.bface__sign {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px dashed rgb(55 65 81 / 0.25);
+  font-family: ui-serif, Georgia, serif;
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.bface__sign small {
+  display: block;
+  color: #6b7280;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-style: normal;
+}

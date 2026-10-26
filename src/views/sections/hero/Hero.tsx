@@ -24,8 +24,8 @@ export function Hero({ profile, theme }: Props) {
           <HeroHeadline {...profile} />
           <p className="hero__intro">{profile.intro}</p>
           <div className="hero__actions">
-            <ButtonLink href="#progetti">Esplora i progetti</ButtonLink>
-            <ButtonLink href={`mailto:${profile.email}`} variant="ghost">
+            <ButtonLink href="#progetti">Vedi i progetti</ButtonLink>
+            <ButtonLink href="#contatti" variant="ghost">
               Scrivimi
             </ButtonLink>
           </div>

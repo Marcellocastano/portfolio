@@ -2,19 +2,26 @@ import { useEffect } from 'react';
 import { prefersReducedMotion } from '../lib/motion';
 import { onProjectRequest } from '../lib/projectNav';
 
-/** Porta in vista il progetto richiesto da altre sezioni: step del palco su desktop, chapter su mobile. */
-export function useProjectRequests(ids: string[], stacked: boolean, goTo: (index: number) => void) {
+const ACCORDION_QUERY = '(max-width: 1023px)';
+const ACCORDION_MS = 900;
+
+/** Apre il progetto richiesto da altre sezioni e lo porta in vista. */
+export function useProjectRequests(ids: string[], open: (index: number) => void) {
   useEffect(
     () =>
       onProjectRequest((id) => {
         const index = ids.indexOf(id);
         if (index < 0) return;
-        if (stacked) {
-          const behavior = prefersReducedMotion() ? 'auto' : 'smooth';
-          document.getElementById(`progetto-${id}`)?.scrollIntoView({ behavior });
-        } else goTo(index);
+        open(index);
+        const reduced = prefersReducedMotion();
+        const scroll = () =>
+          document.getElementById(`progetto-${id}`)?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+        // Su mobile la fisarmonica cambia altezza: si scrolla a transizione finita.
+        const accordion = !reduced && matchMedia(ACCORDION_QUERY).matches;
+        if (accordion) window.setTimeout(scroll, ACCORDION_MS);
+        else requestAnimationFrame(scroll);
         history.replaceState(null, '', '#progetti');
       }),
-    [ids, stacked, goTo],
+    [ids, open],
   );
 }

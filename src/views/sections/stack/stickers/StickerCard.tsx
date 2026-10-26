@@ -107,7 +107,7 @@ export function StickerCard({ peel, onClose }: { peel: PeelState; onClose: Close
             </div>
           </div>
           <div className="sc__face sc__back">
-            <div className="sc__paper" style={{ '--bc': `#${s.icon.hex}` } as CSSProperties}>
+            <div className="sc__paper paper-sheet" style={{ '--bc': `#${s.icon.hex}` } as CSSProperties}>
               <span className="sc__band" aria-hidden="true" />
               <PaperBody s={s} onClose={onClose} />
             </div>
@@ -118,7 +118,7 @@ export function StickerCard({ peel, onClose }: { peel: PeelState; onClose: Close
         </div>
       </div>
       <div className="sc__measure" aria-hidden="true" style={{ width: W }}>
-        <div ref={mRef} className="sc__paper">
+        <div ref={mRef} className="sc__paper paper-sheet">
           <PaperBody s={s} onClose={() => {}} inert />
         </div>
       </div>

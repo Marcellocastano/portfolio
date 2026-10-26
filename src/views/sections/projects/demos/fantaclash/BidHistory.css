@@ -1,0 +1,120 @@
+.fc-hist__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--fc-ink);
+}
+
+.fc-hist__title {
+  font-family: var(--fc-font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.fc-hist__count {
+  color: var(--fc-muted);
+  font-size: 0.64rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-hist__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fc-hist__item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid var(--fc-line);
+  color: var(--fc-ink-soft);
+  font-size: 0.66rem;
+}
+
+.fc-hist__item[data-top='true'] {
+  margin: 0 -0.4rem;
+  padding-right: 0.4rem;
+  padding-left: 0.4rem;
+  background: var(--fc-surface);
+  color: var(--fc-ink);
+  font-weight: 700;
+}
+
+.fc-hist__item[data-top='true'][data-mine='true'] {
+  background: var(--fc-highlight);
+}
+
+.fc-hist__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fc-hist__lead {
+  flex: none;
+  padding: 0.1rem 0.3rem;
+  border: 2px solid var(--fc-ink);
+  background: var(--fc-canvas);
+  font-family: var(--fc-font-display);
+  font-size: 0.56rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.fc-hist__delta {
+  flex: none;
+  width: 1.9rem;
+  color: var(--fc-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-hist__item[data-top='true'] .fc-hist__delta {
+  color: var(--fc-ink);
+}
+
+.fc-hist__amt {
+  flex: none;
+  width: 2.9rem;
+  font-family: var(--fc-font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.fc-hist__amt small {
+  font-size: 0.6rem;
+}
+
+.fc-hist__item[data-top='true'] .fc-hist__amt {
+  font-size: 1.05rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fc-hist__item {
+    animation: fc-reveal 260ms ease-out both;
+  }
+
+  @keyframes fc-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

@@ -1,0 +1,85 @@
+.pwin {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--p-bg);
+  box-shadow: var(--shadow);
+}
+
+.pwin__bar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  padding: 0.45em 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--p-fg) 14%, transparent);
+  background: color-mix(in srgb, var(--p-fg) 9%, var(--p-bg));
+}
+
+.pwin__bar .window__lights i:nth-child(2) {
+  background: #f2b53d;
+}
+
+.pwin__bar .window__lights i:nth-child(3) {
+  background: #2e9e6b;
+}
+
+.pwin__domain {
+  margin-right: 1em;
+  padding: 0.3em 0.9em;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--p-fg) 7%, var(--p-bg));
+  color: var(--p-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+}
+
+.pwin__caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: -0.15em;
+  background: var(--p-muted);
+  opacity: 0;
+}
+
+.pwin__caret[data-on='true'] {
+  opacity: 1;
+  animation: blink 1s step-end infinite;
+}
+
+/* La demo si rivela con un'apertura circolare dal basso quando il libro si apre. */
+.pwin__demo {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  color: var(--p-fg);
+  clip-path: circle(0% at 50% 100%);
+  transition: clip-path 0.3s var(--ease-out);
+}
+
+.book[data-open='true'] .pwin__demo {
+  clip-path: circle(150% at 50% 100%);
+  transition: clip-path 0.7s 0.5s var(--book-ease);
+}
+
+@media (max-width: 1023px) {
+  .pwin__demo {
+    max-height: 520px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pwin__demo,
+  .book[data-open='true'] .pwin__demo {
+    transition: none;
+  }
+}
+
+/* Senza JS il primo libro è aperto dal pre-rendering: la demo resta visibile. */
+html:not(.js) .book[data-open='true'] .pwin__demo {
+  clip-path: none;
+}
