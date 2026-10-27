@@ -1,3 +1,5 @@
+import { i18n } from '../i18n.model';
+
 export interface PlayTest {
   label: string;
 }
@@ -14,10 +16,11 @@ export interface PlayExercise {
 }
 
 export type PlayPhase = 'typing' | 'running' | 'done';
+export type PathStatus = keyof typeof i18n.demos.playdev.statuses;
 
 export const EXERCISE: PlayExercise = {
-  title: 'La tua prima funzione',
-  prompt: 'Scrivi una funzione somma(a, b) che restituisca la somma dei due numeri.',
+  title: i18n.demos.playdev.exercise.title,
+  prompt: i18n.demos.playdev.exercise.prompt,
   code: ['function somma(a, b) {', '  return a + b;', '}'],
   tests: [{ label: 'somma(2, 3) === 5' }, { label: 'somma(-1, 1) === 0' }, { label: 'somma(0.5, 0.5) === 1' }],
   xpReward: 20,
@@ -26,13 +29,13 @@ export const EXERCISE: PlayExercise = {
   levelEnd: 70,
 };
 
-export const PATHS = [
-  { name: 'JavaScript', tag: 'JS', status: 'In corso' },
-  { name: 'Vue', tag: 'Vue', status: 'Prossimamente' },
-  { name: 'React', tag: 'React', status: 'Prossimamente' },
+export const PATHS: { name: string; tag: string; status: PathStatus }[] = [
+  { name: 'JavaScript', tag: 'JS', status: 'active' },
+  { name: 'Vue', tag: 'Vue', status: 'soon' },
+  { name: 'React', tag: 'React', status: 'soon' },
 ];
 
-export const CONSOLE_LINE = '3 test superati in 12ms';
+export const CONSOLE_LINE = i18n.demos.playdev.consoleLine;
 
 /** Stati del test in sequenza: indice del test in esecuzione, -1 = nessuno. */
 export function testState(phase: PlayPhase, runningIndex: number, testIndex: number): 'wait' | 'run' | 'pass' {

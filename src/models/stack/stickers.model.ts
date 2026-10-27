@@ -1,4 +1,5 @@
 import type { SimpleIcon } from 'simple-icons';
+import { i18n } from '../i18n.model';
 
 export type StickerCategory = 'frontend' | 'backend' | 'dati' | 'strumenti';
 export type StickerShape = 'hex' | 'circle' | 'die-cut';
@@ -25,13 +26,13 @@ export interface Sticker {
 }
 
 export const CATEGORIES: { id: StickerCategory; label: string; color: string }[] = [
-  { id: 'frontend', label: 'Frontend', color: '#61DAFB' },
-  { id: 'backend', label: 'Backend', color: '#FF2D20' },
-  { id: 'dati', label: 'Dati', color: '#47A248' },
-  { id: 'strumenti', label: 'Strumenti', color: '#F5A623' },
+  { id: 'frontend', label: i18n.stack.categories.frontend, color: '#61DAFB' },
+  { id: 'backend', label: i18n.stack.categories.backend, color: '#FF2D20' },
+  { id: 'dati', label: i18n.stack.categories.dati, color: '#47A248' },
+  { id: 'strumenti', label: i18n.stack.categories.strumenti, color: '#F5A623' },
 ];
 
-const NOTE = 'Uno dei mattoni con cui costruisco ogni giorno: qui andrà una nota su come lo uso e perché mi piace.';
+const NOTE = i18n.stack.stickers.note;
 
 /** Compatta gli adesivi: (id, icona, bg, fg, categoria, dal, progetti, x, y, rot, size, forma). */
 export const s = (

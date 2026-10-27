@@ -1,3 +1,4 @@
+import { i18n } from '../../../../../models/i18n.model';
 import {
   BID_STEPS,
   currentLot,
@@ -21,7 +22,7 @@ function NextButton({ lotIndex, onNext }: { lotIndex: number; onNext: () => void
   return (
     <button type="button" className="fc-next" onClick={onNext}>
       <span className="fc-next__drain" key={lotIndex} aria-hidden="true" />
-      Prossimo giocatore
+      {i18n.demos.fantaclash.bid.next}
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
         <path d="M4 10h11M11 5l5 5-5 5" />
       </svg>
@@ -30,7 +31,7 @@ function NextButton({ lotIndex, onNext }: { lotIndex: number; onNext: () => void
 }
 
 function hint(leads: boolean, max: number): string {
-  return leads ? 'Sei in testa. Attendi la fine del conto alla rovescia.' : `Puoi offrire fino a ${max} crediti.`;
+  return leads ? i18n.demos.fantaclash.bid.leading : i18n.demos.fantaclash.bid.max(max);
 }
 
 /** Pulsanti di rilancio o, a lotto chiuso, il pulsante per il giocatore successivo. */
@@ -47,7 +48,7 @@ export function BidControls({ state, onBid, onNext }: Props) {
   return (
     <div className="fc-bid">
       <div className="fc-bid__time">
-        <span className="fc-bid__label">Tempo</span>
+        <span className="fc-bid__label">{i18n.demos.fantaclash.bid.time}</span>
         <b className="fc-bid__sec" data-low={low} key={low ? Math.ceil(seconds) : 'ok'}>
           {seconds.toFixed(1)}
         </b>
@@ -66,7 +67,7 @@ export function BidControls({ state, onBid, onNext }: Props) {
                   disabled={leads || next > max}
                 >
                   <span className="fc-bid__inc">+{inc}</span>
-                  <span className="fc-bid__to">a {next}</span>
+                  <span className="fc-bid__to">{i18n.demos.fantaclash.bid.to(next)}</span>
                 </button>
               );
             })}
@@ -74,7 +75,7 @@ export function BidControls({ state, onBid, onNext }: Props) {
           <p className="fc-bid__hint">{hint(leads, max)}</p>
         </div>
       ) : (
-        <p className="fc-bid__hint">Hai completato questo reparto.</p>
+        <p className="fc-bid__hint">{i18n.demos.fantaclash.bid.roleDone}</p>
       )}
     </div>
   );

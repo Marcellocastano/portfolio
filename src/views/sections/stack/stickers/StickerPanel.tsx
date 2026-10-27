@@ -1,3 +1,4 @@
+import { i18n } from '../../../../models/i18n.model';
 import { CATEGORIES, type StickerCategory } from '../../../../models/stack/stickers.model';
 import { CategoryRow } from './CategoryRow';
 import './StickerPanel.css';
@@ -12,8 +13,8 @@ export function StickerPanel({ activeCat, onCat }: Props) {
   return (
     <aside className="sp paper-sheet">
       <p className="sp__intro">
-        Il mio portatile, come quello di ogni sviluppatore: pieno di adesivi. <mark>Trascinali</mark> o{' '}
-        <mark>cliccali</mark>.
+        {i18n.stack.stickers.intro} <mark>{i18n.stack.stickers.drag}</mark> {i18n.stack.stickers.or}{' '}
+        <mark>{i18n.stack.stickers.click}</mark>.
       </p>
       <ul className="sp__legend">
         {CATEGORIES.map((c) => (

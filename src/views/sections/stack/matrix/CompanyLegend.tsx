@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { i18n } from '../../../../models/i18n.model';
 import type { Company, CompanyId } from '../../../../models/stack/skills.model';
 import './CompanyLegend.css';
 
@@ -11,7 +12,7 @@ interface Props {
 /** Aziende in ordine cronologico: al passaggio accendono le tecnologie usate lì. */
 export function CompanyLegend({ companies, lit, onHover }: Props) {
   return (
-    <ul className="legend" aria-label="Esperienze">
+    <ul className="legend" aria-label={i18n.stack.legendAria}>
       {companies.map((c) => (
         <li key={c.id}>
           <button

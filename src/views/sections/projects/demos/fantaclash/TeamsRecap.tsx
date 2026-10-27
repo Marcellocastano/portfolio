@@ -1,3 +1,4 @@
+import { i18n } from '../../../../../models/i18n.model';
 import { ROLE_ORDER, ROSTER, rosterCount, type Team } from '../../../../../models/projects/auction.model';
 import { TeamBadge } from './TeamBadge';
 import './TeamsRecap.css';
@@ -17,7 +18,7 @@ type RowTone = 'idle' | 'mine' | 'bot';
 
 function statusOf(team: Team, bidding: boolean): string | null {
   if (!bidding) return null;
-  return team.you ? 'in testa' : 'rilancia';
+  return team.you ? i18n.demos.fantaclash.teams.leading : i18n.demos.fantaclash.teams.outbids;
 }
 
 function toneOf(team: Team, bidding: boolean): RowTone {
@@ -34,7 +35,7 @@ function TeamRow({ team, bidding }: { team: Team; bidding: boolean }) {
         <TeamBadge name={team.name} kit={team.kit} size="md" />
         <span className="fc-teams__id">
           <span className="fc-teams__name" data-you={team.you} title={team.name}>
-            {team.you ? 'La tua squadra' : team.name}
+            {team.you ? i18n.demos.fantaclash.yourTeam : team.name}
           </span>
           {status ? (
             <span className="fc-teams__status" data-tone={tone}>
@@ -46,7 +47,7 @@ function TeamRow({ team, bidding }: { team: Team; bidding: boolean }) {
         </span>
         <span className="fc-teams__credits">
           <b>{team.credits}</b>
-          <small>crediti</small>
+          <small>{i18n.demos.fantaclash.teams.credits}</small>
         </span>
       </div>
       <span className="fc-teams__slots">
@@ -69,7 +70,7 @@ function TeamRow({ team, bidding }: { team: Team; bidding: boolean }) {
 export function TeamsRecap({ teams, bidderId }: Props) {
   return (
     <section className="fc-teams">
-      <h3 className="fc-teams__title">Squadre</h3>
+      <h3 className="fc-teams__title">{i18n.demos.fantaclash.teams.title}</h3>
       <ul className="fc-teams__list">
         {sorted(teams).map((t) => (
           <TeamRow key={t.id} team={t} bidding={t.id === bidderId} />

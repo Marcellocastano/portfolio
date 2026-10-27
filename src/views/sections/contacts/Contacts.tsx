@@ -1,4 +1,5 @@
-import { contactsCopy, profile } from '../../../models/profile.model';
+import { i18n } from '../../../models/i18n.model';
+import { profile } from '../../../models/profile.model';
 import { useRevealOnce } from '../../../controllers/useRevealOnce';
 import { SectionHeader } from '../../components/SectionHeader';
 import { ContactLink } from './ContactLink';
@@ -16,12 +17,17 @@ export function Contacts() {
       data-revealed={reveal.revealed}
       aria-labelledby="contacts-title"
     >
-      <SectionHeader id="contacts-title" title="Contatti" lede={contactsCopy.lede} revealed={reveal.revealed} />
+      <SectionHeader
+        id="contacts-title"
+        title={i18n.contacts.title}
+        lede={i18n.contacts.lede}
+        revealed={reveal.revealed}
+      />
 
       <div className="contacts__card">
         <div className="contacts__body">
-          <h3 className="contacts__title">{contactsCopy.title}</h3>
-          <p className="contacts__text">{contactsCopy.text}</p>
+          <h3 className="contacts__title">{i18n.contacts.cardTitle}</h3>
+          <p className="contacts__text">{i18n.contacts.text}</p>
           <ul className="contacts__links">
             {profile.contacts.map((c) => (
               <li key={c.id}>
@@ -39,7 +45,7 @@ export function Contacts() {
             width={200}
             height={522}
             loading="lazy"
-            alt={contactsCopy.avatarAlt}
+            alt={i18n.contacts.avatarAlt}
           />
         </div>
       </div>

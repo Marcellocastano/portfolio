@@ -1,3 +1,4 @@
+import { i18n } from '../i18n.model';
 import type { Role, Tier } from './auctionData.model';
 
 /** Nomi dei calciatori, sigle di squadra e etichette (come nel dominio di FantaClash). */
@@ -28,26 +29,11 @@ export function splitName(name: string): { surname: string; firstName: string } 
   return { surname: words[words.length - 1], firstName: words.slice(0, -1).join(' ') };
 }
 
-export const ROLE_NAME: Record<Role, string> = {
-  P: 'Portiere',
-  D: 'Difensore',
-  C: 'Centrocampista',
-  A: 'Attaccante',
-};
+export const ROLE_NAME: Record<Role, string> = i18n.demos.fantaclash.roles;
 
-export const ROLE_PLURAL: Record<Role, string> = {
-  P: 'Portieri',
-  D: 'Difensori',
-  C: 'Centrocampisti',
-  A: 'Attaccanti',
-};
+export const ROLE_PLURAL: Record<Role, string> = i18n.demos.fantaclash.rolesPlural;
 
-export const TIER_NAME: Record<Tier, string> = {
-  bronze: 'Bronzo',
-  silver: 'Argento',
-  gold: 'Oro',
-  elite: 'Fuoriclasse',
-};
+export const TIER_NAME: Record<Tier, string> = i18n.demos.fantaclash.tiers;
 
 /** Sigla di 2 lettere per lo stemma della squadra. */
 export function monogram(name: string): string {

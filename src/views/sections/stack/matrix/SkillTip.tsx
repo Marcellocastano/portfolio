@@ -1,12 +1,13 @@
 import type { MouseEvent } from 'react';
 import { requestProject } from '../../../../lib/projectNav';
+import { i18n } from '../../../../models/i18n.model';
 import { projects } from '../../../../models/projects/projects.model';
 import { COMPANIES, type Skill } from '../../../../models/stack/skills.model';
 import './SkillTip.css';
 
 function since(skill: Skill): string {
   const from = Math.floor(skill.since);
-  return skill.until ? `Dal ${from} al ${Math.floor(skill.until)}` : `Dal ${from}`;
+  return i18n.stack.tip.since(from, skill.until ? Math.floor(skill.until) : undefined);
 }
 
 /** Dettaglio della tecnologia: popover su desktop, pannello in linea su mobile. */
@@ -19,19 +20,19 @@ export function SkillTip({ id, skill }: { id: string; skill: Skill }) {
   };
 
   return (
-    <div className="stip" id={id} role="region" aria-label={`Dettagli ${skill.name}`}>
+    <div className="stip" id={id} role="region" aria-label={i18n.stack.tip.aria(skill.name)}>
       <p className="stip__head">
         <strong>{skill.name}</strong> <span>{since(skill)}</span>
       </p>
       {skill.note && <p className="stip__note">{skill.note}</p>}
       <dl className="stip__meta">
         <div>
-          <dt>In azienda</dt>
-          <dd>{where.length ? where.join(', ') : 'Solo progetti personali'}</dd>
+          <dt>{i18n.stack.tip.inCompany}</dt>
+          <dd>{where.length ? where.join(', ') : i18n.stack.tip.personalOnly}</dd>
         </div>
         {used.length > 0 && (
           <div>
-            <dt>Nei progetti</dt>
+            <dt>{i18n.stack.tip.inProjects}</dt>
             <dd>
               {used.map((p) => (
                 <a key={p.id} href={`#progetto-${p.id}`} onClick={(e) => go(e, p.id)}>

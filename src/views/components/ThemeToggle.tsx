@@ -1,3 +1,4 @@
+import { i18n } from '../../models/i18n.model';
 import type { Theme } from '../../models/theme.model';
 import './ThemeToggle.css';
 
@@ -14,7 +15,7 @@ export function ThemeToggle({ theme, onToggle }: Props) {
       type="button"
       className="theme-toggle"
       data-dark={isDark}
-      aria-label={isDark ? 'Attiva tema chiaro' : 'Attiva tema scuro'}
+      aria-label={isDark ? i18n.nav.themeToggle.toLight : i18n.nav.themeToggle.toDark}
       aria-pressed={isDark}
       onClick={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();

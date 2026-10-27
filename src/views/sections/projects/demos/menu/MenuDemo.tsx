@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useInView } from '../../../../../controllers/useInView';
 import { useMenuDemo } from '../../../../../controllers/useMenuDemo';
+import { i18n } from '../../../../../models/i18n.model';
 import { CATEGORY_TARGETS, DAY_NAMES } from '../../../../../models/projects/menu.model';
 import { MenuDay } from './MenuDay';
 import './MenuDemo.css';
@@ -31,7 +32,7 @@ export function MenuDemo({ running }: { running: boolean }) {
   return (
     <div className="menu-demo" ref={ref}>
       <div className="menu-demo__top">
-        <h4 className="menu-demo__title">Menù settimanale</h4>
+        <h4 className="menu-demo__title">{i18n.demos.menu.title}</h4>
         <button type="button" className="menu-demo__regen" onClick={regenerate} disabled={spinning}>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -43,7 +44,7 @@ export function MenuDemo({ running }: { running: boolean }) {
               strokeLinejoin="round"
             />
           </svg>
-          Rigenera menù
+          {i18n.demos.menu.regenerate}
         </button>
       </div>
 

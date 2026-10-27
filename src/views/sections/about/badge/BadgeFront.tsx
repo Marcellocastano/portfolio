@@ -1,4 +1,5 @@
 import { about } from '../../../../models/about.model';
+import { i18n } from '../../../../models/i18n.model';
 import { profile } from '../../../../models/profile.model';
 import './BadgeFront.css';
 
@@ -15,7 +16,7 @@ export function BadgeFront({ hidden }: { hidden: boolean }) {
         src="/images/io-cartoon.png"
         width={1024}
         height={1307}
-        alt={`${profile.firstName} ${profile.lastName}, ${profile.role}`}
+        alt={i18n.about.badge.photoAlt(`${profile.firstName} ${profile.lastName}`, profile.role)}
         loading="lazy"
       />
       <p className="bface__name">

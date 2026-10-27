@@ -1,5 +1,6 @@
 import { useState, type KeyboardEvent } from 'react';
 import { useParallax } from '../../../../controllers/useParallax';
+import { i18n } from '../../../../models/i18n.model';
 import { about } from '../../../../models/about.model';
 import { profile } from '../../../../models/profile.model';
 import { BadgeBack } from './BadgeBack';
@@ -37,7 +38,7 @@ export function Badge() {
           tabIndex={0}
           className="badge__card"
           aria-pressed={flipped}
-          aria-label={flipped ? 'Mostra il fronte del badge' : 'Gira il badge per vedere le competenze'}
+          aria-label={flipped ? i18n.about.badge.flipToFront : i18n.about.badge.flipToBack}
           onClick={flip}
           onKeyDown={onKeyDown}
         >

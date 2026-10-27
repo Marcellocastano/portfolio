@@ -1,4 +1,5 @@
-import { contactsCopy, profile } from '../../models/profile.model';
+import { i18n } from '../../models/i18n.model';
+import { footerYear, profile } from '../../models/profile.model';
 import './Footer.css';
 
 /** Footer: logo piccolo, copyright con anno fisso (SSR-safe), torna su. */
@@ -12,10 +13,10 @@ export function Footer() {
           {'/>'}
         </span>
         <span className="footer__copy">
-          © {contactsCopy.footerYear} {profile.firstName} {profile.lastName}
+          {i18n.footer.copyright(footerYear, `${profile.firstName} ${profile.lastName}`)}
         </span>
         <a className="footer__top" href="#top">
-          Torna su
+          {i18n.footer.toTop}
         </a>
       </div>
     </footer>

@@ -1,3 +1,4 @@
+import { i18n } from '../i18n.model';
 import { COMMITS } from './career.model';
 
 export type SkillCategory = 'frontend' | 'backend' | 'dati' | 'strumenti';
@@ -35,13 +36,13 @@ export const TODAY = 2026 + 9 / 12;
 export const TIMELINE_START = 2018;
 
 export const CATEGORIES: { id: SkillCategory; label: string }[] = [
-  { id: 'frontend', label: 'Frontend' },
-  { id: 'backend', label: 'Backend' },
-  { id: 'dati', label: 'Dati' },
-  { id: 'strumenti', label: 'Strumenti' },
+  { id: 'frontend', label: i18n.stack.categories.frontend },
+  { id: 'backend', label: i18n.stack.categories.backend },
+  { id: 'dati', label: i18n.stack.categories.dati },
+  { id: 'strumenti', label: i18n.stack.categories.strumenti },
 ];
 
-const MONTHS = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
+const MONTHS = i18n.dates.months;
 const IDS: Record<string, CompanyId> = {
   digit: 'digit',
   Positive: 'positive',
@@ -81,7 +82,7 @@ export function toPct(year: number): number {
 
 export function yearsLabel(skill: Skill): string {
   const years = Math.max(1, Math.round((skill.until ?? TODAY) - skill.since));
-  return years === 1 ? '1 anno' : `${years} anni`;
+  return i18n.stack.years(years);
 }
 
 /** Tratto della barra che cade nel periodo dell'azienda, se la tecnologia è stata usata lì. */

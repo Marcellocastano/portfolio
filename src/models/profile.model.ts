@@ -1,3 +1,5 @@
+import { i18n } from './i18n.model';
+
 export interface NavLink {
   label: string;
   href: string;
@@ -33,31 +35,16 @@ export interface Profile {
 export const profile: Profile = {
   firstName: 'Marcello',
   lastName: 'Castano',
-  role: 'Full-Stack Developer',
+  role: i18n.profile.role,
   city: 'Torino',
   countryCode: 'IT',
-  headline: 'Sviluppo web dal 2018,',
-  headlineAccent: 'oggi in digit.',
-  intro:
-    'Qui sotto trovi le app che ho costruito per conto mio, fuori dal lavoro. Ognuna ha un’anteprima che puoi usare senza uscire dalla pagina.',
-  summary:
-    'Full-Stack Developer a Torino. Dal 2018 sviluppo applicazioni web con Vue, TypeScript, Node.js e Laravel; oggi lavoro in digit su progetti per clienti enterprise.',
-  skills: [
-    'Front-end development',
-    'Vue.js',
-    'React',
-    'TypeScript',
-    'JavaScript',
-    'Node.js',
-    'PHP',
-    'Laravel',
-    'Tailwind CSS',
-    'Design system',
-    'API RESTful',
-    'Microservizi',
-  ],
+  headline: i18n.hero.headline,
+  headlineAccent: i18n.hero.headlineAccent,
+  intro: i18n.hero.intro,
+  summary: i18n.profile.summary,
+  skills: i18n.profile.skills,
   languages: ['it', 'en'],
-  socials: ['https://github.com/Marcellocastano', 'https://www.linkedin.com/in/marcellocastano'],
+  socials: ['https://github.com/Marcellocastano', 'https://www.linkedin.com/in/marcello-castano'],
   contacts: [
     {
       id: 'github',
@@ -68,25 +55,13 @@ export const profile: Profile = {
     {
       id: 'linkedin',
       label: 'LinkedIn',
-      // TODO: verificare URL
-      href: 'https://www.linkedin.com/in/marcellocastano',
-      handle: '/in/marcellocastano',
+      href: 'https://www.linkedin.com/in/marcello-castano',
+      handle: '/in/marcello-castano',
     },
   ],
 };
 
-/* Testi della sezione Contatti. */
-export const contactsCopy = {
-  lede: 'Sono aperto a nuove opportunità come Full-Stack o Front-end Developer.',
-  title: 'Il modo più rapido è LinkedIn.',
-  text: 'Scrivimi lì per un colloquio o per ricevere il CV completo. Su GitHub trovi il codice dei progetti che vedi in questa pagina.',
-  avatarAlt: 'Illustrazione di Marcello che fa il saluto',
-  footerYear: 2026,
-};
+/** Anno fisso del copyright nel footer (SSR-safe, da aggiornare a mano). */
+export const footerYear = 2026;
 
-export const navLinks: NavLink[] = [
-  { label: 'Chi sono', href: '#chi-sono' },
-  { label: 'Progetti', href: '#progetti' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Contatti', href: '#contatti' },
-];
+export const navLinks: NavLink[] = i18n.nav.links;

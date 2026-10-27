@@ -1,5 +1,6 @@
 import { siGithub } from 'simple-icons';
-import type { Contact } from '../../../models/profile.model';
+import { i18n } from '../../../models/i18n.model';
+import { profile, type Contact } from '../../../models/profile.model';
 import './ContactLink.css';
 
 /* simple-icons 16.32.0 non include più LinkedIn: glifo minimale inline. */
@@ -20,7 +21,7 @@ export function ContactLink({ contact }: Props) {
       href={contact.href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Marcello Castano su ${contact.label}: ${contact.handle}`}
+      aria-label={i18n.contacts.tileAria(`${profile.firstName} ${profile.lastName}`, contact.label, contact.handle)}
     >
       <svg className="cl__icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d={d} fill="currentColor" />

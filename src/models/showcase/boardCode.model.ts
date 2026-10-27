@@ -1,3 +1,4 @@
+import { i18n } from '../i18n.model';
 import { tk, type CodeLine } from '../code.model';
 
 export const BOARD_LINE = { state: 1, kanban: 3, firstColumn: 4, secondColumn: 5, card: 6 } as const;
@@ -30,8 +31,8 @@ export const boardCode: CodeLine[] = [
   ],
   [indent(1), tk('kw', 'return '), tk('punc', '(')],
   [...tag(2, 'Kanban'), ...expr('onDrop', 'setCol'), tk('punc', '>')],
-  [...tag(3, 'Column'), ...attr('title', 'Idee'), tk('punc', ' />')],
-  [...tag(3, 'Column'), ...attr('title', 'In sviluppo'), tk('punc', ' />')],
+  [...tag(3, 'Column'), ...attr('title', i18n.showcase.columns.idee), tk('punc', ' />')],
+  [...tag(3, 'Column'), ...attr('title', i18n.showcase.columns.sviluppo), tk('punc', ' />')],
   [...tag(3, 'Card'), ...attr('title', 'Portfolio'), ...expr('col', 'col'), tk('punc', ' />')],
   closeTag(2, 'Kanban'),
   [indent(1), tk('punc', ');')],

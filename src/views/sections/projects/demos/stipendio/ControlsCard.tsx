@@ -1,3 +1,4 @@
+import { i18n } from '../../../../../models/i18n.model';
 import { formatEuro } from '../../../../../models/projects/stipendio.model';
 import type { useStipendioDemo } from '../../../../../controllers/useStipendioDemo';
 import './ControlsCard.css';
@@ -5,7 +6,7 @@ import './ControlsCard.css';
 export function ControlsCard({ d }: { d: ReturnType<typeof useStipendioDemo> }) {
   return (
     <div className="stip-controls">
-      <span className="stip-controls__label">Retribuzione Annua Lorda (RAL)</span>
+      <span className="stip-controls__label">{i18n.demos.stipendio.ralLabel}</span>
       <output className="stip-controls__ral">{formatEuro(d.ral)}</output>
       <input
         type="range"
@@ -15,7 +16,7 @@ export function ControlsCard({ d }: { d: ReturnType<typeof useStipendioDemo> }) 
         value={d.ral}
         onChange={(e) => d.onSlider(Number(e.target.value))}
         onPointerDown={d.touch}
-        aria-label="RAL"
+        aria-label={i18n.demos.stipendio.ralAria}
       />
       <div className="stip-controls__btns">
         {d.QUICK_RALS.map((v) => (
@@ -25,7 +26,7 @@ export function ControlsCard({ d }: { d: ReturnType<typeof useStipendioDemo> }) 
         ))}
       </div>
       <div className="stip-controls__mensilita">
-        <span className="stip-controls__label">Mensilità</span>
+        <span className="stip-controls__label">{i18n.demos.stipendio.mensilita}</span>
         <div className="stip-controls__btns">
           {d.MENSILITA_OPTIONS.map((m) => (
             <button
@@ -37,12 +38,12 @@ export function ControlsCard({ d }: { d: ReturnType<typeof useStipendioDemo> }) 
                 d.setMensilita(m);
               }}
             >
-              {m} mensilità
+              {i18n.demos.stipendio.mensilitaValue(m)}
             </button>
           ))}
         </div>
       </div>
-      <p className="stip-controls__note">Stima semplificata</p>
+      <p className="stip-controls__note">{i18n.demos.stipendio.note}</p>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { i18n } from '../../../../models/i18n.model';
 import { toPct, YEARS, type Company, type CompanyId } from '../../../../models/stack/skills.model';
 import './ChartGrid.css';
 
@@ -18,7 +19,7 @@ export function ChartGrid({ companies, lit }: Props) {
           </span>
         ))}
         <span className="grid__today" style={{ '--x': '100%' } as CSSProperties}>
-          oggi
+          {i18n.stack.today}
         </span>
       </div>
       <div className="grid__plot">

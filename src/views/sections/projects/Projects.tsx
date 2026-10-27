@@ -2,6 +2,7 @@ import { useRef, useState, type ComponentType, type CSSProperties } from 'react'
 import { useInView } from '../../../controllers/useInView';
 import { useProjectRequests } from '../../../controllers/useProjectRequests';
 import { useRevealOnce } from '../../../controllers/useRevealOnce';
+import { i18n } from '../../../models/i18n.model';
 import { projects } from '../../../models/projects/projects.model';
 import { SectionHeader } from '../../components/SectionHeader';
 import { FantaClashDemo } from './demos/fantaclash/FantaClashDemo';
@@ -42,8 +43,8 @@ export function Projects() {
     >
       <SectionHeader
         id="projects-title"
-        title="Progetti"
-        lede="Quattro app che ho costruito nel tempo libero, dall'idea al rilascio. Apri un progetto e prova l'anteprima."
+        title={i18n.projects.title}
+        lede={i18n.projects.lede}
         revealed={reveal.revealed}
       />
       <div className="shelf" style={{ '--books': projects.length } as CSSProperties}>

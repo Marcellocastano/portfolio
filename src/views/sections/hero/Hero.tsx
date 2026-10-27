@@ -1,3 +1,4 @@
+import { i18n } from '../../../models/i18n.model';
 import type { Profile } from '../../../models/profile.model';
 import type { Theme } from '../../../models/theme.model';
 import { ButtonLink } from '../../components/ButtonLink';
@@ -24,9 +25,9 @@ export function Hero({ profile, theme }: Props) {
           <HeroHeadline {...profile} />
           <p className="hero__intro">{profile.intro}</p>
           <div className="hero__actions">
-            <ButtonLink href="#progetti">Vedi i progetti</ButtonLink>
+            <ButtonLink href="#progetti">{i18n.hero.ctaProjects}</ButtonLink>
             <ButtonLink href="#contatti" variant="ghost">
-              Scrivimi
+              {i18n.hero.ctaContact}
             </ButtonLink>
           </div>
         </div>

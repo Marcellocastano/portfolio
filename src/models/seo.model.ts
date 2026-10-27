@@ -1,3 +1,4 @@
+import { i18n } from './i18n.model';
 import { profile } from './profile.model';
 import { THEME_COLOR } from './theme.model';
 
@@ -16,9 +17,9 @@ export const seo = {
   locale: 'it_IT',
   siteName: fullName,
   /* ~60 caratteri: nome per le ricerche dirette, ruolo, città e tecnologie principali. */
-  title: `${fullName} | ${profile.role} a ${profile.city}, React e Vue`,
+  title: i18n.seo.title(fullName, profile.role, profile.city),
   /* ~155 caratteri: chi sono, da quando, cosa uso, cosa si trova nel sito. */
-  description: `${fullName}, sviluppatore web full-stack a ${profile.city} dal 2018: applicazioni web con Vue, React, TypeScript, Node.js, PHP e Laravel. Progetti, stack ed esperienze.`,
+  description: i18n.seo.description(fullName, profile.city),
   author: fullName,
   canonical: absoluteUrl('/'),
   photo: absoluteUrl('/images/io-cartoon.png'),
@@ -26,7 +27,7 @@ export const seo = {
     url: absoluteUrl('/og-image.png'),
     width: 1200,
     height: 630,
-    alt: `${fullName}, ${profile.role} a ${profile.city}`,
+    alt: i18n.seo.imageAlt(fullName, profile.role, profile.city),
   },
   verification: {
     google: import.meta.env.VITE_GOOGLE_SITE_VERIFICATION,

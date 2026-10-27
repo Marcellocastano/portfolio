@@ -1,3 +1,5 @@
+import { i18n } from '../i18n.model';
+
 /** Dati della demo FantaClash: lotti della stagione 2025-26, squadre, ruoli e fasce. */
 
 export type Role = 'P' | 'D' | 'C' | 'A';
@@ -11,7 +13,7 @@ export const HISTORY_SIZE = 5;
 export const BID_STEPS = [1, 5, 10];
 export const ROSTER: Record<Role, number> = { P: 1, D: 2, C: 3, A: 2 };
 export const ROLE_ORDER: Role[] = ['P', 'D', 'C', 'A'];
-export const JOURNEY_STEPS = ['Asta', 'Sorteggio', 'Quarti', 'Semifinale', 'Finale'];
+export const JOURNEY_STEPS = i18n.demos.fantaclash.journey;
 
 export interface PlayerStat {
   label: string;

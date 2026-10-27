@@ -3,6 +3,7 @@ import '@fontsource-variable/public-sans/wght.css';
 import { useRef } from 'react';
 import { useInView } from '../../../../../controllers/useInView';
 import { useAuctionDemo } from '../../../../../controllers/useAuctionDemo';
+import { i18n } from '../../../../../models/i18n.model';
 import {
   JOURNEY_STEPS,
   ROLE_PLURAL,
@@ -21,8 +22,8 @@ import { TeamsRecap } from './TeamsRecap';
 import './FantaClashDemo.css';
 
 const stageTitle = (state: AuctionState): string => {
-  if (state.phase !== 'sold') return "All'asta";
-  return userLeads(state) ? 'È tuo!' : 'Aggiudicato';
+  if (state.phase !== 'sold') return i18n.demos.fantaclash.stage.live;
+  return userLeads(state) ? i18n.demos.fantaclash.stage.yours : i18n.demos.fantaclash.stage.sold;
 };
 
 function FcNav({ role, credits }: { role: string; credits: number }) {
@@ -32,7 +33,7 @@ function FcNav({ role, credits }: { role: string; credits: number }) {
         <FcLogo className="fc-nav__mark" />
         <span className="fc-nav__word">FantaClash</span>
       </span>
-      <ol className="fc-nav__trail" aria-label="Percorso di gioco">
+      <ol className="fc-nav__trail" aria-label={i18n.demos.fantaclash.journeyAria}>
         {JOURNEY_STEPS.map((step, i) => (
           <li key={step} className="fc-nav__step">
             {i > 0 && <i className="fc-nav__sep" aria-hidden="true" />}
@@ -44,11 +45,11 @@ function FcNav({ role, credits }: { role: string; credits: number }) {
       </ol>
       <div className="fc-nav__side">
         <span className="fc-nav__stat">
-          <small>Reparto</small>
+          <small>{i18n.demos.fantaclash.stats.reparto}</small>
           <b>{role}</b>
         </span>
         <span className="fc-nav__stat">
-          <small>Crediti</small>
+          <small>{i18n.demos.fantaclash.stats.crediti}</small>
           <b>{credits}</b>
         </span>
       </div>

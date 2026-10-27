@@ -1,13 +1,14 @@
 import { useRef } from 'react';
 import { useParallax } from '../../../controllers/useParallax';
 import { useShowcase } from '../../../controllers/useShowcase';
+import { i18n } from '../../../models/i18n.model';
+import { profile } from '../../../models/profile.model';
 import { Cursor } from './Cursor';
 import { Pipeline } from './Pipeline';
 import { BrowserWindow, CodeWindow, DesignWindow } from './ShowcaseWindows';
 import './Showcase.css';
 
-const DESCRIPTION =
-  "Il flusso di lavoro di Marcello: un design diventa codice React e poi un'interfaccia funzionante nel browser, dove una card viene trascinata da Idee a In sviluppo";
+const DESCRIPTION = i18n.hero.showcaseAria(profile.firstName);
 
 export function Showcase({ cursorLabel }: { cursorLabel: string }) {
   const parallax = useParallax<HTMLDivElement>();

@@ -1,4 +1,5 @@
 import { siDocker, siReact, siTypescript, siVuedotjs } from 'simple-icons';
+import { i18n } from '../i18n.model';
 
 export type CommitType = 'feat' | 'refactor' | 'init' | 'merge';
 
@@ -25,17 +26,19 @@ export interface Branch {
   icon: string;
 }
 
-/* Dati di carriera reali. 4Dem e Positive sono la stessa azienda rinominata. */
+/* Dati di carriera reali. 4Dem e Positive sono la stessa azienda rinominata.
+   Messaggi, periodi e dettagli leggibili sono in i18n.stack.career (per hash);
+   i commit 'merge' hanno come messaggio il nome del ramo. */
 export const COMMITS: Commit[] = [
   {
     hash: 'e7b2c04',
     type: 'feat',
-    message: 'Software Developer in digit',
+    message: i18n.stack.career['e7b2c04'].message,
     company: 'digit',
     color: '#a6c93a',
     mark: 'd',
-    period: 'Dic 2024 - oggi',
-    detail: 'Torino, ibrido',
+    period: i18n.stack.career['e7b2c04'].period,
+    detail: i18n.stack.career['e7b2c04'].detail,
     head: true,
   },
   { hash: '9c1d8a2', type: 'merge', message: 'react' },
@@ -43,37 +46,37 @@ export const COMMITS: Commit[] = [
   {
     hash: 'b82a7d5',
     type: 'refactor',
-    message: '4Dem diventa Positive, ruolo Full Stack Developer',
+    message: i18n.stack.career['b82a7d5'].message,
     company: 'Positive',
     color: '#ff4f4f',
     mark: 'P',
-    period: 'Mar 2023 - Nov 2024',
-    detail: 'Torino, ibrido',
-    skills: ['TypeScript', 'Sviluppo software'],
+    period: i18n.stack.career['b82a7d5'].period,
+    detail: i18n.stack.career['b82a7d5'].detail,
+    skills: i18n.stack.career['b82a7d5'].skills,
   },
   { hash: '3d7f1a9', type: 'merge', message: 'docker' },
   { hash: 'c5e92b8', type: 'merge', message: 'vue' },
   {
     hash: '61af3d4',
     type: 'feat',
-    message: 'Web Software Developer in 4Dem',
+    message: i18n.stack.career['61af3d4'].message,
     company: '4Dem',
     color: '#f26a3d',
     mark: '4D',
-    detail: 'Digital & Email Marketing',
-    period: 'Set 2018 - Mar 2023',
-    skills: ['Vue.js', 'Debug'],
+    detail: i18n.stack.career['61af3d4'].detail,
+    period: i18n.stack.career['61af3d4'].period,
+    skills: i18n.stack.career['61af3d4'].skills,
   },
   {
     hash: '0a4b7c2',
     type: 'init',
-    message: 'IT Software Developer in EcoSafe Srl',
+    message: i18n.stack.career['0a4b7c2'].message,
     company: 'EcoSafe Srl',
     color: '#3fa34d',
     mark: 'E',
-    period: 'Gen 2018 - Lug 2018',
-    detail: 'Torino',
-    skills: ['Debug', 'Bootstrap'],
+    period: i18n.stack.career['0a4b7c2'].period,
+    detail: i18n.stack.career['0a4b7c2'].detail,
+    skills: i18n.stack.career['0a4b7c2'].skills,
   },
 ];
 

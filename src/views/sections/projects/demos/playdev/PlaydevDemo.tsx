@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useInView } from '../../../../../controllers/useInView';
 import { usePlaydevDemo } from '../../../../../controllers/usePlaydevDemo';
+import { i18n } from '../../../../../models/i18n.model';
 import { JsCube } from './JsCube';
 import { PathList } from './PathList';
 import { TestPanel } from './TestPanel';
@@ -18,7 +19,7 @@ export function PlaydevDemo({ running }: { running: boolean }) {
     <div className="pd-demo" ref={ref}>
       <div className="pd-demo__main">
         <div className="pd-demo__level">
-          <span>Livello {String(exercise.level).padStart(2, '0')}</span>
+          <span>{i18n.demos.playdev.level(String(exercise.level).padStart(2, '0'))}</span>
           <div className="pd-demo__levelbar">
             <i style={{ width: `${levelPct}%` }} />
           </div>
@@ -29,7 +30,7 @@ export function PlaydevDemo({ running }: { running: boolean }) {
           <header className="pd-demo__filebar">
             <span className="pd-demo__file">somma.js</span>
             <button type="button" className="pd-demo__run" onClick={run} disabled={executing || done}>
-              Esegui
+              {i18n.demos.playdev.run}
             </button>
           </header>
           <pre className="pd-demo__code">

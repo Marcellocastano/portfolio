@@ -1,7 +1,12 @@
+import { i18n } from '../i18n.model';
 import type { Rng } from '../../lib/prng';
 import { pick, pickInt } from '../../lib/prng';
 
+type CategoryId = keyof typeof i18n.demos.menu.categories;
+type DishId = keyof typeof i18n.demos.menu.dishes;
+
 export interface Dish {
+  id: DishId;
   name: string;
   emoji: string;
   category: string;
@@ -14,39 +19,53 @@ export interface CategoryTarget {
   target: number;
 }
 
-export const DAY_NAMES = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì'];
-export const MEAL_NAMES = ['Pranzo', 'Cena'];
+export const DAY_NAMES = i18n.demos.menu.days;
+export const MEAL_NAMES = i18n.demos.menu.meals;
 export const DAYS = 4;
 export const MEALS = 2;
 
+const cat = (id: CategoryId, emoji: string, target: number): CategoryTarget => ({
+  category: i18n.demos.menu.categories[id],
+  emoji,
+  target,
+});
+
 export const CATEGORY_TARGETS: CategoryTarget[] = [
-  { category: 'Legumi', emoji: '🫘', target: 2 },
-  { category: 'Pesce', emoji: '🐟', target: 2 },
-  { category: 'Carne bianca', emoji: '🍗', target: 2 },
-  { category: 'Uova', emoji: '🥚', target: 1 },
-  { category: 'Formaggi', emoji: '🧀', target: 1 },
-  { category: 'Carne rossa', emoji: '🥩', target: 1 },
+  cat('legumi', '🫘', 2),
+  cat('pesce', '🐟', 2),
+  cat('carne-bianca', '🍗', 2),
+  cat('uova', '🥚', 1),
+  cat('formaggi', '🧀', 1),
+  cat('carne-rossa', '🥩', 1),
 ];
 
+const dish = (id: DishId, emoji: string, category: CategoryId, minutes: number): Dish => ({
+  id,
+  name: i18n.demos.menu.dishes[id],
+  emoji,
+  category: i18n.demos.menu.categories[category],
+  minutes,
+});
+
 export const DISHES: Dish[] = [
-  { name: 'Insalata di riso', emoji: '🥗', category: 'Primi', minutes: 30 },
-  { name: 'Tabulè', emoji: '🥙', category: 'Primi', minutes: 25 },
-  { name: 'Riso al forno', emoji: '🍚', category: 'Primi', minutes: 40 },
-  { name: 'Pasta melanzane e pesto', emoji: '🍝', category: 'Primi', minutes: 30 },
-  { name: 'Cous cous vegetale', emoji: '🍲', category: 'Primi', minutes: 20 },
-  { name: 'Nugget di soia', emoji: '🍗', category: 'Carne bianca', minutes: 25 },
-  { name: 'Sgombero grigliato', emoji: '🐟', category: 'Pesce', minutes: 5 },
-  { name: 'Seppie con piselli', emoji: '🦑', category: 'Pesce', minutes: 30 },
-  { name: 'Salmone al vapore', emoji: '🐠', category: 'Pesce', minutes: 18 },
-  { name: 'Vellutata con tofu', emoji: '🥣', category: 'Legumi', minutes: 25 },
-  { name: 'Zuppa di lenticchie', emoji: '🍜', category: 'Legumi', minutes: 35 },
-  { name: 'Falafel al forno', emoji: '🧆', category: 'Legumi', minutes: 30 },
-  { name: 'Frittata di zucchine', emoji: '🍳', category: 'Uova', minutes: 15 },
-  { name: 'Uova in purgatorio', emoji: '🍅', category: 'Uova', minutes: 20 },
-  { name: 'Spinaci in padella', emoji: '🥬', category: 'Verdure', minutes: 12 },
-  { name: 'Zucchine grigliate', emoji: '🥒', category: 'Verdure', minutes: 15 },
-  { name: 'Tagliata di manzo', emoji: '🥩', category: 'Carne rossa', minutes: 15 },
-  { name: 'Caprese', emoji: '🧀', category: 'Formaggi', minutes: 10 },
+  dish('insalata-di-riso', '🥗', 'primi', 30),
+  dish('tabule', '🥙', 'primi', 25),
+  dish('riso-al-forno', '🍚', 'primi', 40),
+  dish('pasta-melanzane-pesto', '🍝', 'primi', 30),
+  dish('cous-cous', '🍲', 'primi', 20),
+  dish('nugget-soia', '🍗', 'carne-bianca', 25),
+  dish('sgombero', '🐟', 'pesce', 5),
+  dish('seppie-piselli', '🦑', 'pesce', 30),
+  dish('salmone', '🐠', 'pesce', 18),
+  dish('vellutata-tofu', '🥣', 'legumi', 25),
+  dish('lenticchie', '🍜', 'legumi', 35),
+  dish('falafel', '🧆', 'legumi', 30),
+  dish('frittata-zucchine', '🍳', 'uova', 15),
+  dish('uova-purgatorio', '🍅', 'uova', 20),
+  dish('spinaci', '🥬', 'verdure', 12),
+  dish('zucchine-grigliate', '🥒', 'verdure', 15),
+  dish('tagliata', '🥩', 'carne-rossa', 15),
+  dish('caprese', '🧀', 'formaggi', 10),
 ];
 
 export type Week = Dish[][];

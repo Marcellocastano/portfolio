@@ -1,3 +1,4 @@
+import { i18n } from '../../../../../models/i18n.model';
 import { formatEuro, type NetBreakdown } from '../../../../../models/projects/stipendio.model';
 import './DonutChart.css';
 
@@ -5,10 +6,10 @@ const R = 52;
 const C = 2 * Math.PI * R;
 
 const SEGMENTS = [
-  { key: 'netto', color: 'var(--p-fg)', label: 'Netto' },
-  { key: 'inps', color: '#c9a227', label: 'INPS' },
-  { key: 'irpef', color: '#b4552d', label: 'IRPEF' },
-  { key: 'addizionali', color: '#c94b5a', label: 'Addizionali' },
+  { key: 'netto', color: 'var(--p-fg)', label: i18n.demos.stipendio.donut.netto },
+  { key: 'inps', color: '#c9a227', label: i18n.demos.stipendio.donut.inps },
+  { key: 'irpef', color: '#b4552d', label: i18n.demos.stipendio.donut.irpef },
+  { key: 'addizionali', color: '#c94b5a', label: i18n.demos.stipendio.donut.addizionali },
 ] as const;
 
 type DonutBreakdown = NetBreakdown & { addizionali: number };
@@ -49,7 +50,7 @@ export function DonutChart({ breakdown, ral }: { breakdown: DonutBreakdown; ral:
           })}
         </svg>
         <div className="stip-donut__center">
-          <span>RAL</span>
+          <span>{i18n.demos.stipendio.donut.ral}</span>
           <b>{formatEuro(ral)}</b>
         </div>
       </div>

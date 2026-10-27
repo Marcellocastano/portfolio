@@ -1,3 +1,4 @@
+import { i18n } from '../../../../../models/i18n.model';
 import { LOT_MS, leader, userLeads, type AuctionState } from '../../../../../models/projects/auction.model';
 import { TeamBadge } from './TeamBadge';
 import './PriceBlock.css';
@@ -10,10 +11,11 @@ interface Props {
 type PriceTone = 'highlight' | 'ink' | 'whistle' | 'canvas';
 
 function priceLabel(state: AuctionState, mine: boolean, outbid: boolean, leadName: string): string {
-  if (state.phase === 'sold') return mine ? 'Aggiudicato a te' : `Aggiudicato a ${leadName}`;
-  if (outbid) return `${leadName} ha rilanciato`;
-  if (mine) return 'Sei in testa';
-  return leadName ? 'In testa' : 'Prezzo base';
+  const t = i18n.demos.fantaclash.price;
+  if (state.phase === 'sold') return mine ? t.soldYou : t.soldTo(leadName);
+  if (outbid) return t.outbid(leadName);
+  if (mine) return t.youLead;
+  return leadName ? t.lead : t.base;
 }
 
 function toneOf(live: boolean, mine: boolean, outbid: boolean): PriceTone {
@@ -42,7 +44,9 @@ export function PriceBlock({ state, outbid }: Props) {
           <span className="fc-price__label">{priceLabel(state, mine, outbid, leadName)}</span>
           <span className="fc-price__team">
             {lead && <TeamBadge name={lead.name} kit={lead.kit} size="md" />}
-            <span className="fc-price__name">{mine ? 'La tua squadra' : leadName || 'Nessuna offerta'}</span>
+            <span className="fc-price__name">
+              {mine ? i18n.demos.fantaclash.yourTeam : leadName || i18n.demos.fantaclash.price.noBids}
+            </span>
           </span>
         </div>
         <div className="fc-price__amount">

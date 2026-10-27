@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import type { SpinCell } from '../../../../../controllers/useMenuDemo';
+import { i18n } from '../../../../../models/i18n.model';
 import { MEAL_NAMES, type Dish } from '../../../../../models/projects/menu.model';
 import './MenuDay.css';
 
@@ -52,7 +53,7 @@ export function MenuDay({ name, index, dishes, cells, spinId }: Props) {
     <div className="menu-day" style={{ '--day-color': DAY_COLORS[index % DAY_COLORS.length] } as CSSProperties}>
       <div className="menu-day__head">
         <span className="menu-day__name">{name}</span>
-        {index === 1 && <span className="menu-day__today">Oggi</span>}
+        {index === 1 && <span className="menu-day__today">{i18n.demos.menu.today}</span>}
       </div>
       {dishes.map((dish, mi) => (
         <div className="menu-day__meal" key={mi}>

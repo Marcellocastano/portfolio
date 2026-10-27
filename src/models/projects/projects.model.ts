@@ -1,3 +1,7 @@
+import { i18n } from '../i18n.model';
+
+export type ProjectStatus = keyof typeof i18n.projects.status;
+
 export interface ProjectTheme {
   bg: string;
   surface: string;
@@ -9,14 +13,15 @@ export interface ProjectTheme {
 }
 
 export interface Project {
-  id: string;
+  id: keyof typeof i18n.projects.list;
   name: string;
   domain: string;
   tagline: string;
   description: string;
   stack: string[];
-  status: 'Online' | 'In sviluppo';
-  links: { app: string; code: string };
+  status: ProjectStatus;
+  /** `app` solo per i progetti pubblici; `code` punta al repository. */
+  links: { app?: string; code: string };
   theme: ProjectTheme;
 }
 
@@ -39,12 +44,11 @@ export const projects: Project[] = [
     id: 'fantaclash',
     name: 'FantaClash',
     domain: 'fantaclash.it',
-    tagline: 'Asta e coppa di fantacalcio sulle stagioni storiche della Serie A.',
-    description:
-      "Scegli un'annata dal 2003-04 al 2025-26, sfidi sette bot all'asta con 100 crediti e costruisci una rosa di otto giocatori. Poi si gioca una coppa a eliminazione diretta, con partite simulate minuto per minuto.",
+    tagline: i18n.projects.list.fantaclash.tagline,
+    description: i18n.projects.list.fantaclash.description,
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Vitest'],
-    status: 'Online',
-    links: { app: 'https://www.fantaclash.it', code: '#' },
+    status: 'online',
+    links: { app: 'https://www.fantaclash.it', code: 'https://github.com/Marcellocastano/fantaclash' },
     theme: {
       bg: '#F4EEDF',
       surface: '#EAE1CA',
@@ -59,12 +63,11 @@ export const projects: Project[] = [
     id: 'che-si-mangia',
     name: 'Che si mangia',
     domain: 'chesimangia.app',
-    tagline: 'Il menù settimanale che si rigenera da solo.',
-    description:
-      'Pianifica pranzi e cene rispettando target nutrizionali e cadence degli ingredienti: un click e la settimana cambia, restano i vincoli.',
+    tagline: i18n.projects.list['che-si-mangia'].tagline,
+    description: i18n.projects.list['che-si-mangia'].description,
     stack: ['React', 'TypeScript', 'Supabase', 'Tailwind CSS'],
-    status: 'Online',
-    links: { app: '#', code: '#' },
+    status: 'online',
+    links: { code: 'https://github.com/Marcellocastano/recipe-planner' },
     theme: {
       bg: '#fdf3ef',
       surface: '#ffffff',
@@ -79,12 +82,11 @@ export const projects: Project[] = [
     id: 'stipendio-netto',
     name: 'Calcolatore stipendio netto',
     domain: 'stipendionetto.app',
-    tagline: 'Dalla RAL al netto in busta paga, in chiaro.',
-    description:
-      'Sposta il cursore e vedi subito netto annuale, mensile e il dettaglio delle trattenute: INPS, IRPEF e addizionali.',
+    tagline: i18n.projects.list['stipendio-netto'].tagline,
+    description: i18n.projects.list['stipendio-netto'].description,
     stack: ['Vue', 'TypeScript', 'Vite'],
-    status: 'Online',
-    links: { app: '#', code: '#' },
+    status: 'online',
+    links: { code: 'https://github.com/Marcellocastano/salary-calculator' },
     theme: {
       bg: '#d5dfda',
       surface: '#ffffff',
@@ -98,12 +100,11 @@ export const projects: Project[] = [
     id: 'playdev',
     name: 'Play&Dev',
     domain: 'playanddev.app',
-    tagline: 'Impara JavaScript giocando, un livello alla volta.',
-    description:
-      'Esercizi in un mini editor, test che diventano verdi uno a uno e XP che salgono: il percorso avanza a ogni esecuzione riuscita.',
+    tagline: i18n.projects.list.playdev.tagline,
+    description: i18n.projects.list.playdev.description,
     stack: ['React', 'TypeScript', 'Node.js', 'Vitest'],
-    status: 'In sviluppo',
-    links: { app: '#', code: '#' },
+    status: 'dev',
+    links: { code: 'https://github.com/Marcellocastano/play-and-dev' },
     theme: {
       bg: '#f7f6ef',
       surface: '#ffffff',

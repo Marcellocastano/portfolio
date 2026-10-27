@@ -1,3 +1,4 @@
+import { i18n } from '../../../models/i18n.model';
 import type { Project } from '../../../models/projects/projects.model';
 import { ButtonLink } from '../../components/ButtonLink';
 import './ProjectInfo.css';
@@ -14,14 +15,16 @@ export function ProjectInfo({ project }: { project: Project }) {
         ))}
       </ul>
       <p className="pinfo__status">
-        <i aria-hidden="true" /> {project.status}
+        <i aria-hidden="true" /> {i18n.projects.status[project.status]}
       </p>
       <div className="pinfo__links">
-        <ButtonLink href={project.links.app} variant="accent">
-          Apri l&apos;app
-        </ButtonLink>
+        {project.links.app && (
+          <ButtonLink href={project.links.app} variant="accent">
+            {i18n.projects.openApp}
+          </ButtonLink>
+        )}
         <ButtonLink href={project.links.code} variant="ghost">
-          Codice
+          {i18n.projects.code}
         </ButtonLink>
       </div>
     </div>

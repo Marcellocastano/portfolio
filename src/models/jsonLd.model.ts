@@ -1,3 +1,4 @@
+import { i18n } from './i18n.model';
 import { profile } from './profile.model';
 import { projects } from './projects/projects.model';
 import { seo } from './seo.model';
@@ -12,7 +13,7 @@ function projectList() {
   return {
     '@type': 'ItemList',
     '@id': id('projects'),
-    name: `Progetti di ${fullName}`,
+    name: i18n.seo.jsonLd.projectsName(fullName),
     itemListElement: projects.map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -20,9 +21,9 @@ function projectList() {
         '@type': 'CreativeWork',
         name: p.name,
         description: `${p.tagline} ${p.description}`,
-        genre: 'Applicazione web',
+        genre: i18n.seo.jsonLd.projectGenre,
         author: { '@id': id('person') },
-        url: p.links.app.startsWith('http') ? p.links.app : id(`progetto-${p.id}`),
+        url: p.links.app ?? id(`progetto-${p.id}`),
       },
     })),
   };

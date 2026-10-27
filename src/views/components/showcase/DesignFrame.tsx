@@ -1,3 +1,4 @@
+import { i18n } from '../../../models/i18n.model';
 import { boardColumns } from '../../../models/showcase/board.model';
 import './DesignFrame.css';
 
@@ -14,13 +15,13 @@ const Selection = ({ label }: { label: string }) => (
 export function DesignFrame({ active }: { active: boolean }) {
   return (
     <div className="design" data-active={active}>
-      <span className="design__label">Board</span>
+      <span className="design__label">{i18n.showcase.design.board}</span>
       <div className="design__frame">
         {boardColumns.map((column, i) => (
           <div key={column.id} className="design__column">
             <span className="design__heading" />
             <span className="design__slot" data-card={i === 0}>
-              {i === 0 && <Selection label="Card" />}
+              {i === 0 && <Selection label={i18n.showcase.design.card} />}
             </span>
             <span className="design__slot" />
           </div>

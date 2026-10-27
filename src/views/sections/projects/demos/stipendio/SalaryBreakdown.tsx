@@ -1,4 +1,5 @@
 import { useCountUp } from '../../../../../controllers/useCountUp';
+import { i18n } from '../../../../../models/i18n.model';
 import { formatEuro, type NetBreakdown } from '../../../../../models/projects/stipendio.model';
 import './SalaryBreakdown.css';
 
@@ -13,16 +14,17 @@ export function SalaryBreakdown({ breakdown, running }: Props) {
   const addReg = useCountUp(breakdown.addReg, running);
   const addCom = useCountUp(breakdown.addCom, running);
 
+  const t = i18n.demos.stipendio.rows;
   const rows = [
-    { label: 'Contributi INPS', hint: '9,19% della RAL', value: inps },
-    { label: 'IRPEF netta', hint: 'Imposta sul reddito', value: irpef },
-    { label: 'Add. regionale', hint: '1,73%', value: addReg },
-    { label: 'Add. comunale', hint: '0,8%', value: addCom },
+    { label: t.inps.label, hint: t.inps.hint, value: inps },
+    { label: t.irpef.label, hint: t.irpef.hint, value: irpef },
+    { label: t.addReg.label, hint: t.addReg.hint, value: addReg },
+    { label: t.addCom.label, hint: t.addCom.hint, value: addCom },
   ];
 
   return (
     <ul className="salary-breakdown">
-      <li className="salary-breakdown__head">Dettaglio calcolo</li>
+      <li className="salary-breakdown__head">{i18n.demos.stipendio.detail}</li>
       {rows.map((row) => (
         <li key={row.label}>
           <span>
