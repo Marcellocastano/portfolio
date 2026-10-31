@@ -9,10 +9,12 @@ const LINKEDIN_PATH =
 
 interface Props {
   contact: Contact;
+  /** Senza handle, per colonne strette. */
+  compact?: boolean;
 }
 
 /** Tile di contatto: logo brand, nome, handle in mono, freccia che ruota in hover. */
-export function ContactLink({ contact }: Props) {
+export function ContactLink({ contact, compact = false }: Props) {
   const d = contact.id === 'github' ? siGithub.path : LINKEDIN_PATH;
   return (
     <a
@@ -27,7 +29,7 @@ export function ContactLink({ contact }: Props) {
         <path d={d} fill="currentColor" />
       </svg>
       <span className="cl__name">{contact.label}</span>
-      <span className="cl__handle">{contact.handle}</span>
+      {!compact && <span className="cl__handle">{contact.handle}</span>}
       <svg className="cl__arrow" viewBox="0 0 24 24" aria-hidden="true">
         <path
           d="M7 17 17 7M17 7H8m9 0v9"

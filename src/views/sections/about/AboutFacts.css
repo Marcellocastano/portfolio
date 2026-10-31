@@ -1,31 +1,144 @@
+/* La card "In breve": pagina di agendina ad anelli (carta crema, righe azzurre,
+   margine rosso, fori sul bordo sinistro) con una seconda pagina sotto, sfalsata.
+   L'ombra sta sull'aside come drop-shadow, così segue la forma anche dove la mask
+   fora i fogli. */
+.facts {
+  --holes: radial-gradient(circle at 1.35rem 50%, transparent 0.45rem, #000 calc(0.45rem + 0.5px));
+  position: relative;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.18)) drop-shadow(0 10px 22px rgb(0 0 0 / 0.16));
+}
+
+/* La pagina sotto, sfalsata: stessa mask dei fori con posizione compensata
+   per il translate, così i fori bucano entrambe le pagine nello stesso punto. */
+.facts::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  translate: 5px 6px;
+  border-radius: 4px;
+  background: #ebe8d3;
+  box-shadow: inset 0 0 0 1px rgb(55 65 81 / 0.14);
+  -webkit-mask: var(--holes) -5px calc(50% - 6px) / 100% 4.5rem repeat-y;
+  mask: var(--holes) -5px calc(50% - 6px) / 100% 4.5rem repeat-y;
+}
+
+.facts__sheet {
+  --rule: 1.9rem;
+  --margin: 3.2rem;
+  --paper: #f8f6e6;
+  --line: #9cc8e4;
+  --red: #e39a9a;
+  padding: var(--rule) 1.4rem var(--rule) calc(var(--margin) + 0.9rem);
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgb(55 65 81 / 0.12);
+  /* Strati: margine rosso, fasce vuote sopra e sotto (carta piena), righe, carta. */
+  background:
+    linear-gradient(
+      to right,
+      transparent var(--margin),
+      var(--red) var(--margin),
+      var(--red) calc(var(--margin) + 1.5px),
+      transparent calc(var(--margin) + 1.5px)
+    ),
+    linear-gradient(var(--paper), var(--paper)) 0 0 / 100% calc(var(--rule) * 2) no-repeat,
+    linear-gradient(var(--paper), var(--paper)) 0 100% / 100% calc(var(--rule) * 1.5) no-repeat,
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 calc(var(--rule) - 1px),
+      var(--line) calc(var(--rule) - 1px) var(--rule)
+    ),
+    var(--paper);
+  -webkit-mask: var(--holes) left center / 100% 4.5rem repeat-y;
+  mask: var(--holes) left center / 100% 4.5rem repeat-y;
+}
+
 .facts__title {
-  color: var(--fg-muted);
+  color: var(--coral);
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 400;
+  line-height: var(--rule);
 }
 
+/* Una riga del quaderno vuota tra titolo e lista, qualche riga libera prima della fine pagina. */
 .facts__list {
-  margin: 0.8rem 0 0;
+  margin: var(--rule) 0 calc(var(--rule) * 3);
 }
 
+/* flex-start e non baseline: allineando baseline diverse si supererebbe --rule
+   e le righe azzurre finirebbero sfasate rispetto al testo. */
 .facts__row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border);
+}
+
+/* Un evidenziatore diverso per riga. */
+.facts__row:nth-child(1) {
+  --hl: #e1645e;
+}
+
+.facts__row:nth-child(2) {
+  --hl: #a6c93a;
+}
+
+.facts__row:nth-child(3) {
+  --hl: #f7d547;
+}
+
+.facts__row:nth-child(4) {
+  --hl: #5ab0e8;
+}
+
+.facts__row:nth-child(5) {
+  --hl: #e5486f;
 }
 
 .facts__row dt {
-  color: var(--fg-muted);
+  color: color-mix(in srgb, #374151 62%, var(--paper));
   font-size: 0.85rem;
+  line-height: var(--rule);
 }
 
 .facts__row dd {
   margin: 0;
+  color: #374151;
   font-size: 0.92rem;
   font-weight: 600;
+  line-height: var(--rule);
   text-align: right;
+}
+
+/* Sottolineatura a pennarello nella metà bassa; `clone` copre i valori su più righe. */
+.facts__hl {
+  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--hl) 55%, transparent) 58%) no-repeat;
+  background-size: 100% 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 0.15em;
+}
+
+@keyframes facts-hl {
+  from {
+    background-size: 0% 100%;
+  }
+}
+
+/* L'evidenziatore si "disegna" da sinistra a destra al reveal della sezione. */
+.js .about[data-revealed='true'] .facts__hl {
+  animation: facts-hl 0.5s calc(0.8s + var(--i) * 0.12s) var(--ease-out) backwards;
+}
+
+@media (max-width: 1023px) {
+  .facts__sheet {
+    --margin: 2.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .about[data-revealed] .facts__hl {
+    animation: none;
+  }
 }

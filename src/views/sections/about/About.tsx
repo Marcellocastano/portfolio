@@ -1,8 +1,8 @@
 import { useRevealOnce } from '../../../controllers/useRevealOnce';
 import { about } from '../../../models/about.model';
 import { profile } from '../../../models/profile.model';
-import { ButtonLink } from '../../components/ButtonLink';
 import { SectionHeader } from '../../components/SectionHeader';
+import { ContactLink } from '../contacts/ContactLink';
 import { AboutFacts } from './AboutFacts';
 import { Badge } from './badge/Badge';
 import './About.css';
@@ -29,9 +29,7 @@ export function About() {
           ))}
           <div className="about__links">
             {profile.contacts.map((c) => (
-              <ButtonLink key={c.id} href={c.href} variant="ghost">
-                {c.label}
-              </ButtonLink>
+              <ContactLink key={c.id} contact={c} compact />
             ))}
           </div>
         </div>

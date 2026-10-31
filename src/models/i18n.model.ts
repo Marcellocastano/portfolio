@@ -225,7 +225,7 @@ const i18n = {
 
     /** Commit di carriera leggibili, per hash. Periodi nel formato 'Mmm YYYY - Mmm YYYY|oggi'. */
     career: {
-      e7b2c04: { message: 'Software Developer in digit', period: 'Dic 2024 - oggi', detail: 'Torino, ibrido' },
+      e7b2c04: { message: 'Senior Software Developer in digit', period: 'Dic 2024 - oggi', detail: 'Torino, ibrido' },
       b82a7d5: {
         message: '4Dem diventa Positive, ruolo Full Stack Developer',
         period: 'Mar 2023 - Nov 2024',
