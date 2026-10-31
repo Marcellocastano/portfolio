@@ -20,7 +20,7 @@ export interface Profile {
   countryCode: string;
   headline: string;
   /** Seconda riga del sottotitolo, in coral. */
-  headlineAccent: string;
+  // headlineAccent: string;
   intro: string;
   /** Riassunto professionale per i dati strutturati (JSON-LD). */
   summary: string;
@@ -39,7 +39,7 @@ export const profile: Profile = {
   city: 'Torino',
   countryCode: 'IT',
   headline: i18n.hero.headline,
-  headlineAccent: i18n.hero.headlineAccent,
+  // headlineAccent: i18n.hero.headlineAccent,
   intro: i18n.hero.intro,
   summary: i18n.profile.summary,
   skills: i18n.profile.skills,

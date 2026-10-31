@@ -54,10 +54,10 @@ export const SKILLS: Skill[] = [
   k(siTypescript, 'frontend', 2021, ['4dem', 'positive', 'digit'], {
     usedIn: [CSM, SN, PD, FC],
   }),
-  k(siReact, 'frontend', 2025, ['positive', 'digit'], {
+  k(siReact, 'frontend', 2025, ['digit'], {
     usedIn: [CSM, PD, FC],
   }),
-  k(siTailwindcss, 'frontend', 2022, ['positive', 'digit'], {
+  k(siTailwindcss, 'frontend', 2022, ['4dem', 'positive', 'digit'], {
     usedIn: [CSM, FC],
   }),
   k(siBootstrap, 'frontend', 2018, ['ecosafe', '4dem'], {
@@ -66,25 +66,25 @@ export const SKILLS: Skill[] = [
   k(siNodedotjs, 'backend', 2020, ['4dem', 'positive', 'digit'], {
     usedIn: [PD, FC],
   }),
-  k(siPhp, 'backend', 2018, ['ecosafe', '4dem', 'positive'], {
+  k(siPhp, 'backend', 2018, ['ecosafe', '4dem'], {
     until: 2021.5,
   }),
   k(siLaravel, 'backend', 2019, ['4dem', 'positive'], {
     until: 2021,
   }),
-  k(siWordpress, 'backend', 2019, ['ecosafe', '4dem'], {
+  k(siWordpress, 'backend', 2019, ['4dem'], {
     until: 2021.5,
   }),
-  k(siMysql, 'dati', 2018, ['ecosafe', '4dem', 'positive'], {
+  k(siMysql, 'dati', 2018, ['ecosafe', '4dem', 'positive', 'digit'], {
     usedIn: [SN],
   }),
-  k(siMongodb, 'dati', 2020, ['positive', 'digit'], {
+  k(siMongodb, 'dati', 2020, ['positive'], {
     usedIn: [CSM],
   }),
   k(siGit, 'strumenti', 2018, ALL, {
     usedIn: [CSM, SN, PD, FC],
   }),
-  k(siDocker, 'strumenti', 2021, ['4dem', 'positive', 'digit'], {
+  k(siDocker, 'strumenti', 2021, ['4dem', 'positive'], {
     until: 2024,
   }),
 ];

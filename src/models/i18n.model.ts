@@ -17,10 +17,10 @@ const i18n = {
   },
   hero: {
     role: 'Full-Stack Developer',
-    headline: 'Scrivo codice dal 2018.',
-    headlineAccent: 'E continuo a imparare.',
+    headline: 'Sviluppo applicazioni web.',
+    // headlineAccent: 'E continuo a imparare.',
     intro:
-      'Sono uno sviluppatore web e questo è il mio piccolo spazio, la mia fabbrica dei mostri. Ci trovi qualcosa su di me e alcuni progetti nati nel tempo libero.',
+      'Lavoro come full-stack developer dal 2018. Qui trovi qualcosa sul mio percorso e i progetti che realizzo nel tempo libero.',
     titleAria: (fullName: string, role: string) => `${fullName}, ${role}`,
     ctaProjects: 'Vedi i progetti',
     ctaContact: 'Scrivimi',
@@ -41,7 +41,7 @@ const i18n = {
       'Ho iniziato a lavorare come sviluppatore nel 2018, tra WordPress e PHP. Poi sono arrivato in 4Dem (diventata successivamente Positive), dove sono rimasto circa sei anni. Lì ho avuto modo di mettere mano a un po’ di tutto: Vue, Node.js, Laravel, il passaggio ai microservizi, la costruzione dello shop con Stripe e anche un design system costruito da zero.',
       'Da dicembre 2024 lavoro in digit. Mi occupo di applicazioni web, soprattutto con Vue e TypeScript. Ho lavorato anche con React, tra le altre cose sui siti ufficiali del Venezia FC e della Saudi Pro League.',
       'Dopo questi anni mi ritengo un full-stack developer, con una speciale predilezione per il front-end.',
-      "Uso sempre più spesso l'AI nel lavoro di tutti i giorni. Mi aiuta a velocizzare le attività più ripetitive, trovare soluzioni ai problemi e sperimentare nuove idee. È uno strumento che mi permette di lavorare meglio e dedicare più tempo agli aspetti dello sviluppo che richiedono maggiore attenzione.",
+      'Uso anche strumenti di AI nel lavoro quotidiano, soprattutto per velocizzare le attività ripetitive, scrivere test e provare soluzioni diverse. Mi piace sperimentare, metterli alla prova e capire come arrivano a certe soluzioni. Controllo sempre il codice generato e spesso ne approfitto per approfondire concetti che non conosco o farmi spiegare meglio quelli che conosco meno.',
     ],
     factsTitle: 'In breve',
     facts: {
