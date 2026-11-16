@@ -2,6 +2,7 @@ import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useMemo, type MutableRefObject } from 'react';
 import { MathUtils, PointLight, type Object3D } from 'three';
+import { applyBuild } from '../lib/world/izakayaBuild';
 import { applyCutaway, revealAt } from '../lib/world/izakayaCutaway';
 import { applyGlows } from '../lib/world/izakayaGlow';
 import { applyIdle } from '../lib/world/izakayaIdle';
@@ -34,13 +35,16 @@ export function useIzakaya(focus: MutableRefObject<number>, mood: MutableRefObje
 
   useFrame((state) => {
     const reveal = revealAt(focus.current);
-    const m = mood.current;
     applyCutaway(parts, reveal);
-    applyMood(parts, m);
     applyIdle(parts, state.clock.elapsedTime);
+    // All'avvio il diorama si compone pezzo per pezzo e le luci si accendono a lavoro finito.
+    const lit = applyBuild(parts.build, state.clock.elapsedTime);
+    const m = mood.current * lit;
+    applyMood(parts, m);
     applyGlows(parts.glows, fadeOf, m);
     // Di giorno la stanza aperta resta un po' illuminata; la luce della porta è solo serale.
-    lights.interior.intensity = IZAKAYA_LIGHTS.interior.intensity * reveal * MathUtils.lerp(IZAKAYA_DAY.interior, 1, m);
+    lights.interior.intensity =
+      IZAKAYA_LIGHTS.interior.intensity * reveal * lit * MathUtils.lerp(IZAKAYA_DAY.interior, 1, mood.current);
     lights.door.intensity = IZAKAYA_LIGHTS.door.intensity * (1 - reveal) * m;
   });
 

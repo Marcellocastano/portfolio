@@ -26,7 +26,11 @@ export function useWorldMode(ref: RefObject<HTMLElement>) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    if (!prefersReducedMotion() && supportsWebGL() && capable()) setMode('live');
+    const live = !prefersReducedMotion() && supportsWebGL() && capable();
+    // Lo script di avvio (ThemeBootScript) lo ha già previsto: qui la decisione definitiva, poster compreso.
+    if (live) document.documentElement.dataset.world = 'live';
+    else delete document.documentElement.dataset.world;
+    if (live) setMode('live');
   }, []);
 
   useEffect(() => {

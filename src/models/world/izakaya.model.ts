@@ -28,6 +28,20 @@ export const CUTAWAY = {
 };
 
 /**
+ * Composizione all'avvio: ogni mesh del modello è un tassello che scende al suo posto, dal basamento verso il
+ * tetto. Tempi in secondi; `jitter` mescola un po' l'ordine (0 = rigorosamente dal basso), `drop` in metri.
+ */
+export const BUILD = {
+  delay: 0.3,
+  spread: 2.4,
+  duration: 0.6,
+  drop: 1.4,
+  jitter: 0.3,
+  /** Le luci si accendono negli ultimi tasselli e finiscono di accendersi dopo l'ultimo. */
+  lightsOn: 0.6,
+};
+
+/**
  * Luci. Quelle puntiformi arrivano dal glTF in candele (unità fisiche): `punctualScale` le riporta in scala con
  * la scena. Le luci ad area di Blender non esistono in glTF e sono ricreate qui (direzionali e puntiformi).
  */

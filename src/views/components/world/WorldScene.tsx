@@ -3,7 +3,6 @@ import { Suspense, useRef, type MutableRefObject } from 'react';
 import type { Drag } from '../../../controllers/useWorldDrag';
 import type { Pointer } from '../../../controllers/useWorldInputs';
 import type { Theme } from '../../../models/theme.model';
-import { Appear } from './Appear';
 import { CameraRig } from './CameraRig';
 import { Izakaya } from './izakaya/Izakaya';
 import { IzakayaLighting } from './izakaya/IzakayaLighting';
@@ -35,9 +34,7 @@ export function WorldScene({ pointer, scroll, drag, theme, onReady }: Props) {
       <CameraRig scroll={scroll} focus={focus} />
       <Suspense fallback={null}>
         <Rig pointer={pointer} focus={focus} drag={drag}>
-          <Appear delay={0}>
-            <Izakaya focus={focus} mood={mood} onReady={onReady} />
-          </Appear>
+          <Izakaya focus={focus} mood={mood} onReady={onReady} />
         </Rig>
       </Suspense>
       <ContactShadows

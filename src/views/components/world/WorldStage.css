@@ -42,6 +42,11 @@
   opacity: 0;
 }
 
+/* Col 3D in arrivo il poster non si mostra: il diorama compare quando è pronto, componendosi pezzo per pezzo. */
+:root[data-world='live'] .world__poster {
+  display: none;
+}
+
 :root[data-theme='dark'] .world__poster--day,
 :root:not([data-theme='dark']) .world__poster--night {
   display: none;

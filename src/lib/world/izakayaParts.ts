@@ -1,7 +1,9 @@
 import { Vector3, type Light, type Material, type Mesh, type MeshStandardMaterial, type Object3D } from 'three';
 import { IZAKAYA_LIGHTS, IZAKAYA_NODES } from '../../models/world/izakaya.model';
+import { prepareBuild, type Build } from './izakayaBuild';
 import { cutPiece, type CutPiece } from './izakayaCutaway';
 import { prepareGlows, type Glow } from './izakayaGlow';
+import { hashOf } from './izakayaHash';
 import { idleItem, type IdleItem } from './izakayaIdle';
 import { collectEmissive, type EmissiveRef } from './izakayaMood';
 
@@ -24,10 +26,11 @@ export interface IzakayaParts {
   emissive: EmissiveRef[];
   idle: IdleItem[];
   screen: Mesh | null;
+  /** Composizione iniziale, tassello per tassello. */
+  build: Build;
 }
 
-/** Fase deterministica (0-1) da un nome: niente Math.random, la scena è sempre uguale. */
-export const hashOf = (name: string) => ([...name].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 997, 7) % 97) / 97;
+export { hashOf } from './izakayaHash';
 
 function lightKind(light: Light): LightRef['kind'] {
   if (light.userData.cutaway) return 'cut';
@@ -75,6 +78,7 @@ export function prepareIzakaya(root: Object3D): IzakayaParts {
     emissive: [],
     idle: [],
     screen: null,
+    build: { pieces: [], start: null, done: true },
   };
   root.updateMatrixWorld(true);
   // Centro della pianta: i pezzi della facciata si allontanano da qui.
@@ -94,5 +98,8 @@ export function prepareIzakaya(root: Object3D): IzakayaParts {
   // Dopo i pezzi della facciata: gli aloni aggiunti come figli non devono allargarne i bounding box.
   parts.glows = prepareGlows(root, parts.lights);
   parts.emissive = collectEmissive(root);
+  // Chi ha già la posizione scritta a ogni frame: la discesa iniziale si somma, non la sostituisce.
+  const moving = parts.idle.filter((it) => it.kind !== 'sway').map((it) => it.obj);
+  parts.build = prepareBuild(root, new Set([...parts.cutaway.map((p) => p.obj), ...moving]));
   return parts;
 }

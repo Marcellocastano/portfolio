@@ -2,9 +2,6 @@ import { projects, type Project } from '../projects/projects.model';
 
 type Vec3 = [number, number, number];
 
-/** Ingresso della scena: cresce con un piccolo rimbalzo e si posa dall'alto (secondi). */
-export const INTRO = { duration: 0.9 };
-
 /** Ogni quanti secondi il monitor passa al progetto successivo. */
 export const SCREEN_CYCLE = 6;
 export const SCREEN_PROJECTS: Project[] = projects;
