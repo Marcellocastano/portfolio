@@ -1,4 +1,6 @@
 .hero {
+  /* Quanto il canvas 3D scende oltre la scena (WorldStage.css): lo stesso spazio resta prima della sezione dopo. */
+  --world-overflow: 18svh;
   position: relative;
   /* Solo in orizzontale: in uscita la scena può scendere oltre il bordo e sfumare, senza tagli netti. */
   overflow-x: clip;
@@ -20,6 +22,8 @@
   .hero {
     /* Sui telefoni la corsa è un po' più corta: stessa storia, meno pollice. */
     height: 340svh;
+    /* La base del diorama scende oltre la scena: la sezione dopo parte dopo di lei, col suo margine di sempre. */
+    margin-bottom: var(--world-overflow);
   }
 
   .hero__stage {

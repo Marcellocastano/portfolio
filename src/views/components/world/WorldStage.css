@@ -55,7 +55,9 @@
 /* Canvas 3D: copre tutta la scena dell'hero, sopra i puntini e sotto al testo; i clic passano attraverso. */
 .world-canvas {
   position: absolute;
-  inset: 0;
+  /* Scende un po' oltre la scena, nello spazio vuoto prima della sezione successiva: quando l'hero scorre via la
+     base del diorama non viene tagliata dal bordo della scena. */
+  inset: 0 0 calc(-1 * var(--world-overflow, 0px));
   z-index: 0;
   pointer-events: none;
   opacity: 0;

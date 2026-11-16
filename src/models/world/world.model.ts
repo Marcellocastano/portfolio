@@ -22,8 +22,9 @@ export const FOCUS = {
   target: [-0.15, 2.4, -0.5] as Vec3,
 };
 export const CLOSE = {
-  position: [7.13, 7.68, 12.01] as Vec3,
-  target: [-0.1, 1.96, -0.57] as Vec3,
+  // Camera e mira abbassate insieme (stesso zoom): sotto la base resta un margine e l'hero scorre via senza tagliarla.
+  position: [7.13, 7.13, 12.01] as Vec3,
+  target: [-0.1, 1.41, -0.57] as Vec3,
 };
 
 /** Dove finisce la seconda fase (0-1 dello scroll smorzato): dopo, solo l'avvicinamento alla scrivania. */

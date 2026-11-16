@@ -13,8 +13,11 @@ export function useTitleScrub(ref: RefObject<HTMLElement>) {
       const chars = root.querySelectorAll('.split-char');
       gsap.fromTo(
         chars,
-        { yPercent: 105, fontWeight: 300, rotate: 6 },
+        // `y: 0` esplicito: se un refresh rilegge la trasformazione a metà, GSAP la salverebbe come `y` in pixel e
+        // le lettere resterebbero giù anche a titolo completo (animando solo `yPercent`).
+        { y: 0, yPercent: 105, fontWeight: 300, rotate: 6 },
         {
+          y: 0,
           yPercent: 0,
           fontWeight: 700,
           rotate: 0,
