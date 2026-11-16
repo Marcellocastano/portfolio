@@ -22,7 +22,7 @@ const i18n = {
     headline: 'Sviluppo applicazioni web.',
     // headlineAccent: 'E continuo a imparare.',
     intro:
-      'Lavoro come full-stack developer dal 2018. Qui trovi qualcosa sul mio percorso e i progetti che realizzo nel tempo libero.',
+      "Lavoro come full-stack developer dal 2018. Qui trovi un po' del mio percorso e i progetti a cui lavoro nel tempo libero.",
     titleAria: (fullName: string, role: string) => `${fullName}, ${role}`,
     ctaProjects: 'Vedi i progetti',
     ctaContact: 'Scrivimi',
@@ -31,7 +31,7 @@ const i18n = {
   /** Mondo in miniatura dell'hero: descrizione e suggerimenti sugli oggetti interattivi. */
   world: {
     aria: (firstName: string) =>
-      `La piccola izakaya-studio di ${firstName}: un locale giapponese di notte con lanterne, noren, distributore automatico e un ciliegio in fiore; scorrendo la casa ruota, la facciata si apre e dentro c'è lo studio, con ${firstName} alla scrivania davanti al monitor e Olivia, la sua cagnolina, che dorme arrotolata sul cuscino`,
+      `La piccola izakaya-studio di ${firstName}: un locale giapponese di notte, con lanterne, noren, un distributore automatico e un ciliegio in fiore. Scorrendo, la casa ruota e la facciata si apre sullo studio, dove ${firstName} lavora alla scrivania e Olivia, la sua cagnolina, dorme arrotolata nella cuccia.`,
     openProject: (name: string) => `Apri ${name}`,
     lightOff: 'Spegni la luce',
     lightOn: 'Accendi la luce',
@@ -40,10 +40,10 @@ const i18n = {
   about: {
     title: (firstName: string) => `Ciao, sono ${firstName}`,
     bio: [
-      'Ho iniziato a lavorare come sviluppatore nel 2018, tra WordPress e PHP. Poi sono arrivato in 4Dem (diventata successivamente Positive), dove sono rimasto circa sei anni. Lì ho avuto modo di mettere mano a un po’ di tutto: Vue, Node.js, Laravel, il passaggio ai microservizi, la costruzione dello shop con Stripe e anche un design system costruito da zero.',
-      'Da dicembre 2024 lavoro in digit. Mi occupo di applicazioni web, soprattutto con Vue e TypeScript. Ho lavorato anche con React, tra le altre cose sui siti ufficiali del Venezia FC e della Saudi Pro League.',
-      'Dopo questi anni mi ritengo un full-stack developer, con una speciale predilezione per il front-end.',
-      'Uso anche strumenti di AI nel lavoro quotidiano, soprattutto per velocizzare le attività ripetitive, scrivere test e provare soluzioni diverse. Mi piace sperimentare, metterli alla prova e capire come arrivano a certe soluzioni. Controllo sempre il codice generato e spesso ne approfitto per approfondire concetti che non conosco o farmi spiegare meglio quelli che conosco meno.',
+      "Ho iniziato a lavorare come sviluppatore nel 2018, con WordPress e PHP. Poco dopo sono entrato in 4Dem, che in seguito è diventata Positive, e ci sono rimasto circa sei anni. Lì ho messo le mani un po' su tutto: Vue, Node.js e Laravel, il passaggio ai microservizi, lo shop con Stripe e un design system partito da zero.",
+      'Da dicembre 2024 sono in digit, dove sviluppo applicazioni web soprattutto in Vue e TypeScript. Ho usato anche React, per esempio sui siti ufficiali del Venezia FC e della Saudi Pro League.',
+      'Oggi mi considero un full-stack developer, anche se il front-end resta la parte che preferisco.',
+      "Nel lavoro di tutti i giorni uso anche strumenti di AI, soprattutto per le attività ripetitive e per scrivere i test. Controllo sempre il codice generato, e spesso è l'occasione per approfondire qualcosa che conosco poco.",
     ],
     factsTitle: 'In breve',
     facts: {
@@ -78,7 +78,7 @@ const i18n = {
   },
   projects: {
     title: 'Progetti',
-    lede: "Quando mi viene un'idea, spesso finisco per provare a realizzarla. Questi sono alcuni dei progetti a cui ho dedicato il tempo libero. Puoi provarli direttamente da qui.",
+    lede: "Quando mi viene un'idea, di solito finisco per provare a costruirla. Questi sono alcuni progetti nati nel tempo libero, e puoi provarli direttamente da qui.",
     openApp: "Apri l'app",
     code: 'Codice',
     status: { online: 'Online', dev: 'In sviluppo' },
@@ -86,22 +86,22 @@ const i18n = {
       fantaclash: {
         tagline: 'Il fantacalcio, ma con i giocatori delle vecchie stagioni.',
         description:
-          "Ti ricordi quel giocatore che anni fa prendevi sempre al fantacalcio? Qui puoi ritrovarlo. Scegli una stagione dal 2003-04 al 2025-26, fai l'asta contro sette bot con 100 crediti e crea la tua squadra di otto giocatori. Poi provi a vincere la coppa, con partite simulate minuto per minuto. Il progetto contiene dati statistici per ogni annata, bot intelligenti e con varie personalità. C'è anche la modalità multiplayer dove puoi sfidare amici in tempo reale.",
+          "Ti ricordi quel giocatore che anni fa prendevi sempre al fantacalcio? Qui lo ritrovi. Scegli una stagione dal 2003-04 al 2025-26, fai l'asta con 100 crediti contro sette bot e metti insieme una squadra di otto giocatori, poi provi a vincere la coppa con partite simulate minuto per minuto. Ogni annata ha le sue statistiche e ogni bot ha un carattere diverso. Se preferisci sfidare gli amici, c'è anche il multiplayer in tempo reale.",
       },
       'che-si-mangia': {
-        tagline: 'Un aiuto per rispondere alla solita domanda: che mangiamo oggi?',
+        tagline: 'Per rispondere alla solita domanda: che mangiamo oggi?',
         description:
-          'Ogni settimana la stessa domanda: cosa prepariamo per pranzo? e per cena? Ho creato questa app per organizzare i pasti senza doverci pensare ogni giorno. Applicazione personale, senza utenze o autenticazione, un db che raccoglie ricette e piatti da delivery e un algoritmo che compone giorno dopo giorno secondo le mie esigenze. Pensando per me anche la schiscetta da portare in ufficio.',
+          "Ogni settimana la stessa storia: cosa facciamo a pranzo? E a cena? Ho fatto quest'app per organizzare i pasti senza doverci pensare ogni giorno. È un'app personale, senza account né login: un database raccoglie ricette e piatti da ordinare, e un algoritmo compone il menù giorno per giorno in base alle mie esigenze. Pensa anche alla schiscetta da portare in ufficio.",
       },
       'stipendio-netto': {
-        tagline: 'Quanto diventano, in busta paga, quei soldi di RAL?',
+        tagline: 'Quanto resta in busta paga, partendo dalla RAL?',
         description:
-          'Quando si parla di stipendio, la RAL da sola dice poco. Qui puoi farti un’idea del netto mensile e annuale, vedere le trattenute e cambiare gli importi con un cursore. È stato un esercizio carino per capire come funzionano le tasse e le trattenute.',
+          "Quando si parla di stipendio, la RAL da sola dice poco. Qui ti fai un'idea del netto mensile e annuale, vedi le trattenute voce per voce e cambi gli importi con un cursore. Per me è stato anche un modo per capire finalmente come funzionano tasse e contributi.",
       },
       playdev: {
-        tagline: 'Un po’ di pratica JavaScript, senza i soliti esercizi su carta.',
+        tagline: "Un po' di pratica con JavaScript, senza i soliti esercizi su carta.",
         description:
-          "Questa applicazione nasce dall'idea di studiare/ripassare JavaScript in modo divertente e pratico. È ancora in sviluppo, l'idea è quella di ottimizzare gli esercizi e aggiungere altri linguaggi di programmazione, implementando anche l'AI.",
+          "L'ho iniziata per studiare e ripassare JavaScript in modo più pratico, e magari anche divertente. È ancora in sviluppo: voglio migliorare gli esercizi, aggiungere altri linguaggi e integrare anche l'AI.",
       },
     },
   },
@@ -212,7 +212,7 @@ const i18n = {
   },
   stack: {
     title: 'Stack',
-    lede: "Qui trovi gli strumenti con cui ho lavorato negli anni. Se scegli un'azienda, vedi quali usavo in quel periodo.",
+    lede: "Gli strumenti con cui ho lavorato in questi anni. Scegli un'azienda e vedi quali usavo in quel periodo.",
     legendAria: 'Esperienze',
     pickCompany: "Scegli un'azienda per vedere cosa usavo lì.",
     categories: { frontend: 'Frontend', backend: 'Backend', dati: 'Dati', strumenti: 'Strumenti' },
@@ -250,7 +250,7 @@ const i18n = {
     } as Record<string, { message: string; period: string; detail: string; skills?: string[] }>,
     stickers: {
       note: 'Uno degli strumenti che uso o che ho usato nei miei progetti.',
-      intro: 'Sul mio portatile gli adesivi non mancano. Qui ne ho raccolti alcuni delle tecnologie che uso.',
+      intro: 'Sul mio portatile gli adesivi non mancano: qui ho messo quelli delle tecnologie che uso.',
       drag: 'Trascinali',
       or: 'o',
       click: 'cliccali',
@@ -267,9 +267,9 @@ const i18n = {
   },
   contacts: {
     title: 'Contatti',
-    lede: 'Sono aperto a nuove opportunità come sviluppatore front-end o full-stack. Se hai qualcosa da propormi, parliamone!',
+    lede: 'Valuto nuove opportunità come sviluppatore front-end o full-stack. Se hai qualcosa da propormi, parliamone.',
     cardTitle: 'Mi trovi su LinkedIn',
-    text: 'Se vuoi contattarmi per lavoro, chiedermi il CV o parlarmi di un progetto, scrivimi lì. Su GitHub trovi invece il codice dei miei progetti.',
+    text: "Per proposte di lavoro, per il CV o per parlarmi di un progetto, scrivimi lì. Su GitHub invece c'è il codice dei miei progetti.",
     avatarAlt: 'Marcello in versione cartoon mentre saluta',
     tileAria: (fullName: string, label: string, handle: string) => `${fullName} su ${label}: ${handle}`,
   },
@@ -280,7 +280,7 @@ const i18n = {
   profile: {
     role: 'Full-Stack Developer',
     summary:
-      'Sono uno sviluppatore web a Torino. Lavoro nel settore dal 2018 e negli anni ho usato Vue, React, TypeScript, Node.js e Laravel. Oggi lavoro in digit, soprattutto su applicazioni front-end.',
+      'Sono uno sviluppatore web di Torino e lavoro nel settore dal 2018. Negli anni ho usato Vue, React, TypeScript, Node.js e Laravel; oggi sono in digit, dove mi occupo soprattutto di front-end.',
     skills: [
       'Front-end development',
       'Vue.js',
