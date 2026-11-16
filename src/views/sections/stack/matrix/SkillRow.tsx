@@ -26,6 +26,8 @@ export function SkillRow({ skill, index, company, active, onActive }: Props) {
     '--c': skill.color,
     '--from': `${toPct(skill.since)}%`,
     '--to': `${toPct(skill.until ?? TODAY)}%`,
+    '--fn': toPct(skill.since),
+    '--tn': toPct(skill.until ?? TODAY),
     '--i': index,
   } as CSSProperties;
 
@@ -51,7 +53,12 @@ export function SkillRow({ skill, index, company, active, onActive }: Props) {
       </button>
       <div className="srow__track">
         <i className="srow__bar" data-faded={Boolean(seg)} />
-        {seg && <i className="srow__seg" style={{ '--from': `${seg.from}%`, '--to': `${seg.to}%` } as CSSProperties} />}
+        {seg && company && (
+          <i
+            className="srow__seg"
+            style={{ '--from': `${seg.from}%`, '--to': `${seg.to}%`, '--company': company.color } as CSSProperties}
+          />
+        )}
       </div>
       <SkillTip id={tipId} skill={skill} />
     </li>

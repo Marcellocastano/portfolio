@@ -30,6 +30,10 @@ dist-ssr
 *.pem
 *.key
 
+# Blender source files (large; the exported .glb is what the site uses)
+*.blend
+*.blend1
+
 # AI agent notes and local tool data
 AGENTS.md
 .tokensave/

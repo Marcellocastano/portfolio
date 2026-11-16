@@ -27,8 +27,6 @@
 .footer__top {
   margin-left: auto;
   color: var(--fg-muted);
-  text-decoration: none;
-  cursor: var(--cursor-pointer);
   transition: color 0.15s;
 }
 

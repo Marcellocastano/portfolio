@@ -27,6 +27,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <loc>${absoluteUrl('/')}</loc>
     <lastmod>${today}</lastmod>
     <image:image><image:loc>${absoluteUrl('/images/io-cartoon.png')}</image:loc></image:image>
+    <image:image><image:loc>${absoluteUrl('/images/world-poster-izakaya.webp')}</image:loc></image:image>
     <image:image><image:loc>${absoluteUrl('/og-image.png')}</image:loc></image:image>
   </url>
 </urlset>

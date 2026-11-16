@@ -7,21 +7,36 @@
 
 .about__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: clamp(2rem, 4vw, 4.5rem);
-  align-items: center;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
   max-width: 1400px;
   margin: 0 auto;
 }
 
+/* Il badge resta appeso mentre si legge il testo accanto. */
+.about__badge {
+  position: sticky;
+  top: 4.5rem;
+  align-self: start;
+  display: flex;
+  justify-content: center;
+}
+
+.about__intro {
+  max-width: 64ch;
+}
+
 .about__bio {
-  max-width: 52ch;
-  margin-top: 0.9rem;
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
   color: var(--fg-muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
 }
 
 /* Stesso stacco header → contenuto delle altre sezioni. */
-.about__intro .about__bio:first-of-type {
+.about__intro .about-lead {
   margin-top: var(--section-content-gap);
 }
 
@@ -29,11 +44,10 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
-  max-width: 52ch;
-  margin-top: 1.8rem;
+  margin-top: 2rem;
 }
 
-/* Entrata: testi e dati salgono, il badge scende appeso al cordino. */
+/* Entrata: i testi salgono, il badge scende appeso al cordino. */
 .js .about[data-revealed='false'] :is(.about__bio, .about__links, .facts),
 .js .about[data-revealed='false'] .badge {
   opacity: 0;
@@ -62,27 +76,20 @@
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 900px) {
   .about__grid {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .facts {
-    grid-column: 1 / -1;
+  .about__badge {
+    position: static;
+    order: 1;
   }
 }
 
-@media (max-width: 767px) {
-  .about__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
+@media (max-width: 560px) {
   .about__links {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .badge {
-    justify-self: center;
   }
 }
 

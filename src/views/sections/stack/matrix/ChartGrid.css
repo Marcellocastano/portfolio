@@ -50,15 +50,25 @@
   bottom: 0;
   left: var(--from);
   width: calc(var(--to) - var(--from));
-  border-left: 1px dashed color-mix(in srgb, var(--c) 55%, transparent);
-  background: linear-gradient(color-mix(in srgb, var(--c) 9%, transparent), transparent 85%);
-  opacity: 0.55;
+  border-left: 1px dashed color-mix(in srgb, var(--c) 70%, transparent);
+  background: linear-gradient(
+    color-mix(in srgb, var(--c) 10%, transparent),
+    color-mix(in srgb, var(--c) 2%, transparent)
+  );
+  opacity: 1;
   transition: opacity 0.3s var(--ease-out);
 }
 
 .grid__band[data-lit='true'] {
   opacity: 1;
   background: linear-gradient(color-mix(in srgb, var(--c) 20%, transparent), transparent);
+}
+
+.grid__band[data-now='true'] {
+  background: linear-gradient(
+    color-mix(in srgb, var(--c) 15%, transparent),
+    color-mix(in srgb, var(--c) 2%, transparent)
+  );
 }
 
 .matrix[data-focus='true'] .grid__band:not([data-lit='true']) {
@@ -71,6 +81,56 @@
 
 .js .stack[data-revealed='true'] .grid {
   animation: fade-in 0.6s 0.2s var(--ease-out) backwards;
+}
+
+/* Testina: linea coral con l'anno in alto, visibile solo mentre la pilota lo scroll. */
+.grid__playhead {
+  position: absolute;
+  top: -0.5rem;
+  bottom: 0;
+  left: calc(var(--play) * 1%);
+  width: 2px;
+  margin-left: -1px;
+  background: var(--accent);
+  box-shadow: 0 0 18px var(--accent);
+  opacity: 0;
+}
+
+.grid__playhead b {
+  position: absolute;
+  top: -1.4rem;
+  left: 50%;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+/* Anno gigante in filigrana, agganciato a metà schermo mentre si scorre il grafico. */
+.grid__big {
+  position: sticky;
+  top: 38vh;
+  margin-top: 6rem;
+  color: color-mix(in srgb, var(--fg) 7%, transparent);
+  font-size: clamp(6rem, 17vw, 15rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.matrix__chart[data-playing='true'] .grid__playhead {
+  opacity: 1;
+}
+
+.matrix__chart:not([data-playing='true']) .grid__big {
+  display: none;
 }
 
 @keyframes fade-in {

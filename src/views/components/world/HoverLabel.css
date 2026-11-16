@@ -1,0 +1,13 @@
+.world-label {
+  display: block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px -12px rgb(0 0 0 / 0.5);
+  animation: rise 0.25s var(--ease-out);
+}

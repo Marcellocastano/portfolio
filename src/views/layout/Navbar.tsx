@@ -1,3 +1,4 @@
+import { useNavbar } from '../../controllers/useNavbar';
 import { i18n } from '../../models/i18n.model';
 import type { NavLink } from '../../models/profile.model';
 import { profile } from '../../models/profile.model';
@@ -12,28 +13,40 @@ interface Props {
 }
 
 const fullName = `${profile.firstName} ${profile.lastName}`;
+const MENU_ID = 'menu-principale';
 
 export function Navbar({ links, theme, onToggleTheme }: Props) {
+  const { scrolled, menuOpen, toggleMenu, closeMenu } = useNavbar();
+
   return (
-    <header className="navbar">
-      <a href="#top" className="navbar__logo" aria-label={i18n.nav.homeAria(fullName)}>
+    <header className="navbar" data-scrolled={scrolled} data-menu={menuOpen}>
+      <a href="#top" className="navbar__logo" aria-label={i18n.nav.homeAria(fullName)} onClick={closeMenu}>
         <span className="navbar__bracket">&lt;</span>mc<span className="navbar__dot">.</span>
         <span className="navbar__bracket">/&gt;</span>
       </a>
 
       <nav className="navbar__nav" aria-label={i18n.nav.primaryAria}>
-        <ul>
+        <button
+          type="button"
+          className="navbar__menu"
+          aria-expanded={menuOpen}
+          aria-controls={MENU_ID}
+          onClick={toggleMenu}
+        >
+          {menuOpen ? i18n.nav.menuClose : i18n.nav.menuOpen}
+        </button>
+        <ul id={MENU_ID}>
           {links.map((link) => (
             <li key={link.href}>
-              <a href={link.href}>{link.label}</a>
+              <a href={link.href} onClick={closeMenu}>
+                {link.label}
+              </a>
             </li>
           ))}
         </ul>
       </nav>
 
-      <div className="navbar__actions">
-        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
-      </div>
+      <ThemeToggle theme={theme} onToggle={onToggleTheme} />
     </header>
   );
 }

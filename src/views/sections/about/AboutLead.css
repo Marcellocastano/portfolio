@@ -1,0 +1,12 @@
+.about-lead {
+  color: var(--fg);
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+}
+
+/* Velatura della selezione: larghezza 0 finché lo scroll non la porta avanti. */
+.about-lead__word {
+  background: linear-gradient(var(--selection), var(--selection)) no-repeat 0 0 / 0% 100%;
+}

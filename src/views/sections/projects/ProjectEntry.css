@@ -1,0 +1,107 @@
+.pentry {
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 5.5rem;
+}
+
+.pentry:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.pentry__heading {
+  font: inherit;
+}
+
+/* Intestazione: segno colore dell'app, nome grande, tagline sotto. */
+.pentry__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 0.9rem;
+  width: 100%;
+  padding: 1.1rem 0;
+  text-align: left;
+}
+
+.pentry__mark {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 3px;
+  background: var(--p-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--fg) 18%, transparent);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.pentry__name {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--fg-muted);
+  transition:
+    color 0.3s,
+    transform 0.45s var(--ease-out),
+    font-weight 0.45s var(--ease-out);
+}
+
+.pentry__tagline {
+  grid-column: 2;
+  margin-top: 0.2rem;
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+}
+
+.pentry__head:hover .pentry__name,
+.pentry[data-open='true'] .pentry__name {
+  color: var(--fg);
+}
+
+/* In hover il nome si sposta e si assottiglia, come una riga selezionata nell'esplora file. */
+.pentry__head:hover .pentry__name {
+  transform: translateX(0.35rem);
+  font-weight: 500;
+}
+
+.pentry[data-open='true'] .pentry__mark {
+  transform: rotate(45deg);
+}
+
+.pentry[data-open='true'] .pentry__tagline {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+/* Pannello a fisarmonica: altezza animata con le righe della griglia, senza misurare il contenuto. */
+.pentry__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.pentry[data-open='true'] .pentry__panel {
+  grid-template-rows: 1fr;
+}
+
+.pentry__inner {
+  display: grid;
+  gap: 1.25rem;
+  min-height: 0;
+  overflow: hidden;
+  padding-left: 1.6rem;
+}
+
+.pentry[data-open='true'] .pentry__inner {
+  padding-bottom: 1.4rem;
+}
+
+@media (max-width: 1023px) {
+  .pentry__inner {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pentry__panel,
+  .pentry__mark {
+    transition: none;
+  }
+}

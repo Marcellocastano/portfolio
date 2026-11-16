@@ -80,6 +80,11 @@ export function toPct(year: number): number {
   return ((Math.min(Math.max(year, TIMELINE_START), TODAY) - TIMELINE_START) / SPAN) * 100;
 }
 
+/** Inverso di `toPct`: dalla posizione sull'asse all'anno frazionario. */
+export function fromPct(pct: number): number {
+  return TIMELINE_START + (pct / 100) * SPAN;
+}
+
 export function yearsLabel(skill: Skill): string {
   const years = Math.max(1, Math.round((skill.until ?? TODAY) - skill.since));
   return i18n.stack.years(years);

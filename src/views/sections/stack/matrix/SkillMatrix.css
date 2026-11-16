@@ -9,6 +9,7 @@
 
 /* Il grafico: etichette a sinistra, barre a destra sopra le fasce delle aziende. */
 .matrix__chart {
+  --play: 100;
   position: relative;
   margin-top: 2rem;
   padding: 2.4rem 0 0.5rem;

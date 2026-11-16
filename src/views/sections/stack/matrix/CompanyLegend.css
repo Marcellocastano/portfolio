@@ -46,6 +46,10 @@
   font-size: 0.75rem;
 }
 
+.legend__item[data-now='true'] {
+  border-color: color-mix(in srgb, var(--c) 70%, transparent);
+}
+
 .legend__item[data-lit='true'] {
   border-color: var(--c);
   box-shadow: 0 10px 24px -16px var(--c);

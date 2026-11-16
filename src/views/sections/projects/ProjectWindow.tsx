@@ -1,20 +1,16 @@
-import { cloneElement, isValidElement, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { useDomainTyping } from '../../../controllers/useDomainTyping';
 import { WindowLights } from '../../components/showcase/Window';
 import './ProjectWindow.css';
 
 interface Props {
   domain: string;
-  open: boolean;
   children: ReactNode;
 }
 
-/** Finestra del browser con i colori dell'app: il dominio si digita all'apertura del libro. */
-export function ProjectWindow({ domain, open, children }: Props) {
-  const typed = useDomainTyping(domain, open);
-  const demo = isValidElement<{ running: boolean }>(children)
-    ? cloneElement(children, { running: Boolean(children.props.running && open) })
-    : children;
+/** Finestra del browser con i colori dell'app: il dominio si digita quando la finestra compare. */
+export function ProjectWindow({ domain, children }: Props) {
+  const typed = useDomainTyping(domain, true);
 
   return (
     <div className="pwin">
@@ -25,7 +21,9 @@ export function ProjectWindow({ domain, open, children }: Props) {
           <span className="pwin__caret" data-on={typed.caret} />
         </span>
       </header>
-      <div className="pwin__demo">{demo}</div>
+      <div className="pwin__demo" data-lenis-prevent>
+        {children}
+      </div>
     </div>
   );
 }

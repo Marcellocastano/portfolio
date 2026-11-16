@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Izakaya Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=M+PLUS+Rounded+1c:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #1b1e30;
+      --ink: #f3e9dc;
+      --muted: #a9a3b8;
+      --accent: #ff8a4c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--ink); font-family: Inter, system-ui, sans-serif; }
+    body { overflow-x: hidden; }
+    #scene { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+    /* scroll track: the 3D transition is driven by scroll position */
+    #track { position: relative; height: 340vh; pointer-events: none; }
+
+    .brand {
+      position: fixed; top: 24px; left: 28px; z-index: 5;
+      font-family: "M PLUS Rounded 1c", sans-serif; font-weight: 700; letter-spacing: .04em;
+      display: flex; align-items: center; gap: 10px; font-size: 15px;
+    }
+    .brand .tag { color: var(--accent); font-family: Inter, monospace; font-weight: 600; }
+
+    .caption {
+      position: fixed; left: 50%; bottom: 13vh; transform: translate(-50%, 12px);
+      text-align: center; opacity: 0; transition: opacity .6s ease, transform .6s ease;
+      z-index: 5; pointer-events: none; padding: 0 16px; width: min(560px, 100%);
+    }
+    .caption.on { opacity: 1; transform: translate(-50%, 0); }
+    .caption h2 { font-family: "M PLUS Rounded 1c", sans-serif; font-size: clamp(22px, 3.2vw, 34px); font-weight: 700; }
+    .caption p { margin-top: 8px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+    .scroll-hint {
+      position: fixed; left: 50%; bottom: 4vh; transform: translateX(-50%); z-index: 5;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: .3em; color: var(--muted); transition: opacity .4s ease;
+    }
+    .mouse { width: 22px; height: 34px; border: 2px solid var(--muted); border-radius: 12px; position: relative; }
+    .mouse::after {
+      content: ""; position: absolute; left: 50%; top: 6px; width: 3px; height: 7px; margin-left: -1.5px;
+      border-radius: 2px; background: var(--ink); animation: wheel 1.6s ease-in-out infinite;
+    }
+    @keyframes wheel { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(10px); } }
+
+    #loader {
+      position: fixed; inset: 0; display: grid; place-items: center; z-index: 10; background: var(--bg);
+      transition: opacity .8s ease; font-family: "M PLUS Rounded 1c", sans-serif;
+    }
+    #loader.done { opacity: 0; pointer-events: none; }
+    #loader .bar { width: 160px; height: 3px; background: #ffffff1a; border-radius: 2px; overflow: hidden; margin-top: 14px; }
+    #loader .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+
+    @media (min-width: 1000px) {
+      .caption { left: 6vw; bottom: 14vh; transform: translate(0, 12px); text-align: left; width: 340px; padding: 0; }
+      .caption.on { transform: translate(0, 0); }
+    }
+    @media (max-width: 640px) {
+      .brand { top: 16px; left: 16px; font-size: 13px; }
+      .caption { bottom: 16vh; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mouse::after { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <div class="brand"><span class="tag">&lt;/&gt;</span><span>マルチェッロ</span></div>
+
+  <div class="caption" id="cap-0">
+    <h2>Benvenuto all'izakaya</h2>
+    <p>Un piccolo angolo di Tokyo, acceso di notte.</p>
+  </div>
+  <div class="caption" id="cap-1">
+    <h2>Dove nasce il codice</h2>
+    <p>Dietro il noren c'è la mia postazione. Il cane controlla che tutto compili.</p>
+  </div>
+
+  <div class="scroll-hint" id="hint"><div class="mouse"></div>SCROLL</div>
+
+  <div id="loader"><div style="text-align:center">caricamento<div class="bar"><i id="bar"></i></div></div></div>
+
+  <div id="track"></div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="./main.js?v=4"></script>
+</body>
+</html>

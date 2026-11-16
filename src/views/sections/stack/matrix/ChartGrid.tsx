@@ -8,7 +8,7 @@ interface Props {
   lit: CompanyId[];
 }
 
-/** Sfondo del grafico: asse degli anni e fasce delle aziende, allineati alla colonna delle barre. */
+/** Sfondo del grafico: asse degli anni, fasce delle aziende e testina (pilotata da usePlayhead), allineati alle barre. */
 export function ChartGrid({ companies, lit }: Props) {
   return (
     <div className="grid" aria-hidden="true">
@@ -41,6 +41,10 @@ export function ChartGrid({ companies, lit }: Props) {
         {YEARS.map((y) => (
           <b key={y} className="grid__line" style={{ '--x': `${toPct(y)}%` } as CSSProperties} />
         ))}
+        <div className="grid__big" data-playhead-year />
+        <span className="grid__playhead">
+          <b data-playhead-year />
+        </span>
       </div>
     </div>
   );

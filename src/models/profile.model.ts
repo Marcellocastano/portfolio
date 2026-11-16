@@ -28,7 +28,7 @@ export interface Profile {
   languages: string[];
   /** URL pubblici (LinkedIn, GitHub, ...) usati nei dati strutturati come `sameAs`. */
   socials: string[];
-  /** Canali di contatto pubblici. L'email non va mai pubblicata: spam e bot. */
+  /** Canali di contatto pubblici, LinkedIn per primo (è il canale per il lavoro). L'email non va mai pubblicata. */
   contacts: Contact[];
 }
 
@@ -47,16 +47,16 @@ export const profile: Profile = {
   socials: ['https://github.com/Marcellocastano', 'https://www.linkedin.com/in/marcello-castano'],
   contacts: [
     {
-      id: 'github',
-      label: 'GitHub',
-      href: 'https://github.com/Marcellocastano',
-      handle: '@Marcellocastano',
-    },
-    {
       id: 'linkedin',
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/marcello-castano',
       handle: '/in/marcello-castano',
+    },
+    {
+      id: 'github',
+      label: 'GitHub',
+      href: 'https://github.com/Marcellocastano',
+      handle: '@Marcellocastano',
     },
   ],
 };

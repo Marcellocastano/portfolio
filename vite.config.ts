@@ -17,6 +17,8 @@ function seoDevHead(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), seoDevHead()],
+  // GSAP pubblica moduli ES senza "type": "module": va incluso nel bundle SSR, Node non saprebbe caricarlo.
+  ssr: { noExternal: ['gsap'] },
   build: {
     // I font restano file separati: il browser scarica solo i sottoinsiemi unicode che servono.
     assetsInlineLimit: (file) => (/\.(woff2?|ttf)$/.test(file) ? false : undefined),

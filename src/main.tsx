@@ -3,6 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import '@fontsource-variable/space-grotesk/wght.css';
 import '@fontsource/jetbrains-mono/400.css';
 import '@fontsource/jetbrains-mono/500.css';
+import 'lenis/dist/lenis.css';
 import './styles/global.css';
 import App from './App.tsx';
 

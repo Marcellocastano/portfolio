@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { usePlayhead } from '../../../../controllers/usePlayhead';
 import { CATEGORIES, COMPANIES, type CompanyId } from '../../../../models/stack/skills.model';
 import { SKILLS } from '../../../../models/stack/skillsData.model';
 import { ChartGrid } from './ChartGrid';
@@ -13,11 +14,13 @@ export function SkillMatrix() {
   const skill = SKILLS.find((s) => s.id === skillId) ?? null;
   const activeCompany = COMPANIES.find((c) => c.id === company) ?? null;
   const lit = skill?.companies ?? (company ? [company] : []);
+  const chartRef = useRef<HTMLDivElement>(null);
+  usePlayhead(chartRef);
 
   return (
     <div className="matrix" data-focus={company || skill ? 'true' : 'false'}>
       <CompanyLegend companies={COMPANIES} lit={lit} onHover={setCompany} />
-      <div className="matrix__chart">
+      <div className="matrix__chart" ref={chartRef}>
         <ChartGrid companies={COMPANIES} lit={lit} />
         {CATEGORIES.map((cat) => (
           <section key={cat.id} className="matrix__group" aria-labelledby={`cat-${cat.id}`}>

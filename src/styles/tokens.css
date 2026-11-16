@@ -27,10 +27,11 @@
   color-scheme: light;
   --bg: var(--paper);
   --fg: var(--slate);
-  --fg-muted: color-mix(in srgb, var(--slate) 68%, var(--paper));
+  --fg-muted: color-mix(in srgb, var(--slate) 82%, var(--paper));
   --dot: color-mix(in srgb, var(--slate) 38%, var(--paper));
-  --surface: color-mix(in srgb, var(--paper) 45%, white);
-  --border: color-mix(in srgb, var(--slate) 16%, transparent);
+  --surface: color-mix(in srgb, var(--paper) 25%, white);
+  --border: color-mix(in srgb, var(--slate) 22%, transparent);
+  --selection: color-mix(in srgb, var(--coral) 30%, transparent);
   --shadow: 0 30px 80px -30px color-mix(in srgb, var(--slate) 45%, transparent);
 }
 
@@ -38,10 +39,11 @@
   color-scheme: dark;
   --bg: color-mix(in srgb, var(--slate) 45%, #0b0d12);
   --fg: var(--paper);
-  --fg-muted: color-mix(in srgb, var(--paper) 62%, var(--slate));
+  --fg-muted: color-mix(in srgb, var(--paper) 70%, var(--slate));
   --dot: color-mix(in srgb, var(--paper) 30%, var(--slate));
   --surface: color-mix(in srgb, var(--slate) 75%, #0b0d12);
   --border: color-mix(in srgb, var(--paper) 12%, transparent);
+  --selection: color-mix(in srgb, var(--coral) 38%, transparent);
   --shadow: 0 30px 80px -30px rgb(0 0 0 / 0.7);
   --code-bg: color-mix(in srgb, var(--slate) 88%, #0b0d12);
 }

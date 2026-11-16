@@ -1,11 +1,41 @@
 .hero {
   position: relative;
+  /* Solo in orizzontale: in uscita la scena può scendere oltre il bordo e sfumare, senza tagli netti. */
+  overflow-x: clip;
+}
+
+.hero__stage {
+  position: relative;
   isolation: isolate;
   display: grid;
   align-content: center;
   min-height: 100svh;
   padding: clamp(6rem, 12vh, 8rem) var(--gutter) var(--section-pad-bottom);
-  overflow: hidden;
+}
+
+/* Con movimento, a ogni larghezza: l'hero è più alto dello schermo e il suo contenuto resta fermo (sticky) mentre
+   si scorre. In quella corsa il mondo 3D ruota, si apre e cresce al centro. Sticky e non il pin di GSAP: il pin
+   sposterebbe l'hero nel DOM e farebbe ripartire le animazioni CSS del nome. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero {
+    /* Sui telefoni la corsa è un po' più corta: stessa storia, meno pollice. */
+    height: 340svh;
+  }
+
+  .hero__stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 0;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .hero {
+    /* Corsa lunga: la casa ruota e la facciata si apre con calma, pezzo per pezzo, poi la camera si avvicina
+       alla stanza aperta. */
+    height: 400svh;
+  }
 }
 
 .hero__vignette {
@@ -19,21 +49,32 @@
 }
 
 .hero__grid {
+  /* Sopra al canvas 3D, che copre tutta la scena (vedi WorldStage): testo e pulsanti restano cliccabili. */
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* La scena prende più spazio del testo: il diorama è il protagonista dell'hero. */
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
+  gap: clamp(1.5rem, 3vw, 3.5rem);
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
 }
 
 .hero__intro {
-  margin-top: 1.25rem;
-  max-width: 52ch;
+  margin-top: clamp(1.5rem, 3vh, 2.25rem);
+  max-width: 46ch;
   color: var(--fg-muted);
-  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.55;
   animation: rise 0.9s 0.85s var(--ease-out) both;
+}
+
+/* La frase di apertura resta nel paragrafo ma a piena intensità: un livello in meno sotto al titolo. */
+.hero__intro strong {
+  color: var(--fg);
+  font-weight: 500;
 }
 
 .hero__actions {
@@ -50,8 +91,9 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* Una colonna: testo e riquadro devono stare insieme in uno schermo (la scena è sticky). */
   .hero__visual {
-    max-width: 620px;
+    width: min(100%, 620px, 40svh);
   }
 
   .hero__vignette {

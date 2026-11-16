@@ -7,6 +7,8 @@ const i18n = {
   nav: {
     homeAria: (fullName: string) => `${fullName}, home`,
     primaryAria: 'Principale',
+    menuOpen: 'Menu',
+    menuClose: 'Chiudi',
     links: [
       { label: 'Chi sono', href: '#chi-sono' },
       { label: 'Progetti', href: '#progetti' },
@@ -24,16 +26,13 @@ const i18n = {
     titleAria: (fullName: string, role: string) => `${fullName}, ${role}`,
     ctaProjects: 'Vedi i progetti',
     ctaContact: 'Scrivimi',
-    showcaseAria: (firstName: string) =>
-      `Il flusso di lavoro di ${firstName}: un design diventa codice React e poi un'interfaccia funzionante nel browser, dove una card viene trascinata da Idee a In sviluppo`,
   },
 
-  /** Scena dell'hero: colonne kanban, fasi pipeline e label del frame di design. */
-  showcase: {
-    columns: { idee: 'Idee', sviluppo: 'In sviluppo' },
-    status: { idee: 'Idea', sviluppo: 'In sviluppo' },
-    stages: { design: 'Design', code: 'Code', browser: 'Browser' },
-    design: { board: 'Board', card: 'Card' },
+  /** Mondo in miniatura dell'hero: descrizione e suggerimenti sugli oggetti interattivi. */
+  world: {
+    aria: (firstName: string) =>
+      `La piccola izakaya-studio di ${firstName}: un locale giapponese di notte con lanterne, noren, distributore automatico e un ciliegio in fiore; scorrendo la casa ruota, la facciata si apre e dentro c'è lo studio, con ${firstName} alla scrivania davanti al monitor e il suo cane seduto sul cuscino`,
+    openProject: (name: string) => `Apri ${name}`,
   },
   about: {
     title: (firstName: string) => `Ciao, sono ${firstName}`,

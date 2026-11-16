@@ -1,0 +1,69 @@
+/* Riquadro a proporzioni fisse: ospita il poster e fa da cornice di riferimento per il canvas 3D. */
+.world {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  animation: world-in 1.2s 0.4s var(--ease-out) both;
+}
+
+/* Il trascinamento orizzontale gira la casa; in verticale la pagina scorre come sempre (anche su touch). */
+.world[data-draggable] {
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.world[data-draggable='true'] {
+  cursor: var(--cursor-pointer);
+}
+
+.world__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.8s var(--ease-out);
+  /* Il poster non deve ricevere il gesto: su un'immagine il browser avvierebbe il trascinamento nativo e
+     annullerebbe subito la rotazione a mano (pointercancel). I clic arrivano al riquadro. */
+  pointer-events: none;
+  -webkit-user-drag: none;
+  /* Bordi del riquadro sfumati: l'ombra non viene tagliata di netto. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 87%, transparent 100%),
+    linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 87%, transparent 100%),
+    linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+  mask-composite: intersect;
+}
+
+.world[data-ready='true'] .world__poster {
+  opacity: 0;
+}
+
+:root[data-theme='dark'] .world__poster--day,
+:root:not([data-theme='dark']) .world__poster--night {
+  display: none;
+}
+
+/* Canvas 3D: copre tutta la scena dell'hero, sopra i puntini e sotto al testo; i clic passano attraverso. */
+.world-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out);
+}
+
+.world-canvas[data-ready='true'] {
+  opacity: 1;
+}
+
+@keyframes world-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}

@@ -3,11 +3,10 @@ import type { Project } from '../../../models/projects/projects.model';
 import { ButtonLink } from '../../components/ButtonLink';
 import './ProjectInfo.css';
 
+/** Dettagli del progetto aperto: descrizione, stack, stato e link. */
 export function ProjectInfo({ project }: { project: Project }) {
   return (
     <div className="pinfo">
-      <h3 className="pinfo__name">{project.name}</h3>
-      <p className="pinfo__tagline">{project.tagline}</p>
       <p className="pinfo__desc">{project.description}</p>
       <ul className="pinfo__stack">
         {project.stack.map((item) => (

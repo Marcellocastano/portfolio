@@ -1,3 +1,4 @@
+import { useSmoothScroll } from './controllers/useSmoothScroll';
 import { useThemeController } from './controllers/useThemeController';
 import { navLinks, profile } from './models/profile.model';
 import { Navbar } from './views/layout/Navbar';
@@ -10,6 +11,7 @@ import { Footer } from './views/layout/Footer';
 
 export default function App() {
   const { theme, toggleTheme } = useThemeController();
+  useSmoothScroll();
 
   return (
     <>

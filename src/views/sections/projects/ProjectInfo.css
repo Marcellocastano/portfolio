@@ -6,31 +6,18 @@
   color: var(--fg);
 }
 
-.pinfo__name {
-  font-size: clamp(2rem, 3.4vw, 3.2rem);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
-}
-
-.pinfo__tagline {
-  margin-top: 1rem;
-  font-size: 1.05rem;
-  font-weight: 500;
-}
-
 .pinfo__desc {
-  margin-top: 0.6rem;
-  max-width: 44ch;
+  max-width: 60ch;
   color: var(--fg-muted);
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .pinfo__stack {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1rem;
-  margin-top: 1.2rem;
+  margin-top: 1rem;
   padding: 0;
   color: var(--fg-muted);
   font-family: var(--font-mono);
@@ -42,7 +29,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   color: var(--fg-muted);
   font-size: 0.82rem;
 }
@@ -58,51 +45,5 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
-  margin-top: auto;
-  padding-top: 1.5rem;
-}
-
-/* Contenuti in cascata a ogni apertura del libro. */
-.book[data-open='true'] .pinfo > * {
-  animation: rise 0.55s calc(0.4s + var(--n, 0) * 0.06s) var(--ease-out) backwards;
-}
-
-.pinfo > :nth-child(2) {
-  --n: 1;
-}
-
-.pinfo > :nth-child(3) {
-  --n: 2;
-}
-
-.pinfo > :nth-child(4) {
-  --n: 3;
-}
-
-.pinfo > :nth-child(5) {
-  --n: 4;
-}
-
-.pinfo > :nth-child(6) {
-  --n: 5;
-}
-
-@media (max-width: 1023px) {
-  .pinfo__name {
-    display: none;
-  }
-
-  .pinfo__tagline {
-    margin-top: 0;
-  }
-
-  .pinfo__links {
-    margin-top: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .book[data-open='true'] .pinfo > * {
-    animation: none;
-  }
+  margin-top: 1.25rem;
 }

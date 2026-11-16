@@ -18,10 +18,12 @@
   }
 }
 
+/* Le lettere entrano sottili e prendono peso (Space Grotesk variabile, 300-700). */
 @keyframes char-in {
   from {
     opacity: 0;
     transform: translateY(0.5em);
+    font-weight: 300;
   }
 }
 

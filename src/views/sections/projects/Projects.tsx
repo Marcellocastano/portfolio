@@ -1,7 +1,9 @@
 import { useRef, useState, type ComponentType, type CSSProperties } from 'react';
 import { useInView } from '../../../controllers/useInView';
+import { useMediaQuery } from '../../../controllers/useMediaQuery';
 import { useProjectRequests } from '../../../controllers/useProjectRequests';
 import { useRevealOnce } from '../../../controllers/useRevealOnce';
+import { useScrollRefresh } from '../../../controllers/useScrollRefresh';
 import { i18n } from '../../../models/i18n.model';
 import { projects } from '../../../models/projects/projects.model';
 import { SectionHeader } from '../../components/SectionHeader';
@@ -9,7 +11,8 @@ import { FantaClashDemo } from './demos/fantaclash/FantaClashDemo';
 import { MenuDemo } from './demos/menu/MenuDemo';
 import { PlaydevDemo } from './demos/playdev/PlaydevDemo';
 import { StipendioDemo } from './demos/stipendio/StipendioDemo';
-import { ProjectBook } from './ProjectBook';
+import { ProjectEntry } from './ProjectEntry';
+import { ProjectStage } from './ProjectStage';
 import './Projects.css';
 
 const DEMOS: Record<string, ComponentType<{ running: boolean }>> = {
@@ -20,24 +23,36 @@ const DEMOS: Record<string, ComponentType<{ running: boolean }>> = {
 };
 
 const PROJECT_IDS = projects.map((p) => p.id);
+const COMPACT_QUERY = '(max-width: 1023px)';
 
-/** Libreria dei progetti: un libro aperto, gli altri chiusi di costa. */
+/** Indice di tutti i progetti e finestra con la demo di quello aperto (dentro la voce su mobile). */
 export function Projects() {
   const ref = useRef<HTMLElement | null>(null);
   const [open, setOpen] = useState(0);
+  const compact = useMediaQuery(COMPACT_QUERY);
   useProjectRequests(PROJECT_IDS, setOpen);
+  // La voce aperta cambia l'altezza dell'indice: le sezioni sotto si spostano.
+  useScrollRefresh(`${open}-${compact}`);
   const inView = useInView(ref);
   const reveal = useRevealOnce<HTMLElement>({ threshold: 0, rootMargin: '0px 0px -20% 0px' });
   const setRefs = (el: HTMLElement | null) => {
     ref.current = el;
     reveal.ref.current = el;
   };
+  const current = projects[open];
+  const Demo = DEMOS[current.id];
+  const stage = (
+    <ProjectStage project={current}>
+      <Demo running={inView && reveal.revealed} />
+    </ProjectStage>
+  );
 
   return (
     <section
       id="progetti"
       ref={setRefs}
       className="projects"
+      style={{ '--glow': current.theme.accent } as CSSProperties}
       data-revealed={reveal.revealed}
       aria-labelledby="projects-title"
     >
@@ -47,21 +62,15 @@ export function Projects() {
         lede={i18n.projects.lede}
         revealed={reveal.revealed}
       />
-      <div className="shelf" style={{ '--books': projects.length } as CSSProperties}>
-        {projects.map((project, i) => {
-          const Demo = DEMOS[project.id];
-          const isOpen = i === open;
-          return (
-            <ProjectBook
-              key={project.id}
-              project={project}
-              index={i}
-              open={isOpen}
-              onOpen={setOpen}
-              demo={<Demo running={inView && isOpen && reveal.revealed} />}
-            />
-          );
-        })}
+      <div className="projects__layout">
+        <div className="projects__index">
+          {projects.map((project, i) => (
+            <ProjectEntry key={project.id} project={project} index={i} open={i === open} onOpen={setOpen}>
+              {compact && i === open ? stage : null}
+            </ProjectEntry>
+          ))}
+        </div>
+        {!compact && stage}
       </div>
     </section>
   );

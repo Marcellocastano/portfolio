@@ -12,7 +12,6 @@ html {
   --cursor-default: url('/cursors/arrow.svg') 5 4, auto;
   --cursor-pointer: url('/cursors/pointer.svg') 7 6, pointer;
   --cursor-text: url('/cursors/text.svg') 10 14, text;
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   cursor: var(--cursor-default);
 }
@@ -36,6 +35,11 @@ html {
   html * {
     cursor: auto;
   }
+}
+
+/* Senza Lenis (reduced motion o JS assente) gli anchor scorrono col motore del browser. */
+html:not(.lenis) {
+  scroll-behavior: smooth;
 }
 
 body {
