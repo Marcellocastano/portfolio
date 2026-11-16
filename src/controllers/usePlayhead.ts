@@ -19,7 +19,8 @@ export function usePlayhead(ref: RefObject<HTMLElement>) {
     const { gsap } = getGsap();
     const mm = gsap.matchMedia();
 
-    mm.add(ANY_MOTION, () => {
+    // Solo dove si vede la matrice: sui telefoni c'è la lista (SkillList).
+    mm.add(`${ANY_MOTION} and (min-width: 768px)`, () => {
       const bands = chart.querySelectorAll<HTMLElement>('.grid__band');
       const legend = chart.closest('.matrix')?.querySelectorAll<HTMLElement>('.legend__item') ?? [];
       const labels = chart.querySelectorAll<HTMLElement>('[data-playhead-year]');

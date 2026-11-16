@@ -124,23 +124,6 @@
   }
 }
 
-@media (max-width: 767px) {
-  .srow__text {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .srow__name {
-    max-width: 100%;
-    font-size: 0.85rem;
-  }
-
-  .srow__years {
-    margin-left: 0;
-    font-size: 0.65rem;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .srow,
   .srow__bar {

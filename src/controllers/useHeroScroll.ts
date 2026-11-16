@@ -8,6 +8,9 @@ const NAV_SHIFT = 0.03;
 /** Quanta larghezza può occupare a fine corsa, sugli schermi verticali. */
 const FOCUS_FILL_WIDTH = 0.98;
 
+/** Stesso punto di rottura di Hero.css: sotto, testo e diorama stanno in una colonna. */
+const twoColumns = () => window.matchMedia('(min-width: 1025px)').matches;
+
 /** Posizione di `el` dentro `ancestor` sommando gli offset (ignorano i transform: stabili a scroll avviato). */
 function offsetIn(el: HTMLElement, ancestor: HTMLElement) {
   let left = 0;
@@ -65,7 +68,17 @@ export function useHeroScroll(ref: RefObject<HTMLElement>) {
         // Timeline lunga 1 = tutta la corsa: il riquadro arriva al centro con l'apertura (SCROLL_PHASES.open),
         // nell'ultimo tratto resta fermo mentre la camera entra nella stanza.
         .to({}, { duration: 1 }, 0)
-        .to(copy, { x: () => -hero.clientWidth * 0.08, autoAlpha: 0, duration: 0.3 }, 0)
+        // Su due colonne il testo esce a sinistra; su una colonna (sopra al diorama) sale verso l'alto.
+        .to(
+          copy,
+          {
+            x: () => (twoColumns() ? -hero.clientWidth * 0.08 : 0),
+            y: () => (twoColumns() ? 0 : -stage.clientHeight * 0.12),
+            autoAlpha: 0,
+            duration: 0.3,
+          },
+          0,
+        )
         .to(visual, { x: () => center().x, y: () => center().y, scale: fill, duration: 0.62, ease: 'power1.inOut' }, 0)
         .to(dots, { autoAlpha: 0.35, duration: 0.5 }, 0.1);
     });

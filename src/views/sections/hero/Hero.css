@@ -91,9 +91,18 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* Una colonna: testo e riquadro devono stare insieme in uno schermo (la scena è sticky). */
+  /* Una colonna: testo e riquadro devono stare insieme in uno schermo (la scena è sticky). Più aria sotto la
+     navbar, quasi niente in fondo: il diorama arriva fino al bordo e la sfumatura lo accompagna. */
+  .hero__stage {
+    padding-top: clamp(6.5rem, 14svh, 8rem);
+    padding-bottom: 1rem;
+  }
+
   .hero__visual {
-    width: min(100%, 620px, 40svh);
+    justify-self: center;
+    /* Stacco dai pulsanti; il riquadro cala di poco per restare nello schermo. */
+    margin-top: clamp(1rem, 3.5svh, 2rem);
+    width: min(100%, 620px, 34svh);
   }
 
   .hero__vignette {

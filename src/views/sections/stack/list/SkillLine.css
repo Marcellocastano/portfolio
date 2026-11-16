@@ -1,0 +1,121 @@
+.mskill {
+  padding: 0.55rem 0 0.75rem;
+  border-top: 1px solid var(--border);
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.mskill[data-dim='true'] {
+  opacity: 0.3;
+}
+
+.mskill__head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.2rem 0;
+  color: var(--fg);
+  font: inherit;
+  text-align: left;
+}
+
+/* Loghi monocromi, come nella matrice: il colore del brand compare sulla riga aperta. */
+.mskill__head svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: var(--fg-muted);
+  transition: fill 0.25s;
+}
+
+.mskill[data-open='true'] .mskill__head svg {
+  fill: var(--c);
+}
+
+.mskill__name {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.mskill__years {
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.mskill__chev {
+  width: 7px;
+  height: 7px;
+  margin: 0 0.15rem 0.2rem 0.3rem;
+  border-right: 1.5px solid var(--fg-muted);
+  border-bottom: 1.5px solid var(--fg-muted);
+  transform: rotate(45deg);
+  transition: transform 0.25s var(--ease-out);
+}
+
+.mskill[data-open='true'] .mskill__chev {
+  margin-bottom: -0.15rem;
+  transform: rotate(-135deg);
+}
+
+/* Barra sull'asse 2018 → oggi: in grigio tutto il periodo d'uso, a colori i tratti in azienda. */
+.mskill__track {
+  position: relative;
+  height: 6px;
+  margin-top: 0.45rem;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--fg) 7%, transparent);
+}
+
+.mskill__track i {
+  position: absolute;
+  inset-block: 0;
+  left: var(--from);
+  width: calc(var(--to) - var(--from));
+  border-radius: 3px;
+}
+
+.mskill__span {
+  background: color-mix(in srgb, var(--fg-muted) 40%, transparent);
+}
+
+.mskill__seg {
+  background: var(--company);
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.mskill__seg[data-lit='false'] {
+  opacity: 0.2;
+}
+
+/* Il dettaglio della matrice (SkillTip), qui in linea sotto la riga aperta. */
+.mskill .stip {
+  position: static;
+  display: none;
+  width: auto;
+  margin-top: 0.75rem;
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+.mskill[data-open='true'] .stip {
+  display: block;
+  animation: rise 0.3s var(--ease-out);
+}
+
+.js .stack[data-revealed='false'] .mskill {
+  opacity: 0;
+}
+
+.js .stack[data-revealed='true'] .mskill {
+  animation: rise 0.4s calc(0.2s + var(--i) * 0.03s) var(--ease-out) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .stack[data-revealed] .mskill,
+  .mskill[data-open='true'] .stip {
+    animation: none;
+  }
+}

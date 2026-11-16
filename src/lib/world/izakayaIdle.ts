@@ -19,7 +19,7 @@ export function idleItem(obj: Object3D, hash: number): IdleItem | null {
   return null;
 }
 
-/** Pannelli che fluttuano, lanterne che oscillano, petali che scendono. */
+/** Pannelli che fluttuano, lanterne che oscillano e petali che scendono. */
 export function applyIdle(parts: IzakayaParts, t: number) {
   for (const it of parts.idle) {
     if (it.kind === 'bob') it.obj.position.y = it.base + Math.sin(t * 1.4 + it.phase) * 0.025;

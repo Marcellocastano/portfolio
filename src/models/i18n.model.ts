@@ -31,8 +31,11 @@ const i18n = {
   /** Mondo in miniatura dell'hero: descrizione e suggerimenti sugli oggetti interattivi. */
   world: {
     aria: (firstName: string) =>
-      `La piccola izakaya-studio di ${firstName}: un locale giapponese di notte con lanterne, noren, distributore automatico e un ciliegio in fiore; scorrendo la casa ruota, la facciata si apre e dentro c'è lo studio, con ${firstName} alla scrivania davanti al monitor e il suo cane seduto sul cuscino`,
+      `La piccola izakaya-studio di ${firstName}: un locale giapponese di notte con lanterne, noren, distributore automatico e un ciliegio in fiore; scorrendo la casa ruota, la facciata si apre e dentro c'è lo studio, con ${firstName} alla scrivania davanti al monitor e Olivia, la sua cagnolina, che dorme arrotolata sul cuscino`,
     openProject: (name: string) => `Apri ${name}`,
+    lightOff: 'Spegni la luce',
+    lightOn: 'Accendi la luce',
+    dog: 'Lei è Olivia',
   },
   about: {
     title: (firstName: string) => `Ciao, sono ${firstName}`,
@@ -209,8 +212,9 @@ const i18n = {
   },
   stack: {
     title: 'Stack',
-    lede: "Qui trovi gli strumenti con cui ho lavorato negli anni. Se passi su un'azienda, puoi vedere quali usavo in quel periodo.",
+    lede: "Qui trovi gli strumenti con cui ho lavorato negli anni. Se scegli un'azienda, vedi quali usavo in quel periodo.",
     legendAria: 'Esperienze',
+    pickCompany: "Scegli un'azienda per vedere cosa usavo lì.",
     categories: { frontend: 'Frontend', backend: 'Backend', dati: 'Dati', strumenti: 'Strumenti' },
     today: 'oggi',
     years: (n: number) => (n === 1 ? '1 anno' : `${n} anni`),

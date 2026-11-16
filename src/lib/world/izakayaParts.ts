@@ -26,6 +26,9 @@ export interface IzakayaParts {
   emissive: EmissiveRef[];
   idle: IdleItem[];
   screen: Mesh | null;
+  /** Olivia e il bilanciere dell'interruttore, per puntatore e animazione. */
+  dog: Mesh | null;
+  lightSwitch: Mesh | null;
   /** Composizione iniziale, tassello per tassello. */
   build: Build;
 }
@@ -65,6 +68,8 @@ function prepareMesh(mesh: Mesh, parts: IzakayaParts) {
     mesh.renderOrder = 10;
   }
   if (mesh.name === IZAKAYA_NODES.screen) parts.screen = mesh;
+  if (mesh.name === IZAKAYA_NODES.dog) parts.dog = mesh;
+  if (mesh.name === IZAKAYA_NODES.lightSwitch) parts.lightSwitch = mesh;
 }
 
 /** Analizza la scena glTF: luci, ombre, pezzi della facciata da aprire, oggetti animati e schermo del monitor. */
@@ -78,6 +83,8 @@ export function prepareIzakaya(root: Object3D): IzakayaParts {
     emissive: [],
     idle: [],
     screen: null,
+    dog: null,
+    lightSwitch: null,
     build: { pieces: [], start: null, done: true },
   };
   root.updateMatrixWorld(true);
@@ -99,7 +106,7 @@ export function prepareIzakaya(root: Object3D): IzakayaParts {
   parts.glows = prepareGlows(root, parts.lights);
   parts.emissive = collectEmissive(root);
   // Chi ha già la posizione scritta a ogni frame: la discesa iniziale si somma, non la sostituisce.
-  const moving = parts.idle.filter((it) => it.kind !== 'sway').map((it) => it.obj);
+  const moving = parts.idle.filter((it) => it.kind === 'bob' || it.kind === 'drift').map((it) => it.obj);
   parts.build = prepareBuild(root, new Set([...parts.cutaway.map((p) => p.obj), ...moving]));
   return parts;
 }

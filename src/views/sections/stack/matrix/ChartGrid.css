@@ -139,13 +139,6 @@
   }
 }
 
-@media (max-width: 767px) {
-  .grid__axis span:nth-child(even):not(.grid__today),
-  .grid__axis span:nth-last-child(2) {
-    visibility: hidden;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .js .stack[data-revealed='true'] .grid {
     animation: none;

@@ -1,0 +1,103 @@
+/* Lo Stack sui telefoni: sopra i 768px c'è la matrice. */
+.mstack {
+  margin-top: var(--section-content-gap);
+}
+
+@media (min-width: 768px) {
+  .mstack {
+    display: none;
+  }
+}
+
+.mchips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mchips__item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    border-color 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out);
+}
+
+.mchips__item i {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: var(--c);
+}
+
+.mchips__item[aria-pressed='true'] {
+  border-color: var(--c);
+  background: color-mix(in srgb, var(--c) 14%, var(--surface));
+}
+
+.mstack__hint {
+  min-height: 2.6em;
+  margin: 0.75rem 0 1.25rem;
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+/* Asse in cima alle righe: le barre sotto usano la stessa scala (toPct). */
+.mstack__axis {
+  position: relative;
+  height: 1.1rem;
+  margin: 0;
+  padding: 0;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  list-style: none;
+}
+
+.mstack__axis li {
+  position: absolute;
+  left: var(--x);
+  transform: translateX(-50%);
+}
+
+.mstack__axis li:first-child {
+  transform: none;
+}
+
+.mstack__axis li:last-child {
+  color: var(--accent);
+  transform: translateX(-100%);
+}
+
+.mstack__group + .mstack__group {
+  margin-top: 0.75rem;
+}
+
+.mstack__cat {
+  padding: 1rem 0 0.25rem;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.mstack__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

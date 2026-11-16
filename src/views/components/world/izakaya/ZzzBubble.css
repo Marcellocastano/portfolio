@@ -1,0 +1,99 @@
+/* Nuvoletta del sonno: nuvola bianca con le Z che salgono, due puntini verso la testa. */
+.zzz {
+  position: relative;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.zzz__cloud {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  padding: 0.55rem 1.05rem 0.6rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #3b4252;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1;
+  box-shadow:
+    -10px 4px 0 -2px #fff,
+    10px -3px 0 -3px #fff,
+    0 10px 24px -12px rgb(0 0 0 / 0.5);
+  animation: zzz-in 0.45s var(--ease-out) both;
+}
+
+.zzz__cloud b {
+  display: inline-block;
+  animation: zzz-float 1.8s ease-in-out infinite;
+}
+
+.zzz__cloud b:nth-child(1) {
+  font-size: 1.35rem;
+}
+
+.zzz__cloud b:nth-child(2) {
+  font-size: 1.1rem;
+  animation-delay: 0.25s;
+}
+
+.zzz__cloud b:nth-child(3) {
+  font-size: 0.9rem;
+  animation-delay: 0.5s;
+}
+
+.zzz__dot {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: zzz-in 0.45s var(--ease-out) both;
+}
+
+.zzz__dot--1 {
+  bottom: -9px;
+  left: 18%;
+  width: 9px;
+  height: 9px;
+}
+
+.zzz__dot--2 {
+  bottom: -18px;
+  left: 8%;
+  width: 5px;
+  height: 5px;
+}
+
+/* La luce si riaccende: la nuvola si gonfia e scoppia. */
+.zzz[data-phase='pop'] :is(.zzz__cloud, .zzz__dot) {
+  animation: zzz-pop 0.42s var(--ease-out) forwards;
+}
+
+@keyframes zzz-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4) translateY(10px);
+  }
+}
+
+@keyframes zzz-float {
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes zzz-pop {
+  40% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zzz__cloud b {
+    animation: none;
+  }
+}

@@ -106,6 +106,9 @@ export const IZAKAYA_NODES = {
   holo: /^INT_Holo_/,
   lantern: /^(LAN_(Big_Kaihatsu|Door_[LR])|INT_Lantern_Ceiling)$/,
   petals: 'VEG_Petals',
+  /** Olivia, che dorme arrotolata nella sua cuccia, e l'interruttore della stanza. */
+  dog: 'DOG_Body',
+  lightSwitch: 'INT_Switch',
   /** Mesh che non proiettano ombre: superfici luminose e particelle. */
   noShadow: /Petal|Holo|Screen|Blossom/,
 };

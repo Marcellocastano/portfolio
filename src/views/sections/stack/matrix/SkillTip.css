@@ -74,21 +74,6 @@
   text-underline-offset: 3px;
 }
 
-/* Su mobile il dettaglio si apre in linea sotto la riga. */
-@media (max-width: 767px) {
-  .stip {
-    position: static;
-    grid-column: 1 / -1;
-    display: none;
-    width: auto;
-    margin: 0.4rem 0 0.8rem;
-  }
-
-  .srow[data-active='true'] .stip {
-    display: block;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .stip,
   .srow[data-active='true'] .stip {

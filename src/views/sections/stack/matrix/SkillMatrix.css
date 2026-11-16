@@ -49,10 +49,10 @@
   animation: rise 0.5s 0.25s var(--ease-out) backwards;
 }
 
+/* Sui telefoni c'è la lista (SkillList): l'asse sarebbe troppo stretto per leggerlo. */
 @media (max-width: 767px) {
   .matrix {
-    --label-w: 128px;
-    --col-gap: 0.75rem;
+    display: none;
   }
 }
 
