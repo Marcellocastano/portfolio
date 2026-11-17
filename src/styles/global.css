@@ -10,7 +10,8 @@
 
 html {
   --cursor-default: url('/cursors/arrow.svg') 5 4, auto;
-  --cursor-pointer: url('/cursors/pointer.svg') 7 6, pointer;
+  /* Sugli elementi cliccabili la manina di sistema: la freccia personalizzata non si distingueva da quella normale. */
+  --cursor-pointer: pointer;
   --cursor-text: url('/cursors/text.svg') 10 14, text;
   -webkit-text-size-adjust: 100%;
   cursor: var(--cursor-default);

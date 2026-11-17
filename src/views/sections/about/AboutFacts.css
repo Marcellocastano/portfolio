@@ -1,32 +1,37 @@
 .facts {
-  margin-top: 2.5rem;
+  margin-top: 1.75rem;
 }
 
 .facts__title {
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
 }
 
-/* Coppie etichetta/valore su una griglia con filetti, come le proprietà in un pannello dell'editor. */
+/* Coppie etichetta/valore in colonna con filetti, come le proprietà in un pannello dell'editor. */
 .facts__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  column-gap: 2rem;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .facts__row {
-  padding: 0.8rem 0;
+  padding: 0.65rem 0;
   border-top: 1px solid var(--border);
 }
 
 .facts__row dt {
   color: var(--fg-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .facts__row dd {
-  margin: 0.15rem 0 0;
+  margin: 0.1rem 0 0;
+  font-size: 0.95rem;
   font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .facts {
+    margin-top: 0;
+  }
 }

@@ -7,19 +7,28 @@
 
 .about__grid {
   display: grid;
-  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
-  gap: clamp(2rem, 6vw, 6rem);
-  max-width: 1400px;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Il badge resta appeso mentre si legge il testo accanto. */
-.about__badge {
+/* Foto e dati chiave restano fermi accanto alla bio mentre la si legge. */
+.about__aside {
   position: sticky;
-  top: 4.5rem;
+  top: 6.5rem;
   align-self: start;
-  display: flex;
-  justify-content: center;
+}
+
+.about__photo {
+  display: block;
+  width: min(100%, 220px);
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
 }
 
 .about__intro {
@@ -44,46 +53,35 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 }
 
-/* Entrata: i testi salgono, il badge scende appeso al cordino. */
-.js .about[data-revealed='false'] :is(.about__bio, .about__links, .facts),
-.js .about[data-revealed='false'] .badge {
+/* Entrata: foto e dati prima, poi i testi. */
+.js .about[data-revealed='false'] :is(.about__aside, .about__bio, .about__links) {
   opacity: 0;
 }
 
-.js .about[data-revealed='false'] .badge__swing {
-  animation: none;
+.js .about[data-revealed='true'] .about__aside {
+  animation: rise 0.6s 0.15s var(--ease-out) backwards;
 }
 
 .js .about[data-revealed='true'] :is(.about__bio, .about__links) {
   animation: rise 0.5s 0.35s var(--ease-out) backwards;
 }
 
-.js .about[data-revealed='true'] .badge {
-  animation: badge-drop 0.7s 0.15s var(--ease-out) backwards;
-}
-
-.js .about[data-revealed='true'] .facts {
-  animation: rise 0.5s 0.5s var(--ease-out) backwards;
-}
-
-@keyframes badge-drop {
-  from {
-    opacity: 0;
-    transform: translateY(-70px);
-  }
-}
-
+/* Una colonna: prima il testo, poi foto e dati affiancati. */
 @media (max-width: 900px) {
   .about__grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .about__badge {
+  .about__aside {
     position: static;
     order: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
   }
 }
 
@@ -91,10 +89,15 @@
   .about__links {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .about__aside {
+    grid-template-columns: minmax(0, 110px) minmax(0, 1fr);
+    gap: 1.1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .about[data-revealed] :is(.about__bio, .about__links, .facts, .badge) {
+  .js .about[data-revealed] :is(.about__aside, .about__bio, .about__links) {
     animation: none;
   }
 }
